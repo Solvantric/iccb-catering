@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-500: #E24F5F;
+  --brand-600: #C73E4E;
+  --brand-700: #A93141;
+  --brand-400: #EB7480;
+  --brand-100: #FCE8EA;
+  --brand-50: #FFF5F6;
+  --ink-950: #0B0B0C;
+  --ink-900: #141416;
+  --ink-600: #52525B;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #141416;
+  background-color: #FFFFFF;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #E24F5F;
+  color: #FFFFFF;
+}
+
+/* Custom dotted leader line for Menu Items */
+.dotted-leader {
+  flex-grow: 1;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.25);
+  margin: 0 12px;
+  position: relative;
+  top: -4px;
+}
+
+.dotted-leader-light {
+  flex-grow: 1;
+  border-bottom: 2px dotted rgba(20, 20, 22, 0.2);
+  margin: 0 12px;
+  position: relative;
+  top: -4px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E24F5F;
+}
+
+/* Print styling */
+@media print {
+  header, footer, .no-print, [role="complementary"] {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
