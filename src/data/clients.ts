@@ -31,3 +31,4 @@ export const NEWS_ITEMS: NewsItem[] = [
     isSample: true,
   },
 ];
+

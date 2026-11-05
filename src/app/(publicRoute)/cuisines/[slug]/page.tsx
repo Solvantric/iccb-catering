@@ -156,3 +156,4 @@ export default function CuisineLandingPage({ params }: { params: { slug: string 
     </div>
   );
 }
+

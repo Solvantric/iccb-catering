@@ -26,3 +26,4 @@ export const leadService = {
     await apiClient.delete(`/leads/${id}`);
   },
 };
+

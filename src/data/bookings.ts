@@ -54,3 +54,4 @@ export const INITIAL_BOOKINGS: Booking[] = [
     isSample: true,
   },
 ];
+

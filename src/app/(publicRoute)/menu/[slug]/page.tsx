@@ -152,3 +152,4 @@ export default function DishDetailPage({ params }: { params: { slug: string } })
     </div>
   );
 }
+

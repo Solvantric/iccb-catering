@@ -121,3 +121,4 @@ export function getBreadcrumbJsonLd(items: { name: string; url: string }[]) {
     })),
   };
 }
+

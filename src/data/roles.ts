@@ -44,3 +44,4 @@ export const ROLE_PERMISSIONS: RolePermission[] = [
     ],
   },
 ];
+

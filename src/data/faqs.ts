@@ -74,3 +74,4 @@ export const FAQS: FAQ[] = [
     isSample: true,
   },
 ];
+

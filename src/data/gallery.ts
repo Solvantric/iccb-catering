@@ -99,3 +99,4 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     isSample: true,
   },
 ];
+

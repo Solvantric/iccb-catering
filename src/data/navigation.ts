@@ -106,3 +106,4 @@ export const DASHBOARD_NAV = [
   { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
   { label: "My Profile", href: "/dashboard/profile", icon: "User" },
 ];
+

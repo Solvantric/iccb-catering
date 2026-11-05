@@ -29,3 +29,4 @@ export function Logo({ className = "", light = false }: LogoProps) {
     </Link>
   );
 }
+

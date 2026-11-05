@@ -49,3 +49,4 @@ export function SampleBadge({ className = "" }: { className?: string }) {
     </Badge>
   );
 }
+

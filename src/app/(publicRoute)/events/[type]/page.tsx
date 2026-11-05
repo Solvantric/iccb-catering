@@ -185,3 +185,4 @@ export default function EventLandingPage({ params }: { params: { type: string } 
     </div>
   );
 }
+

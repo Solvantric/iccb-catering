@@ -26,3 +26,4 @@ export const menuService = {
     await apiClient.delete(`/menu/${id}`);
   },
 };
+

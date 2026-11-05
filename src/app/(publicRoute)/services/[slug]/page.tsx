@@ -141,3 +141,4 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     </div>
   );
 }
+

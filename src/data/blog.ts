@@ -105,3 +105,4 @@ Dishes are continuously monitored with digital temperature probes, ensuring cold
     isSample: true,
   },
 ];
+

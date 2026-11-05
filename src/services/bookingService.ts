@@ -26,3 +26,4 @@ export const bookingService = {
     await apiClient.delete(`/bookings/${id}`);
   },
 };
+
