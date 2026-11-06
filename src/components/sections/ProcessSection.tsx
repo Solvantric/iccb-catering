@@ -65,7 +65,7 @@ export function ProcessSection() {
               </div>
 
               <div className="pt-4 mt-4 border-t border-ink-100 dark:border-white/10">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:text-brand-400">
                   {locale === "bn" ? `ধাপ ${idx + 1} / ৫` : `Step ${idx + 1} of 5`}
                 </span>
               </div>

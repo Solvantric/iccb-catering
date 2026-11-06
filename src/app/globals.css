@@ -3,20 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --brand-50: #FFF1F2;
-  --brand-100: #FFE4E6;
-  --brand-200: #FECDD3;
-  --brand-300: #FDA4AF;
-  --brand-400: #E82936;
-  --brand-500: #DA0812;
-  --brand-600: #B8060F;
-  --brand-700: #94050C;
-  --brand-800: #730409;
-  --brand-900: #530206;
+  --header-h: 88px;
+  --brand-50: #FFF5F6;
+  --brand-100: #FCE8EA;
+  --brand-200: #F8BFC5;
+  --brand-300: #F2949E;
+  --brand-400: #EB7480;
+  --brand-500: #E24F5F;
+  --brand-600: #C73E4E;
+  --brand-700: #A93141;
+  --brand-800: #8B2433;
+  --brand-900: #6F1B27;
   --ink-950: #0B0B0C;
   --ink-900: #141416;
   --ink-600: #52525B;
   --white: #FFFFFF;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-h: 64px;
+  }
 }
 
 .dark {
@@ -53,7 +60,7 @@ html[lang="bn"] .font-display {
 }
 
 ::selection {
-  background-color: #DA0812;
+  background-color: #E24F5F;
   color: #FFFFFF;
 }
 
@@ -98,7 +105,7 @@ html[lang="bn"] .font-display {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #DA0812;
+  background: #E24F5F;
 }
 
 /* Print styling */

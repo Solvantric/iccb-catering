@@ -79,7 +79,7 @@ export function TestimonialsSection() {
                       {author}
                     </h4>
                     <p className="text-[11px] text-ink-500 dark:text-ink-400">{role}</p>
-                    <p className="text-[10px] text-brand-600 dark:text-brand-400 font-semibold">{company}</p>
+                    <p className="text-[10px] text-brand-700 dark:text-brand-400 font-semibold">{company}</p>
                   </div>
                 </div>
               </motion.div>

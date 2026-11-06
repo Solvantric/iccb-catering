@@ -8,31 +8,24 @@ interface LogoProps {
   light?: boolean;
 }
 
-export function Logo({ className = "", light = false }: LogoProps) {
+export function Logo({ className = "" }: LogoProps) {
   return (
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded",
+        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-[2px] shrink-0",
         className
       )}
-      aria-label="International Convention City Bashundhara"
+      aria-label="ICCB home"
     >
-      <div
-        className={cn(
-          "transition-all duration-200 inline-flex items-center justify-center",
-          light
-            ? "bg-[#FDFBF7] p-2 sm:p-2.5 rounded-lg shadow-sm"
-            : "dark:bg-[#FDFBF7] dark:p-2 sm:dark:p-2.5 dark:rounded-lg dark:shadow-sm"
-        )}
-      >
+      <div className="h-full w-auto bg-white rounded-[2px] p-1 sm:p-1.5 flex items-center justify-center shadow-xs">
         <Image
           src="/logo/iccb-logo.png"
           alt="International Convention City Bashundhara"
-          width={130}
-          height={119}
+          width={319}
+          height={291}
           priority
-          className="h-9 sm:h-11 w-auto object-contain"
+          className="h-full w-auto max-h-full object-contain"
         />
       </div>
     </Link>

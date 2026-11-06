@@ -6,7 +6,6 @@ export interface NavItem {
 }
 
 export const PUBLIC_NAV: NavItem[] = [
-  { label: "Home", labelBn: "হোম", href: "/" },
   { label: "About", labelBn: "আমাদের সম্পর্কে", href: "/about" },
   {
     label: "Services",

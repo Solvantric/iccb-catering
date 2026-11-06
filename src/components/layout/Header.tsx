@@ -45,13 +45,17 @@ export function Header() {
           ? "bg-ink-950/40 backdrop-blur-md border-b border-white/10 text-white"
           : "bg-white/95 dark:bg-ink-950/95 backdrop-blur-md shadow-sm border-b border-ink-100 dark:border-white/10 text-ink-900 dark:text-white"
       )}
+      style={{ height: "var(--header-h)" }}
     >
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Logo light={isTransparent} />
+      <div
+        className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+        style={{ height: "var(--header-h)" }}
+      >
+        {/* Logo block: height equals var(--header-h) exactly, flush to top and bottom, at left of container */}
+        <Logo className="h-[var(--header-h)] self-stretch" />
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-7">
+        {/* Desktop Nav: vertically centered */}
+        <nav className="hidden lg:flex items-center space-x-7 my-auto">
           {PUBLIC_NAV.map((item) => {
             const isActive = pathname === item.href;
             const hasChildren = !!item.children;
@@ -60,7 +64,7 @@ export function Header() {
               return (
                 <div
                   key={item.href}
-                  className="relative group"
+                  className="relative group my-auto flex items-center"
                   onMouseEnter={() => setServicesDropdown(true)}
                   onMouseLeave={() => setServicesDropdown(false)}
                 >
@@ -100,7 +104,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "text-sm font-semibold uppercase tracking-wider transition-colors",
+                  "text-sm font-semibold uppercase tracking-wider transition-colors my-auto flex items-center",
                   isTransparent
                     ? isActive ? "text-brand-400 font-bold" : "text-white/90 hover:text-white"
                     : isActive ? "text-brand-500 font-bold" : "text-ink-700 dark:text-ink-200 hover:text-brand-500 dark:hover:text-brand-400"
@@ -112,8 +116,8 @@ export function Header() {
           })}
         </nav>
 
-        {/* Right CTA & Controls */}
-        <div className="hidden sm:flex items-center space-x-3">
+        {/* Right CTA & Controls: vertically centered */}
+        <div className="hidden sm:flex items-center space-x-3 my-auto">
           {/* Theme Toggle Button */}
           {mounted && (
             <button
@@ -121,7 +125,7 @@ export function Header() {
               onClick={toggleTheme}
               aria-label={t.themeToggle}
               className={cn(
-                "p-2 rounded-lg border transition-colors",
+                "p-2 rounded-lg border transition-colors flex items-center justify-center",
                 isTransparent
                   ? "border-white/20 text-white hover:bg-white/10"
                   : "border-ink-200 dark:border-white/10 text-ink-700 dark:text-ink-200 hover:bg-ink-100 dark:hover:bg-white/10"
@@ -140,7 +144,7 @@ export function Header() {
             type="button"
             onClick={() => setLocale(locale === "en" ? "bn" : "en")}
             className={cn(
-              "flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-lg border transition-colors",
+              "flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-2 rounded-lg border transition-colors",
               isTransparent
                 ? "border-white/20 text-white hover:bg-white/10"
                 : "border-ink-200 dark:border-white/10 text-ink-700 dark:text-ink-200 hover:bg-ink-100 dark:hover:bg-white/10"
@@ -155,7 +159,7 @@ export function Header() {
           <Link
             href="/dashboard"
             className={cn(
-              "text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors px-2.5 py-1.5 rounded-lg",
+              "text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors px-2.5 py-2 rounded-lg",
               isTransparent
                 ? "text-white/80 hover:text-white hover:bg-white/10"
                 : "text-ink-600 dark:text-ink-300 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-white/5"
@@ -166,16 +170,16 @@ export function Header() {
             <span className="hidden md:inline">{t.dashboard}</span>
           </Link>
 
-          {/* Get a Quote Button */}
-          <Link href="/quote">
-            <Button size="sm" withArrow variant="primary">
+          {/* Get a Quote Button: whitespace-nowrap, px-5 */}
+          <Link href="/quote" className="flex items-center">
+            <Button size="sm" withArrow variant="primary" className="whitespace-nowrap px-5">
               {t.getQuote}
             </Button>
           </Link>
         </div>
 
         {/* Mobile Hamburger & Controls */}
-        <div className="flex sm:hidden items-center space-x-2">
+        <div className="flex sm:hidden items-center space-x-2 my-auto">
           {mounted && (
             <button
               type="button"

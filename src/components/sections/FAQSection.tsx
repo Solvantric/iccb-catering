@@ -44,7 +44,7 @@ export function FAQSection() {
                 </p>
                 <a
                   href="tel:+8801991197719"
-                  className="inline-block mt-3 font-display font-bold text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300"
+                  className="inline-block mt-3 font-display font-bold text-sm text-brand-700 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-300"
                 >
                   +88-01991-197719 &rarr;
                 </a>

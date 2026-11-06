@@ -39,7 +39,7 @@ export function MobileMenu() {
       {/* Drawer */}
       <div className="relative ml-auto w-4/5 max-w-sm h-full bg-ink-950 text-white flex flex-col p-6 overflow-y-auto z-10 border-l border-ink-800 shadow-2xl">
         <div className="flex items-center justify-between pb-6 border-b border-ink-800">
-          <Logo light />
+          <Logo className="h-12" />
           <button
             onClick={() => setMobileMenuOpen(false)}
             className="p-2 text-ink-400 hover:text-white rounded-lg hover:bg-ink-900"

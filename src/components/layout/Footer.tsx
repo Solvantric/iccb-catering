@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-ink-900">
           {/* Col 1 & 2: Brand / Positioning */}
           <div className="lg:col-span-2 space-y-4">
-            <Logo light />
+            <Logo className="h-14" />
             <p className="text-xs text-ink-300 leading-relaxed max-w-sm mt-3">
               {locale === "bn" ? SITE_INFO.positioningBn : SITE_INFO.positioning}
             </p>

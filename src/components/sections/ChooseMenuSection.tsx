@@ -85,13 +85,13 @@ export function ChooseMenuSection() {
 
               {/* Card Body */}
               <div className="space-y-3 text-center">
-                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full">
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-brand-700 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full">
                   {card.tag}
                 </span>
                 <h3 className="font-display font-bold text-xl uppercase tracking-wider text-ink-950 dark:text-ink-50">
                   {card.title}
                 </h3>
-                <p className="text-xs text-brand-600 dark:text-brand-400 font-semibold">{card.subtitle}</p>
+                <p className="text-xs text-brand-700 dark:text-brand-400 font-semibold">{card.subtitle}</p>
                 <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed pt-2">
                   {card.desc}
                 </p>
