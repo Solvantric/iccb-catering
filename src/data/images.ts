@@ -1,5 +1,44 @@
 // Centralized Unsplash and fallback image assets for ICCB Catering
 
+export interface HeroSlide {
+  id: string;
+  label: string;
+  labelBn: string;
+  src: string;
+  alt: string;
+}
+
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: "iccb-1",
+    label: "ICCB",
+    labelBn: "আইসিসিবি",
+    src: "https://www.iccbbg.com/assets/upload/wallpaper/wallpaper_1720856910.jpg",
+    alt: "International Convention City Bashundhara Exterior",
+  },
+  {
+    id: "iccb-2",
+    label: "ICCB",
+    labelBn: "আইসিসিবি",
+    src: "https://www.iccbbg.com/assets/upload/wallpaper/wallpaper_1579495968.jpg",
+    alt: "International Convention City Bashundhara Grand View",
+  },
+  {
+    id: "wedding",
+    label: "Wedding",
+    labelBn: "বিবাহ উৎসব",
+    src: "https://www.iccbbg.com/assets/upload/wallpaper/wallpaper_1570336154.jpg",
+    alt: "ICCB Royal Wedding Celebration",
+  },
+  {
+    id: "fair-expo",
+    label: "Fair & Expo",
+    labelBn: "মেলা ও প্রদর্শনী",
+    src: "https://www.just-style.com/wp-content/uploads/sites/27/2022/04/thumbnail_Bangladesh-Denim-Expo-10.jpg",
+    alt: "Bangladesh Denim Expo at ICCB",
+  },
+];
+
 export const IMAGES = {
   heroFood: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
   heroPlate: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
@@ -49,4 +88,3 @@ export const IMAGES = {
 
 export const PLACEHOLDER_BLUR =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMWExYTFhIi8+PC9zdmc+";
-
