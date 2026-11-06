@@ -3,18 +3,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
-import { IMAGES, PLACEHOLDER_BLUR } from "@/data/images";
-import { Play, ShieldCheck, Flame, Utensils } from "lucide-react";
-import { motion } from "framer-motion";
+import { Play, LayoutGrid, ShieldCheck, ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useUIStore } from "@/store/uiStore";
 import { translations } from "@/lib/i18n";
 
 export function VideoStorySection() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const [posterSrc, setPosterSrc] = useState(
+    "https://img.youtube.com/vi/5xrEvhLymd8/maxresdefault.jpg"
+  );
   const { locale } = useUIStore();
   const t = translations[locale].videoStory;
+  const isReducedMotion = useReducedMotion();
 
   return (
     <section className="py-24 bg-ink-950 text-white relative overflow-hidden">
@@ -23,48 +25,68 @@ export function VideoStorySection() {
 
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Chef Image with Animated Play Button (Reference Style) */}
+          {/* Left Column: Video Poster Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative h-[380px] sm:h-[480px] rounded-3xl overflow-hidden border-2 border-ink-800 shadow-2xl group">
+            <div className="relative h-[380px] sm:h-[460px] rounded-[20px] overflow-hidden border border-white/10 group">
+              {/* Poster Image */}
               <Image
-                src={IMAGES.chefCooking}
-                alt="ICCB Master Chef Preparing Food"
+                src={posterSrc}
+                alt="ICCB Expo Village"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                placeholder="blur"
-                blurDataURL={PLACEHOLDER_BLUR}
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-cover"
+                onError={() => {
+                  setPosterSrc("https://img.youtube.com/vi/5xrEvhLymd8/hqdefault.jpg");
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/20 to-transparent" />
 
-              {/* Animated Play Button */}
+              {/* Black/25 overlay */}
+              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+
+              {/* Play Button */}
               <button
+                type="button"
                 onClick={() => setVideoOpen(true)}
-                className="absolute inset-0 m-auto w-20 h-20 rounded-full bg-brand-500/90 text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 shadow-floating group/btn"
+                className="absolute inset-0 m-auto w-[84px] h-[84px] rounded-full bg-white/15 backdrop-blur-md border border-white/40 flex items-center justify-center transition-transform duration-300 hover:scale-[1.06] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 group/play z-10"
                 aria-label={t.playAria}
               >
-                <div className="absolute inset-0 rounded-full border-2 border-white/40 animate-ping pointer-events-none" />
-                <Play className="w-8 h-8 fill-white translate-x-0.5" />
+                {/* Slow Ripple Ring (scale 1 to 1.6, fade, 2.4s loop; off for reduced motion) */}
+                {!isReducedMotion && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full border border-white/50 pointer-events-none"
+                    animate={{
+                      scale: [1, 1.6],
+                      opacity: [0.8, 0],
+                    }}
+                    transition={{
+                      duration: 2.4,
+                      repeat: Infinity,
+                      ease: "easeOut",
+                    }}
+                  />
+                )}
+
+                {/* Inner 52px Brand Circle with White Play Icon */}
+                <div className="w-[52px] h-[52px] rounded-full bg-brand-500 text-white flex items-center justify-center shadow-lg transition-transform duration-300 group-hover/play:scale-105">
+                  <Play className="w-5 h-5 fill-white translate-x-0.5" />
+                </div>
               </button>
 
-              {/* Bottom Label Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-ink-900/80 backdrop-blur-md p-4 rounded-2xl border border-ink-700 flex items-center justify-between text-left">
+              {/* Bottom Caption Bar */}
+              <div className="absolute bottom-5 left-5 right-5 bg-ink-950/80 backdrop-blur-md px-4 py-3 rounded-xl border border-white/10 flex items-center justify-between text-left">
                 <div>
                   <p className="text-[10px] uppercase font-bold text-brand-400 tracking-wider">
-                    {t.badgeTitle}
+                    {t.posterLabel}
                   </p>
-                  <p className="text-xs sm:text-sm font-bold text-white">
-                    {t.badgeSubtitle}
+                  <p className="text-xs sm:text-sm font-semibold text-white">
+                    {t.posterLine}
                   </p>
-                </div>
-                <div className="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center">
-                  <Flame className="w-5 h-5" />
                 </div>
               </div>
             </div>
@@ -78,70 +100,82 @@ export function VideoStorySection() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-6 space-y-6 text-left"
           >
+            {/* Tagline */}
             <span className="font-serif italic text-brand-400 text-lg font-semibold block">
               {t.tag}
             </span>
 
+            {/* Headline */}
             <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
               {t.heading}
             </h2>
 
+            {/* Paragraph */}
             <p className="text-xs sm:text-sm text-ink-300 leading-relaxed">
               {t.subtitle}
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-ink-900 border border-ink-800 space-y-1">
-                <ShieldCheck className="w-5 h-5 text-brand-500" />
-                <h4 className="font-display font-bold text-sm uppercase text-white">
-                  {t.point1Title}
+            {/* Two Info Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              {/* Card 1: Four Events at Once */}
+              <div className="p-6 rounded-[16px] bg-white/[0.03] border border-white/10 space-y-3 hover:border-brand-500/40 transition-colors">
+                <div className="w-[44px] h-[44px] rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-300">
+                  <LayoutGrid size={22} strokeWidth={1.5} />
+                </div>
+                <h4 className="font-display font-bold text-sm uppercase text-white tracking-wider">
+                  {t.card1Title}
                 </h4>
-                <p className="text-[11px] text-ink-400">{t.point1Desc}</p>
+                <p className="text-xs text-ink-400 leading-relaxed">
+                  {t.card1Desc}
+                </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-ink-900 border border-ink-800 space-y-1">
-                <Utensils className="w-5 h-5 text-brand-500" />
-                <h4 className="font-display font-bold text-sm uppercase text-white">
-                  {t.point2Title}
+              {/* Card 2: Fully Equipped */}
+              <div className="p-6 rounded-[16px] bg-white/[0.03] border border-white/10 space-y-3 hover:border-brand-500/40 transition-colors">
+                <div className="w-[44px] h-[44px] rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-300">
+                  <ShieldCheck size={22} strokeWidth={1.5} />
+                </div>
+                <h4 className="font-display font-bold text-sm uppercase text-white tracking-wider">
+                  {t.card2Title}
                 </h4>
-                <p className="text-[11px] text-ink-400">{t.point2Desc}</p>
+                <p className="text-xs text-ink-400 leading-relaxed">
+                  {t.card2Desc}
+                </p>
               </div>
             </div>
 
-            <div className="pt-4">
-              <Link href="/about">
-                <Button size="md" withArrow variant="primary">
-                  {t.ctaAbout}
-                </Button>
+            {/* Action Button: brand-500, white text, radius 10, h-48, arrow nudges 4px on hover */}
+            <div className="pt-2">
+              <Link href="/venues" className="inline-block">
+                <button
+                  type="button"
+                  className="h-[48px] px-6 rounded-[10px] bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm tracking-wide inline-flex items-center gap-2 shadow-md transition-all active:scale-[0.98] group"
+                >
+                  <span>{t.exploreBtn}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </button>
               </Link>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Video Modal */}
-      <Modal isOpen={videoOpen} onClose={() => setVideoOpen(false)} maxWidth="4xl">
-        <div className="space-y-4">
-          <h3 className="font-display font-bold text-xl uppercase tracking-wider text-ink-900 dark:text-ink-50">
-            Behind the Scenes at ICCB Catering
-          </h3>
+      {/* Video Modal with 16:9 iframe only while open */}
+      <Modal isOpen={videoOpen} onClose={() => setVideoOpen(false)} maxWidth="5xl">
+        <div className="p-2 sm:p-4 bg-ink-950 text-white rounded-2xl">
           <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black flex items-center justify-center">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-              title="ICCB Catering Documentary Preview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            {videoOpen && (
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/5xrEvhLymd8?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+                title="ICCB Expo Village"
+                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
+              />
+            )}
           </div>
-          <p className="text-xs text-ink-500 dark:text-ink-400 leading-relaxed">
-            {locale === "bn"
-              ? "আইসিসিবির স্বাস্থ্যকর মাংস প্রক্রিয়াকরণ ইউনিট, আধুনিক কেন্দ্রীয় রান্নাঘর এবং তাপমাত্রা নিয়ন্ত্রিত ব্যাঙ্কোয়েট ক্যাটারিং পরিবহন ব্যবস্থার ৩ মিনিটের একটি বিশেষ ঝলক।"
-              : "Take a 3-minute virtual tour through ICCB's hygienic meat processing rooms, central industrial kitchen, and banquet temperature-controlled logistics fleet."}
-          </p>
         </div>
       </Modal>
     </section>
   );
 }
-

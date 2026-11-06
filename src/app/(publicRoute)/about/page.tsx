@@ -186,25 +186,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Band */}
-      <section className="bg-brand-500 text-white py-12 text-center">
-        <div className="max-w-xl mx-auto px-4 space-y-4">
-          <h3 className="font-display font-black text-3xl uppercase">
-            Experience ICCB Catering Firsthand
-          </h3>
-          <p className="text-xs sm:text-sm text-white/90">
-            Book a private food tasting appointment with our master chefs before confirming your event date.
-          </p>
-          <div className="pt-2">
-            <Link href="/tasting">
-              <Button variant="dark" size="lg" withArrow>
-                Schedule a Tasting Session
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

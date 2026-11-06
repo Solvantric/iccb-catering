@@ -11,7 +11,7 @@ import { StatsSection } from "@/components/sections/StatsSection";
 import { GalleryPreviewSection } from "@/components/sections/GalleryPreviewSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { SubscribeBanner } from "@/components/sections/SubscribeBanner";
+import { TastingBanner } from "@/components/sections/TastingBanner";
 import { CTABand } from "@/components/sections/CTABand";
 import { generatePageMetadata, getOrganizationJsonLd } from "@/lib/seo";
 
@@ -43,7 +43,7 @@ export default function HomePage() {
       <GalleryPreviewSection />
       <TestimonialsSection />
       <FAQSection />
-      <SubscribeBanner />
+      <TastingBanner />
       <CTABand />
     </>
   );

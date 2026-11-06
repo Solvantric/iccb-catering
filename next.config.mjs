@@ -21,6 +21,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.just-style.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
     ],
   },
 };
