@@ -75,6 +75,14 @@ export const translations = {
       card2Desc: "Centralized air conditioning, backup power, 24/7 CCTV security and ample parking.",
       exploreBtn: "Explore Expo Village",
     },
+    clientVideos: {
+      tag: "~ Happy Clients ~",
+      heading: "EXPERIENCE THE MOMENTS",
+      subtitle:
+        "Watch real events hosted at ICCB, from weddings and receptions to trade fairs and musical nights.",
+      playAria: "Play video: ",
+      stopAria: "Stop video",
+    },
     tastingBanner: {
       title: "EXPERIENCE ICCB CATERING FIRSTHAND",
       subtitle: "Book a private food tasting appointment with our master chefs before confirming your event date.",
@@ -291,6 +299,14 @@ export const translations = {
       card2Title: "আন্তর্জাতিক মানের সুযোগ-সুবিধা",
       card2Desc: "সেন্ট্রালাইজড শীতাতপ নিয়ন্ত্রণ, ব্যাকআপ বিদ্যুৎ, ২৪/৭ সিসিটিভি নিরাপত্তা ও সুবিশাল পার্কিং ব্যবস্থা।",
       exploreBtn: "এক্সপো ভিলেজ ঘুরে দেখুন",
+    },
+    clientVideos: {
+      tag: "~ সম্মানিত গ্রাহকবৃন্দ ~",
+      heading: "মুহূর্তগুলো অনুভব করুন",
+      subtitle:
+        "বিয়ে, বৌভাত ও সংবর্ধনা থেকে শুরু করে বাণিজ্য মেলা এবং সঙ্গীত সন্ধ্যা পর্যন্ত—আইসিসিবি-তে আয়োজিত বাস্তব ইভেন্টগুলোর ভিডিও দেখুন।",
+      playAria: "ভিডিও দেখুন: ",
+      stopAria: "ভিডিও বন্ধ করুন",
     },
     tastingBanner: {
       title: "আইসিসিবি ক্যাটারিংয়ের স্বাদ নিন সরাসরি",

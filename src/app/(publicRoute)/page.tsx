@@ -8,7 +8,7 @@ import { OccasionGridSection } from "@/components/sections/OccasionGridSection";
 import { TodaysMenuSection } from "@/components/sections/TodaysMenuSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { StatsSection } from "@/components/sections/StatsSection";
-import { GalleryPreviewSection } from "@/components/sections/GalleryPreviewSection";
+import { ClientVideosSection } from "@/components/sections/ClientVideosSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { TastingBanner } from "@/components/sections/TastingBanner";
@@ -40,7 +40,7 @@ export default function HomePage() {
       <TodaysMenuSection />
       <ProcessSection />
       <StatsSection />
-      <GalleryPreviewSection />
+      <ClientVideosSection />
       <TestimonialsSection />
       <FAQSection />
       <TastingBanner />
