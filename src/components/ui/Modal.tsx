@@ -9,7 +9,7 @@ export interface ModalProps {
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
-  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "4xl";
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "4xl" | "5xl";
   className?: string;
 }
 
@@ -24,23 +24,31 @@ export function Modal({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const maxWidthStyles = {
+  const maxWidthStyles: Record<string, string> = {
     sm: "max-w-sm",
     md: "max-w-md",
     lg: "max-w-lg",
     xl: "max-w-xl",
     "2xl": "max-w-2xl",
     "4xl": "max-w-4xl",
+    "5xl": "max-w-5xl",
   };
 
   return (
@@ -73,8 +81,10 @@ export function Modal({
         )}
         {!title && (
           <button
+            type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 text-ink-400 hover:text-ink-700 p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm"
+            aria-label="Close modal"
+            className="absolute top-4 right-4 z-20 text-ink-500 hover:text-ink-900 dark:text-ink-300 dark:hover:text-white p-1.5 rounded-full bg-white/80 dark:bg-ink-800/80 backdrop-blur-sm shadow-sm transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

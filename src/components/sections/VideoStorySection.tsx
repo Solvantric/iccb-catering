@@ -161,19 +161,22 @@ export function VideoStorySection() {
       </div>
 
       {/* Video Modal with 16:9 iframe only while open */}
-      <Modal isOpen={videoOpen} onClose={() => setVideoOpen(false)} maxWidth="5xl">
-        <div className="p-2 sm:p-4 bg-ink-950 text-white rounded-2xl">
-          <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black flex items-center justify-center">
-            {videoOpen && (
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/5xrEvhLymd8?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-                title="ICCB Expo Village"
-                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                allowFullScreen
-              />
-            )}
-          </div>
+      <Modal
+        isOpen={videoOpen}
+        onClose={() => setVideoOpen(false)}
+        maxWidth="5xl"
+        className="!bg-ink-950 !border-white/10 overflow-hidden"
+      >
+        <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black flex items-center justify-center">
+          {videoOpen && (
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube-nocookie.com/embed/5xrEvhLymd8?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+              title="ICCB Expo Village"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+            />
+          )}
         </div>
       </Modal>
     </section>
