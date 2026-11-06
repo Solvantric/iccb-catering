@@ -3,59 +3,58 @@
 import React from "react";
 import Link from "next/link";
 import { Accordion } from "@/components/ui/Accordion";
-import { FAQS } from "@/data/faqs";
-import { Button } from "@/components/ui/Button";
+import { REAL_FAQS, SITE_FACTS } from "@/content/content";
 
 export function FAQSection() {
-  const faqItems = FAQS.slice(0, 5).map((f) => ({
+  const faqItems = REAL_FAQS.map((f) => ({
     id: f.id,
     title: f.question,
     content: f.answer,
   }));
 
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-24 lg:py-32 bg-paper text-ink border-b border-rule">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Heading & Support Note */}
-          <div className="lg:col-span-5 space-y-4 text-left">
-            <span className="font-serif italic text-brand-600 text-lg font-semibold block">
-              ~ Clear Answers ~
-            </span>
-            <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 leading-tight">
-              FREQUENTLY ASKED QUESTIONS
+        {/* Section Header */}
+        <div className="flex items-baseline justify-between border-b border-rule pb-3 mb-16">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent font-semibold">
+            &sect; 08 / FAQ
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-ink-soft">
+            Information
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Heading & Hotline Note */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <h2 className="font-serif text-4xl sm:text-5xl font-normal leading-tight">
+              Direct answers to <em className="italic text-accent">common queries.</em>
             </h2>
-            <p className="text-xs sm:text-sm text-ink-600 leading-relaxed">
-              Have specific questions regarding guest minimums, tasting appointments, outside venues, or payment terms? We are here to help.
+            <p className="text-xs sm:text-sm text-ink-soft leading-relaxed font-mono">
+              Key guidance on booking procedures, venue access, hall amenities, and location along 300 ft highway.
             </p>
 
-            <div className="pt-4 space-y-3">
-              <div className="p-5 rounded-2xl bg-brand-50/70 border border-brand-100 text-left">
-                <p className="text-xs font-bold uppercase text-brand-700 tracking-wider">
-                  Still have queries?
-                </p>
-                <p className="text-xs text-ink-600 mt-1">
-                  Our dedicated catering consultation hotline is available 7 days a week.
-                </p>
-                <a
-                  href="tel:+8801991197719"
-                  className="inline-block mt-3 font-display font-bold text-sm text-brand-600 hover:text-brand-700"
-                >
-                  +88-01991-197719 &rarr;
+            <div className="border border-rule p-6 bg-paper-2 space-y-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">
+                Direct Booking Desk
+              </p>
+              <p className="text-xs font-mono text-ink">
+                Hotline:{" "}
+                <a href={`tel:${SITE_FACTS.bookingPhones[1]}`} className="font-bold underline underline-offset-4 hover:text-accent">
+                  {SITE_FACTS.bookingPhones[1]}
                 </a>
-              </div>
-
-              <div>
-                <Link href="/faq">
-                  <Button variant="outline" size="sm">
-                    View All FAQs
-                  </Button>
-                </Link>
-              </div>
+              </p>
+              <p className="text-xs font-mono text-ink">
+                Email:{" "}
+                <a href={`mailto:${SITE_FACTS.bookingEmail}`} className="font-bold underline underline-offset-4 hover:text-accent">
+                  {SITE_FACTS.bookingEmail}
+                </a>
+              </p>
             </div>
           </div>
 
-          {/* Right Column: Accordion */}
+          {/* Right Column: Two-Column/Full Accordion */}
           <div className="lg:col-span-7">
             <Accordion items={faqItems} />
           </div>
@@ -64,4 +63,3 @@ export function FAQSection() {
     </section>
   );
 }
-

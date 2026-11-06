@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { SITE_INFO } from "@/data/site";
+import { SITE_FACTS } from "@/content/content";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://iccbcatering.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.iccbbg.com";
 
 export function generatePageMetadata({
   title,
@@ -14,9 +14,9 @@ export function generatePageMetadata({
   path?: string;
   image?: string;
 }): Metadata {
-  const fullTitle = `${title} | ${SITE_INFO.name} - Taste of Happiness`;
+  const fullTitle = `${title} | ICCB - International Convention City Bashundhara`;
   const canonicalUrl = `${siteUrl}${path}`;
-  const ogImage = image || "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80";
+  const ogImage = image || "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80";
 
   return {
     title: fullTitle,
@@ -28,7 +28,7 @@ export function generatePageMetadata({
       title: fullTitle,
       description,
       url: canonicalUrl,
-      siteName: SITE_INFO.name,
+      siteName: SITE_FACTS.fullName,
       images: [
         {
           url: ogImage,
@@ -52,18 +52,17 @@ export function generatePageMetadata({
 export function getOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": ["Organization", "CateringBusiness"],
-    name: SITE_INFO.name,
-    legalName: SITE_INFO.fullName,
+    "@type": ["EventVenue", "Organization"],
+    name: SITE_FACTS.fullName,
+    alternateName: SITE_FACTS.name,
     url: siteUrl,
     logo: `${siteUrl}/logo.svg`,
-    description: SITE_INFO.positioning,
-    slogan: SITE_INFO.tagline,
-    telephone: SITE_INFO.contact.cateringPhone,
-    email: SITE_INFO.contact.cateringEmail,
+    description: "International Convention City Bashundhara (ICCB) is South Asia's largest integrated convention and exhibition center, located in Kuril, Dhaka.",
+    telephone: SITE_FACTS.bookingPhones[1],
+    email: SITE_FACTS.bookingEmail,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Next to 300 ft. Purbachal Express Highway, Kuril Bishwa Road",
+      streetAddress: "Next to 300 ft Purbachal Express Highway, Kuril Bishwa Road",
       addressLocality: "Dhaka",
       postalCode: "1229",
       addressCountry: "BD",
@@ -89,36 +88,5 @@ export function getOrganizationJsonLd() {
         closes: "22:00",
       },
     ],
-    priceRange: "৳৳৳",
-    servesCuisine: ["Mughal", "Continental", "Traditional Bengali", "Multi-cuisine"],
   };
 }
-
-export function getFaqJsonLd(faqs: { question: string; answer: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-}
-
-export function getBreadcrumbJsonLd(items: { name: string; url: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: `${siteUrl}${item.url}`,
-    })),
-  };
-}
-

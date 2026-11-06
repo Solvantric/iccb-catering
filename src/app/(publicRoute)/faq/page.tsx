@@ -1,92 +1,71 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { FAQS } from "@/data/faqs";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { Accordion } from "@/components/ui/Accordion";
-import { Button } from "@/components/ui/Button";
-import { Tabs } from "@/components/ui/Tabs";
-
-const categories = [
-  { id: "All", label: "All Questions" },
-  { id: "General", label: "General" },
-  { id: "Booking & Payment", label: "Booking & Payment" },
-  { id: "Menu & Tasting", label: "Menu & Tasting" },
-  { id: "Logistics", label: "Logistics & Transport" },
-];
+import { BookingContactBlock } from "@/components/sections/BookingContactBlock";
+import { REAL_FAQS } from "@/content/content";
+import { ChevronDown } from "lucide-react";
 
 export default function FAQPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [openId, setOpenId] = useState<string | null>(REAL_FAQS[0]?.id || null);
 
-  const filteredFaqs = activeCategory === "All"
-    ? FAQS
-    : FAQS.filter((f) => f.category === activeCategory);
-
-  const accordionItems = filteredFaqs.map((f) => ({
-    id: f.id,
-    title: f.question,
-    content: f.answer,
-  }));
+  const toggle = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
 
   return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="bg-ink-950 text-white py-20 relative text-center">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="flex justify-center">
-            <Breadcrumbs items={[{ label: "FAQs" }]} />
-          </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
-            ~ Help & Answers ~
-          </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight">
-            FREQUENTLY ASKED QUESTIONS
+    <div className="bg-paper text-ink min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 space-y-12">
+        <Breadcrumbs items={[{ label: "Frequently Asked Questions" }]} />
+
+        <div className="space-y-4 border-b border-rule pb-8">
+          <span className="mono text-ink-soft">§ 08 / Questions</span>
+          <h1 className="font-serif text-4xl sm:text-6xl text-ink tracking-tight">
+            Frequently Asked <span className="italic text-accent">Questions</span>
           </h1>
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
-            Everything you need to know about booking catering with ICCB: minimum guests, food tasting appointments, hygiene standards, and event logistics.
+          <p className="text-base sm:text-lg text-ink-soft leading-relaxed">
+            Essential information regarding booking procedures, venue infrastructure, location access, and on-site hospitality.
           </p>
         </div>
-      </section>
 
-      {/* Tabs */}
-      <section className="py-6 bg-brand-50/40 border-b border-brand-100">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-          <Tabs
-            tabs={categories}
-            activeTab={activeCategory}
-            onChange={setActiveCategory}
-          />
+        <div className="border-t border-rule divide-y divide-rule">
+          {REAL_FAQS.map((faq, index) => {
+            const isOpen = openId === faq.id;
+            return (
+              <div key={faq.id} className="py-6">
+                <button
+                  type="button"
+                  onClick={() => toggle(faq.id)}
+                  className="w-full flex items-center justify-between text-left gap-4 group"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="mono text-ink-soft">0{index + 1}</span>
+                    <h3 className="font-serif text-xl sm:text-2xl text-ink group-hover:text-accent transition-colors">
+                      {faq.question}
+                    </h3>
+                  </div>
+                  <ChevronDown
+                    className={`w-4 h-4 text-ink-soft shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-accent" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="pt-4 pl-8 sm:pl-10 text-sm text-ink-soft leading-relaxed max-w-2xl">
+                    <p>{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
 
-      {/* Accordion List */}
-      <section className="py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Accordion items={accordionItems} />
-
-        {/* Contact Banner */}
-        <div className="mt-16 p-8 rounded-3xl bg-brand-50 border border-brand-100 text-center space-y-3">
-          <h3 className="font-display font-bold text-xl uppercase text-ink-950">
-            Didn&apos;t find your question?
-          </h3>
-          <p className="text-xs text-ink-600 max-w-md mx-auto">
-            Contact our dedicated catering consultation hotline directly. We are happy to walk you through any details.
-          </p>
-          <div className="pt-2 flex justify-center gap-3">
-            <Link href="/contact">
-              <Button size="sm" variant="primary">
-                Contact Banquet Desk
-              </Button>
-            </Link>
-            <Link href="/inquiry">
-              <Button size="sm" variant="outline">
-                Submit an Inquiry
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <BookingContactBlock
+        title="Still Have Questions?"
+        subtitle="Our venue coordination team is available via direct phone and email to clarify specific requirements."
+      />
     </div>
   );
 }
-

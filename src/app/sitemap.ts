@@ -1,44 +1,30 @@
 import { MetadataRoute } from "next";
-import { MENU_ITEMS } from "@/data/menu";
-import { PACKAGES } from "@/data/packages";
-import { SERVICES } from "@/data/services";
-import { BLOG_POSTS } from "@/data/blog";
+import { REAL_VENUES, REAL_EVENT_TYPES } from "@/content/content";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://iccbcatering.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.iccbbg.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
+  const staticRoutes = [
     "",
-    "/about",
-    "/services",
-    "/services/corporate-catering",
-    "/services/wedding-catering",
-    "/services/birthday-party-catering",
-    "/menu",
-    "/packages",
-    "/cuisines/mughal",
-    "/cuisines/continental",
-    "/cuisines/multi-cuisine",
-    "/events/wedding",
-    "/events/conference",
-    "/events/iftar",
-    "/quote",
-    "/booking",
-    "/tasting",
-    "/inquiry",
-    "/contact",
-    "/gallery",
-    "/testimonials",
-    "/blog",
-    "/faq",
-    "/our-process",
+    "/about/overview",
+    "/about/mission-values",
+    "/about/management",
+    "/about/our-team",
+    "/about/join-us",
     "/venues",
-    "/lunch-box",
-    "/offers",
-    "/careers",
-    "/privacy-policy",
-    "/terms",
-    "/cancellation-policy",
+    "/gallery",
+    "/events",
+    "/news",
+    "/venue-map",
+    "/plan/offers",
+    "/plan/rates",
+    "/catering",
+    "/restaurant",
+    "/contact",
+    "/contact/enquiry",
+    "/faq",
+    "/privacy",
+    "/thank-you",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
@@ -46,34 +32,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1.0 : 0.8,
   }));
 
-  const menuRoutes = MENU_ITEMS.map((dish) => ({
-    url: `${siteUrl}/menu/${dish.slug}`,
+  const venueRoutes = REAL_VENUES.map((venue) => ({
+    url: `${siteUrl}/venues/${venue.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
-  const packageRoutes = PACKAGES.map((pkg) => ({
-    url: `${siteUrl}/packages/${pkg.slug}`,
+  const planRoutes = REAL_EVENT_TYPES.map((ev) => ({
+    url: `${siteUrl}/plan/${ev.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
-  const serviceRoutes = SERVICES.map((srv) => ({
-    url: `${siteUrl}/services/${srv.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const blogRoutes = BLOG_POSTS.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  return [...routes, ...menuRoutes, ...packageRoutes, ...serviceRoutes, ...blogRoutes];
+  return [...staticRoutes, ...venueRoutes, ...planRoutes];
 }
-

@@ -1,5 +1,5 @@
 {
-  "name": "temp-app",
+  "name": "iccb-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.3",
-    "axios": "^1.21.0",
     "clsx": "^2.1.1",
     "framer-motion": "^14.9.1",
     "lucide-react": "^1.69.0",
@@ -18,11 +17,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.91.0",
-    "recharts": "^3.10.1",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0",
-    "zod": "^4.6.7",
-    "zustand": "^5.0.16"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,24 +1,19 @@
 import React from "react";
 import { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { FeatureStrip } from "@/components/sections/FeatureStrip";
-import { ChooseMenuSection } from "@/components/sections/ChooseMenuSection";
-import { VideoStorySection } from "@/components/sections/VideoStorySection";
-import { OccasionGridSection } from "@/components/sections/OccasionGridSection";
-import { TodaysMenuSection } from "@/components/sections/TodaysMenuSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { StatsSection } from "@/components/sections/StatsSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { VenuesSection } from "@/components/sections/VenuesSection";
+import { PlanEventSection } from "@/components/sections/PlanEventSection";
 import { GalleryPreviewSection } from "@/components/sections/GalleryPreviewSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { GroundsSection } from "@/components/sections/GroundsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { SubscribeBanner } from "@/components/sections/SubscribeBanner";
-import { CTABand } from "@/components/sections/CTABand";
+import { EnquireSection } from "@/components/sections/EnquireSection";
 import { generatePageMetadata, getOrganizationJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Premium Wedding & Corporate Catering in Dhaka",
+  title: "International Convention City Bashundhara (ICCB) | Dhaka",
   description:
-    "ICCB Catering delivers uncompromising taste and certified hygiene with our modern slaughterhouse, culinary masters, and 10,000+ guest capacity.",
+    "South Asia's largest integrated event and convention facility. 6 world-class halls and open grounds next to 300 ft Purbachal Express Highway, Kuril, Dhaka.",
   path: "/",
 });
 
@@ -31,21 +26,15 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* 15 Reference-matched sections */}
+      {/* Editorial Sections § 01 to § 09 */}
       <HeroSection />
-      <FeatureStrip />
-      <ChooseMenuSection />
-      <VideoStorySection />
-      <OccasionGridSection />
-      <TodaysMenuSection />
-      <ProcessSection />
-      <StatsSection />
+      <AboutSection />
+      <VenuesSection />
+      <PlanEventSection />
       <GalleryPreviewSection />
-      <TestimonialsSection />
+      <GroundsSection />
       <FAQSection />
-      <SubscribeBanner />
-      <CTABand />
+      <EnquireSection />
     </>
   );
 }
-

@@ -1,99 +1,106 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Modal } from "@/components/ui/Modal";
 import { GALLERY_ITEMS } from "@/data/gallery";
-import { PLACEHOLDER_BLUR } from "@/data/images";
-import { Eye, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 export function GalleryPreviewSection() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const previewItems = GALLERY_ITEMS.slice(0, 6);
+  const items = GALLERY_ITEMS.slice(0, 5);
 
   return (
-    <section className="py-24 bg-white relative">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="py-24 lg:py-32 bg-paper text-ink border-b border-rule">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-2xl mx-auto space-y-3 mb-16">
-          <span className="font-serif italic text-brand-600 text-lg font-semibold block">
-            ~ Visual Excellence ~
+        <div className="flex items-baseline justify-between border-b border-rule pb-3 mb-16">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent font-semibold">
+            &sect; 05 / Gallery
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950">
-            EXPERIENCE THE MAGIC
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-600 leading-relaxed">
-            A glimpse into our luxurious banquet spreads, elegant table configurations, and artfully plated dishes at ICCB.
-          </p>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-ink-soft">
+            Photography
+          </span>
         </div>
 
-        {/* Masonry / Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {previewItems.map((item, idx) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              onClick={() => setSelectedImage(item.imageUrl)}
-              className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-soft group cursor-pointer border border-ink-100"
-            >
+        <div className="text-left mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div className="space-y-3">
+            <h2 className="font-serif text-4xl sm:text-6xl font-normal leading-tight">
+              Spaces in <em className="italic text-accent">perspective.</em>
+            </h2>
+            <p className="text-xs sm:text-sm text-ink-soft max-w-lg font-mono">
+              Visual records of banquet arrangements, stage choreography, and convention hall architecture.
+            </p>
+          </div>
+          <Link
+            href="/gallery"
+            className="font-mono text-xs uppercase tracking-wider underline underline-offset-4 hover:text-accent shrink-0"
+          >
+            Complete Archive &rarr;
+          </Link>
+        </div>
+
+        {/* 12-Column Asymmetric Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
+          {/* Main Large Item: 7 cols */}
+          {items[0] && (
+            <div className="sm:col-span-7 relative aspect-[16/10] border border-rule overflow-hidden bg-paper-2 group">
+              <Image
+                src={items[0].imageUrl}
+                alt={items[0].title}
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
+              />
+              {items[0].caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-paper/95 dark:bg-paper-2/95 border-t border-rule py-2 px-3 text-left">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-soft">
+                    {items[0].caption}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tall Item: 5 cols */}
+          {items[1] && (
+            <div className="sm:col-span-5 relative aspect-[16/10] sm:aspect-auto border border-rule overflow-hidden bg-paper-2 group">
+              <Image
+                src={items[1].imageUrl}
+                alt={items[1].title}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
+              />
+              {items[1].caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-paper/95 dark:bg-paper-2/95 border-t border-rule py-2 px-3 text-left">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-soft">
+                    {items[1].caption}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Row 2: 3 items (4 cols each) */}
+          {items.slice(2, 5).map((item) => (
+            <div key={item.id} className="sm:col-span-4 relative aspect-[4/3] border border-rule overflow-hidden bg-paper-2 group">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                placeholder="blur"
-                blurDataURL={PLACEHOLDER_BLUR}
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-left">
-                <span className="text-[10px] uppercase font-bold text-brand-400 tracking-wider">
-                  {item.category}
-                </span>
-                <h3 className="font-display font-bold text-base uppercase text-white mt-1">
-                  {item.title}
-                </h3>
-                {item.caption && (
-                  <p className="text-xs text-ink-300 line-clamp-1 mt-1">{item.caption}</p>
-                )}
-                <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-brand-400 font-semibold">
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>Click to expand</span>
+              {item.caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-paper/95 dark:bg-paper-2/95 border-t border-rule py-2 px-3 text-left">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-ink-soft">
+                    {item.caption}
+                  </span>
                 </div>
-              </div>
-            </motion.div>
+              )}
+            </div>
           ))}
         </div>
-
-        {/* View All CTA */}
-        <div className="pt-12">
-          <Link href="/gallery">
-            <Button size="md" withArrow variant="primary">
-              View Complete Gallery
-            </Button>
-          </Link>
-        </div>
       </div>
-
-      {/* Lightbox Modal */}
-      <Modal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} maxWidth="4xl">
-        {selectedImage && (
-          <div className="relative aspect-video w-full rounded-xl overflow-hidden">
-            <Image
-              src={selectedImage}
-              alt="Gallery Preview"
-              fill
-              className="object-contain bg-black"
-            />
-          </div>
-        )}
-      </Modal>
     </section>
   );
 }
-

@@ -1,47 +1,51 @@
 import React from "react";
 import Link from "next/link";
-import { Logo } from "@/components/ui/Logo";
-import { FOOTER_LINKS } from "@/data/navigation";
-import { SITE_INFO } from "@/data/site";
-import { MapPin, Phone, Mail, Clock, ShieldCheck, Heart } from "lucide-react";
+import { SITE_FACTS } from "@/content/content";
+import { FOOTER_NAV } from "@/data/navigation";
 
 export function Footer() {
   return (
-    <footer className="bg-ink-950 text-white border-t border-ink-900 pt-16 pb-20 md:pb-12">
+    <footer className="border-t border-rule bg-paper dark:bg-paper-2 text-ink pt-20 pb-16">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-ink-900">
-          {/* Col 1 & 2: Brand / Positioning */}
-          <div className="lg:col-span-2 space-y-4">
-            <Logo light />
-            <p className="text-xs text-ink-300 leading-relaxed max-w-sm mt-3">
-              {SITE_INFO.positioning}
+        {/* Giant ICCB Display Wordmark */}
+        <div className="border-b border-rule pb-12 mb-16 overflow-hidden text-left">
+          <span className="font-serif italic text-6xl sm:text-8xl lg:text-9xl block tracking-tighter opacity-90 leading-none">
+            ICCB
+          </span>
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink-soft mt-3">
+            {SITE_FACTS.fullName} &bull; {SITE_FACTS.parentOrg}
+          </p>
+        </div>
+
+        {/* 4 Clean Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-left pb-16 border-b border-rule">
+          {/* Col 1: Visit */}
+          <div className="space-y-4">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold">
+              Visit
+            </h4>
+            <p className="text-xs text-ink leading-relaxed max-w-xs font-mono">
+              {SITE_FACTS.address}
             </p>
-            <div className="pt-2 flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 bg-brand-950/60 border border-brand-900 px-3 py-1.5 rounded-full">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                South Asia&apos;s Largest Venue &bull; Since 2015
-              </span>
-            </div>
-            {/* Quick Contact & WhatsApp Pill */}
-            <div className="pt-3">
+            <div className="pt-2">
               <Link
-                href="/quote"
-                className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-white bg-brand-500 hover:bg-brand-600 px-4 py-2 rounded-lg transition-colors shadow-sm"
+                href="/venue-map"
+                className="text-xs font-mono uppercase tracking-wider underline underline-offset-4 text-ink hover:text-accent transition-colors"
               >
-                Request a Custom Quote &rarr;
+                Venue Map & Direction &rarr;
               </Link>
             </div>
           </div>
 
-          {/* Col 3: Services */}
-          <div>
-            <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
-              Catering Services
+          {/* Col 2: Venues */}
+          <div className="space-y-4">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold">
+              Venues
             </h4>
-            <ul className="space-y-2 text-xs text-ink-300">
-              {FOOTER_LINKS.services.map((item) => (
+            <ul className="space-y-2 text-xs font-mono">
+              {FOOTER_NAV.venues.slice(0, 6).map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="text-ink hover:text-accent transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -49,15 +53,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Company */}
-          <div>
-            <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
-              Company & Halls
+          {/* Col 3: Plan Your Event */}
+          <div className="space-y-4">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold">
+              Plan Your Event
             </h4>
-            <ul className="space-y-2 text-xs text-ink-300">
-              {FOOTER_LINKS.company.map((item) => (
+            <ul className="space-y-2 text-xs font-mono">
+              {FOOTER_NAV.plan.slice(0, 6).map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="text-ink hover:text-accent transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -65,53 +69,51 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 5: Contact Info */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
-              Verified Contacts
+          {/* Col 4: Contact */}
+          <div className="space-y-4">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold">
+              Contact
             </h4>
-            <div className="text-xs text-ink-300 space-y-3">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{SITE_INFO.contact.address}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-500 shrink-0" />
-                <a href={`tel:${SITE_INFO.contact.cateringPhone}`} className="hover:text-white font-semibold">
-                  {SITE_INFO.contact.cateringPhone}
+            <div className="space-y-2 text-xs font-mono">
+              <p>
+                Booking:{" "}
+                <a href="tel:+880241091551" className="hover:text-accent font-medium">
+                  +88-02-41091551
                 </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-brand-500 shrink-0" />
-                <a href={`mailto:${SITE_INFO.contact.cateringEmail}`} className="hover:text-white">
-                  {SITE_INFO.contact.cateringEmail}
+              </p>
+              <p>
+                Hotline:{" "}
+                <a href="tel:+8801991197719" className="hover:text-accent font-medium">
+                  +88-01991-197719
                 </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>{SITE_INFO.contact.hours}</span>
+              </p>
+              <p>
+                Email:{" "}
+                <a href="mailto:iccb@bga-bd.com" className="hover:text-accent">
+                  iccb@bga-bd.com
+                </a>
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact"
+                  className="text-xs uppercase tracking-wider underline underline-offset-4 hover:text-accent"
+                >
+                  More Numbers & Desk Info &rarr;
+                </Link>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-ink-500 gap-4">
-          <p>
-            &copy; {new Date().getFullYear()} {SITE_INFO.fullName}. All rights reserved.
-          </p>
+        {/* Bottom Row */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between font-mono text-[11px] text-ink-soft gap-4">
+          <p>&copy; {new Date().getFullYear()} ICCB. {SITE_FACTS.parentOrg}.</p>
           <div className="flex items-center space-x-6">
-            <Link href="/privacy-policy" className="hover:text-ink-300 transition-colors">
+            <Link href="/privacy" className="hover:text-ink transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-ink-300 transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/cancellation-policy" className="hover:text-ink-300 transition-colors">
-              Cancellation Policy
-            </Link>
-            <Link href="/sitemap.xml" className="hover:text-ink-300 transition-colors">
-              Sitemap
+            <Link href="/contact" className="hover:text-ink transition-colors">
+              Contact Desk
             </Link>
           </div>
         </div>
@@ -119,4 +121,3 @@ export function Footer() {
     </footer>
   );
 }
-

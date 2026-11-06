@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -9,24 +9,22 @@ export interface BreadcrumbItem {
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="flex items-center space-x-2 text-xs text-ink-500 py-3" aria-label="Breadcrumb">
-      <Link href="/" className="hover:text-brand-500 flex items-center transition-colors">
-        <Home className="w-3.5 h-3.5 mr-1" />
-        <span>Home</span>
+    <nav className="flex items-center space-x-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft py-3 border-b border-rule mb-10" aria-label="Breadcrumb">
+      <Link href="/" className="hover:text-accent transition-colors">
+        ICCB
       </Link>
       {items.map((item, idx) => (
         <React.Fragment key={idx}>
-          <ChevronRight className="w-3.5 h-3.5 text-ink-300" />
+          <ChevronRight className="w-3 h-3 text-ink-soft opacity-60" />
           {item.href ? (
-            <Link href={item.href} className="hover:text-brand-500 transition-colors">
+            <Link href={item.href} className="hover:text-accent transition-colors">
               {item.label}
             </Link>
           ) : (
-            <span className="text-ink-800 font-semibold">{item.label}</span>
+            <span className="text-ink font-semibold">{item.label}</span>
           )}
         </React.Fragment>
       ))}
     </nav>
   );
 }
-

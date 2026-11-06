@@ -26,10 +26,12 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.iccbbg.com";
+
 export const metadata: Metadata = {
-  title: `${SITE_INFO.name} - Taste of Happiness | Premium Catering & Events Dhaka`,
+  title: `${SITE_INFO.name} - Premier Event & Convention Destination | Dhaka`,
   description: SITE_INFO.positioning,
-  metadataBase: new URL("https://iccbcatering.com"),
+  metadataBase: new URL(siteUrl),
 };
 
 export default function RootLayout({

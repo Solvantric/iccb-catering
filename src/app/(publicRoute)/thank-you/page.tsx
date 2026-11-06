@@ -1,63 +1,65 @@
 import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
-import { CheckCircle2, Phone, ArrowRight, Home } from "lucide-react";
-import { SITE_INFO } from "@/data/site";
+import { CheckCircle2, Phone, Home, ArrowRight } from "lucide-react";
+import { SITE_FACTS } from "@/content/content";
 
 export const metadata: Metadata = {
-  title: "Thank You | ICCB Catering Request Received",
-  description: "Your catering inquiry has been received by ICCB Catering banquet department.",
+  title: "Thank You | Requisition Received",
+  description: "Your inquiry has been received by International Convention City Bashundhara.",
 };
 
 export default function ThankYouPage() {
   return (
-    <div className="min-h-[75vh] flex items-center justify-center py-20 px-4 bg-brand-50/40">
-      <div className="max-w-lg w-full bg-white rounded-3xl p-8 sm:p-12 border border-ink-100 shadow-soft text-center space-y-6">
-        <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
-          <CheckCircle2 className="w-9 h-9" />
+    <div className="bg-paper text-ink min-h-[75vh] flex items-center justify-center py-20 px-4">
+      <div className="max-w-md w-full border border-rule bg-paper-2 p-8 sm:p-10 text-center space-y-6">
+        <div className="w-12 h-12 border border-rule flex items-center justify-center mx-auto text-accent">
+          <CheckCircle2 className="w-6 h-6" />
         </div>
 
         <div className="space-y-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">
-            Inquiry Confirmed
-          </span>
-          <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-            THANK YOU!
+          <span className="mono text-ink-soft">§ Requisition Received</span>
+          <h1 className="font-serif text-3xl sm:text-4xl text-ink tracking-tight">
+            Thank <span className="italic text-accent">You</span>
           </h1>
-          <p className="text-xs sm:text-sm text-ink-600 leading-relaxed">
-            Your catering request has been routed to our Banquet Consultation team. A representative will review your menu requirements and contact you within 4 hours.
+          <p className="text-xs sm:text-sm text-ink-soft leading-relaxed">
+            Your event details have been delivered to our banquet and venue reservation desk. Our team will review hall scheduling and connect with you directly.
           </p>
         </div>
 
-        {/* Immediate Support Pill */}
-        <div className="p-4 bg-ink-50 rounded-2xl border border-ink-200 text-xs text-ink-700 space-y-1">
-          <p className="font-bold text-ink-900">Need urgent assistance for an upcoming date?</p>
-          <p className="text-ink-500">Call our direct banquet desk anytime:</p>
+        <div className="border border-rule p-4 bg-paper text-xs text-ink-soft space-y-2 text-left">
+          <div className="flex items-center gap-2 mono text-[11px] text-ink uppercase">
+            <Phone className="w-3.5 h-3.5 text-accent" />
+            <span>Direct Reservations Desk</span>
+          </div>
+          <p>
+            For urgent date queries or ongoing coordination, call our central hotline:
+          </p>
           <a
-            href={`tel:${SITE_INFO.contact.cateringPhone}`}
-            className="inline-flex items-center gap-1.5 font-display font-bold text-sm text-brand-600 hover:underline pt-1"
+            href={`tel:${SITE_FACTS.bookingPhones[0].replace(/[^0-9+]/g, "")}`}
+            className="block font-mono text-sm font-semibold text-accent hover:underline"
           >
-            <Phone className="w-3.5 h-3.5" />
-            <span>{SITE_INFO.contact.cateringPhone}</span>
+            {SITE_FACTS.bookingPhones[0]}
           </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-2">
-          <Link href="/" className="flex-1">
-            <Button variant="outline" className="w-full text-xs font-bold uppercase">
-              <Home className="w-3.5 h-3.5 mr-1.5" />
-              Return Home
-            </Button>
+        <div className="pt-2 flex flex-col sm:flex-row gap-3">
+          <Link
+            href="/"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-rule text-xs font-mono uppercase tracking-wider text-ink hover:border-accent transition-colors"
+          >
+            <Home className="w-3.5 h-3.5" />
+            <span>Home</span>
           </Link>
-          <Link href="/menu" className="flex-1">
-            <Button variant="primary" className="w-full text-xs font-bold uppercase" withArrow>
-              Explore Dishes
-            </Button>
+          <Link
+            href="/venues"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-ink text-paper text-xs font-mono uppercase tracking-wider hover:bg-accent hover:text-white transition-colors"
+          >
+            <span>Venues</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
     </div>
   );
 }
-

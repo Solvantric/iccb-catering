@@ -1,109 +1,143 @@
-export const PUBLIC_NAV = [
-  { label: "Home", labelBn: "হোম", href: "/" },
-  { label: "About", labelBn: "আমাদের সম্পর্কে", href: "/about" },
+export interface NavChild {
+  label: string;
+  href: string;
+  description?: string;
+  slug?: string;
+}
+
+export interface NavSection {
+  title?: string;
+  items: NavChild[];
+}
+
+export interface NavItem {
+  label: string;
+  href: string;
+  columns?: NavSection[];
+}
+
+export const MAIN_NAV: NavItem[] = [
   {
-    label: "Services",
-    labelBn: "সেবাসমূহ",
-    href: "/services",
-    children: [
-      { label: "Corporate Catering", href: "/services/corporate-catering" },
-      { label: "Wedding Catering", href: "/services/wedding-catering" },
-      { label: "Birthday & Social", href: "/services/birthday-party-catering" },
-      { label: "Corporate Lunch Box", href: "/lunch-box" },
-      { label: "Food Tasting Session", href: "/tasting" },
+    label: "About Us",
+    href: "/about/overview",
+    columns: [
+      {
+        items: [
+          { label: "Overview", href: "/about/overview" },
+          { label: "Mission & Values", href: "/about/mission-values" },
+          { label: "Management", href: "/about/management" },
+          { label: "Our Team", href: "/about/our-team" },
+          { label: "Join Us", href: "/about/join-us" },
+        ],
+      },
     ],
   },
-  { label: "Menu", labelBn: "মেন্যু", href: "/menu" },
-  { label: "Packages", labelBn: "প্যাকেজ", href: "/packages" },
-  { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
-  { label: "Venues", labelBn: "ভেন্যু", href: "/venues" },
-  { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
-  { label: "Contact", labelBn: "যোগাযোগ", href: "/contact" },
+  {
+    label: "Explore",
+    href: "/venues",
+    columns: [
+      {
+        title: "Venues",
+        items: [
+          { label: "Gulnaksha (Hall-1)", href: "/venues/gulnaksha", slug: "gulnaksha" },
+          { label: "Pushpoguchcho (Hall-2)", href: "/venues/pushpoguchcho", slug: "pushpoguchcho" },
+          { label: "Rajdarshan (Hall-3)", href: "/venues/rajdarshan", slug: "rajdarshan" },
+          { label: "Noboratri (Hall-4)", href: "/venues/noboratri", slug: "noboratri" },
+          { label: "Pushpanjali (Hall-5)", href: "/venues/pushpanjali", slug: "pushpanjali" },
+          { label: "Seminar Hall (Hall-6)", href: "/venues/seminar-hall", slug: "seminar-hall" },
+          { label: "Expo Village", href: "/venues/expo-village", slug: "expo-village" },
+          { label: "ICCB Heritage Restaurant Venues", href: "/venues/heritage-restaurant", slug: "heritage-restaurant" },
+        ],
+      },
+      {
+        title: "Discover",
+        items: [
+          { label: "Photo Gallery", href: "/gallery" },
+          { label: "Latest Events", href: "/events" },
+          { label: "News & Media", href: "/news" },
+          { label: "Venue Map & Direction", href: "/venue-map" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Plan Your Event",
+    href: "/plan/wedding",
+    columns: [
+      {
+        title: "Event Types",
+        items: [
+          { label: "Wedding", href: "/plan/wedding" },
+          { label: "Fair & Exhibitions", href: "/plan/fair-exhibitions" },
+          { label: "Corporate Events", href: "/plan/corporate-events" },
+          { label: "Cultural Events", href: "/plan/cultural-events" },
+          { label: "Exams", href: "/plan/exams" },
+          { label: "Trainings & Seminars", href: "/plan/trainings-seminars" },
+          { label: "Convocations", href: "/plan/convocations" },
+          { label: "Fashion Shows", href: "/plan/fashion-shows" },
+        ],
+      },
+      {
+        title: "Pricing & Information",
+        items: [
+          { label: "Current Offers", href: "/plan/offers" },
+          { label: "Rates & Fees", href: "/plan/rates" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Dining",
+    href: "/catering",
+    columns: [
+      {
+        items: [
+          { label: "Catering", href: "/catering" },
+          { label: "Restaurant", href: "/restaurant" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    columns: [
+      {
+        items: [
+          { label: "Get in Touch", href: "/contact" },
+          { label: "Event Inquiries", href: "/contact/enquiry" },
+          { label: "FAQ", href: "/faq" },
+        ],
+      },
+    ],
+  },
 ];
 
-export const FOOTER_LINKS = {
-  services: [
-    { label: "Corporate Catering", href: "/services/corporate-catering" },
-    { label: "Wedding Banquets", href: "/services/wedding-catering" },
-    { label: "Birthday & Private", href: "/services/birthday-party-catering" },
-    { label: "Corporate Lunch Boxes", href: "/lunch-box" },
-    { label: "Custom Menu Packages", href: "/packages" },
-    { label: "Private Food Tasting", href: "/tasting" },
+export const FOOTER_NAV = {
+  venues: [
+    { label: "Gulnaksha (Hall-1)", href: "/venues/gulnaksha" },
+    { label: "Pushpoguchcho (Hall-2)", href: "/venues/pushpoguchcho" },
+    { label: "Rajdarshan (Hall-3)", href: "/venues/rajdarshan" },
+    { label: "Noboratri (Hall-4)", href: "/venues/noboratri" },
+    { label: "Pushpanjali (Hall-5)", href: "/venues/pushpanjali" },
+    { label: "Seminar Hall (Hall-6)", href: "/venues/seminar-hall" },
+    { label: "Expo Village", href: "/venues/expo-village" },
+    { label: "Heritage Restaurant", href: "/venues/heritage-restaurant" },
   ],
-  company: [
-    { label: "About ICCB", href: "/about" },
-    { label: "Our 4 Convention Halls", href: "/venues" },
-    { label: "Our 5-Step Process", href: "/our-process" },
-    { label: "Client Testimonials", href: "/testimonials" },
-    { label: "Seasonal Offers", href: "/offers" },
-    { label: "Careers", href: "/careers" },
+  plan: [
+    { label: "Wedding", href: "/plan/wedding" },
+    { label: "Fair & Exhibitions", href: "/plan/fair-exhibitions" },
+    { label: "Corporate Events", href: "/plan/corporate-events" },
+    { label: "Cultural Events", href: "/plan/cultural-events" },
+    { label: "Exams", href: "/plan/exams" },
+    { label: "Trainings & Seminars", href: "/plan/trainings-seminars" },
+    { label: "Convocations", href: "/plan/convocations" },
+    { label: "Fashion Shows", href: "/plan/fashion-shows" },
   ],
-  useful: [
-    { label: "Request a Quote", href: "/quote" },
-    { label: "Book an Event", href: "/booking" },
-    { label: "General Inquiry", href: "/inquiry" },
-    { label: "Frequently Asked Questions", href: "/faq" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Cancellation Policy", href: "/cancellation-policy" },
+  contact: [
+    { label: "+88-02-41091551", href: "tel:+880241091551" },
+    { label: "+88-01991-197719", href: "tel:+8801991197719" },
+    { label: "More Numbers", href: "/contact" },
+    { label: "iccb@bga-bd.com", href: "mailto:iccb@bga-bd.com" },
   ],
 };
-
-export const DASHBOARD_NAV = [
-  { label: "Overview", href: "/dashboard", icon: "LayoutDashboard" },
-  {
-    label: "Leads & Inquiries",
-    href: "/dashboard/leads",
-    icon: "Users",
-    children: [
-      { label: "All Leads", href: "/dashboard/leads" },
-      { label: "Kanban Pipeline", href: "/dashboard/leads/pipeline" },
-    ],
-  },
-  { label: "Quotations", href: "/dashboard/quotations", icon: "FileText" },
-  { label: "Bookings", href: "/dashboard/bookings", icon: "Calendar" },
-  { label: "Contact Messages", href: "/dashboard/contacts", icon: "Mail" },
-  { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
-  {
-    label: "Menu Management",
-    href: "/dashboard/menu",
-    icon: "Utensils",
-    children: [
-      { label: "Dishes & Items", href: "/dashboard/menu" },
-      { label: "Add Dish", href: "/dashboard/menu/new" },
-      { label: "Categories", href: "/dashboard/menu/categories" },
-    ],
-  },
-  { label: "Packages", href: "/dashboard/packages", icon: "PackageCheck" },
-  { label: "Services", href: "/dashboard/services", icon: "ConciergeBell" },
-  { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
-  { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
-  { label: "Gallery", href: "/dashboard/gallery", icon: "Image" },
-  { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
-  {
-    label: "Blog & Articles",
-    href: "/dashboard/blog",
-    icon: "BookOpen",
-    children: [
-      { label: "All Posts", href: "/dashboard/blog" },
-      { label: "New Post", href: "/dashboard/blog/new" },
-      { label: "Categories", href: "/dashboard/blog/categories" },
-      { label: "Tags", href: "/dashboard/blog/tags" },
-    ],
-  },
-  { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
-  { label: "Testimonials", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
-  { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
-  { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
-  { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
-  { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
-  { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
-  { label: "Analytics", href: "/dashboard/analytics", icon: "BarChart3" },
-  { label: "Users & Staff", href: "/dashboard/users", icon: "UserCheck" },
-  { label: "Roles & Permissions", href: "/dashboard/roles", icon: "Shield" },
-  { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "Clock" },
-  { label: "Notifications", href: "/dashboard/notifications", icon: "Bell" },
-  { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
-  { label: "My Profile", href: "/dashboard/profile", icon: "User" },
-];
-
