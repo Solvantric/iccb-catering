@@ -27,7 +27,7 @@ export function AccordionItem({
         "border rounded-xl transition-colors duration-200 overflow-hidden",
         dark
           ? "border-ink-800 bg-ink-900/60 hover:border-ink-700"
-          : "border-ink-200 bg-white hover:border-brand-200 shadow-soft"
+          : "border-ink-200 dark:border-white/10 bg-white dark:bg-ink-900 hover:border-brand-200 dark:hover:border-white/20 shadow-soft"
       )}
     >
       <button
@@ -37,7 +37,7 @@ export function AccordionItem({
         <span
           className={cn(
             "text-base font-bold font-display uppercase tracking-wide",
-            dark ? "text-white" : "text-ink-900"
+            dark ? "text-white" : "text-ink-900 dark:text-ink-50"
           )}
         >
           {title}
@@ -64,7 +64,7 @@ export function AccordionItem({
                 "px-6 pb-5 pt-1 text-sm leading-relaxed border-t",
                 dark
                   ? "border-ink-800 text-ink-300"
-                  : "border-ink-100 text-ink-600"
+                  : "border-ink-100 dark:border-white/10 text-ink-600 dark:text-ink-300"
               )}
             >
               {content}

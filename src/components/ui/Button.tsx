@@ -40,9 +40,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary:
         "bg-white/10 text-white border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:border-white/40 active:bg-white/30",
       outline:
-        "border border-brand-500 text-brand-600 bg-transparent hover:bg-brand-50 active:bg-brand-100",
+        "border border-brand-500 text-brand-600 dark:text-brand-400 bg-transparent hover:bg-brand-50 dark:hover:bg-brand-950/40 active:bg-brand-100",
       ghost:
-        "text-ink-600 hover:text-ink-900 hover:bg-ink-100 active:bg-ink-200",
+        "text-ink-600 dark:text-ink-300 hover:text-ink-900 dark:hover:text-ink-50 hover:bg-ink-100 dark:hover:bg-ink-800 active:bg-ink-200",
       dark:
         "bg-ink-900 text-white hover:bg-black active:bg-ink-950 border border-ink-800",
       danger:

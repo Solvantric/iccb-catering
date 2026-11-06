@@ -19,11 +19,11 @@ export function Badge({
   };
 
   const variantStyles = {
-    brand: "bg-brand-100 text-brand-700 border border-brand-200",
-    success: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-    warning: "bg-amber-50 text-amber-700 border border-amber-200",
-    danger: "bg-rose-50 text-rose-700 border border-rose-200",
-    neutral: "bg-ink-100 text-ink-700 border border-ink-200",
+    brand: "bg-brand-100 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/80",
+    success: "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80",
+    warning: "bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/80",
+    danger: "bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/80",
+    neutral: "bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-200 border border-ink-200 dark:border-ink-700",
     sample: "bg-amber-100 text-amber-800 border border-amber-300 font-mono text-[10px] tracking-widest",
   };
 

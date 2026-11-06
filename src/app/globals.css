@@ -3,16 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --brand-500: #E24F5F;
-  --brand-600: #C73E4E;
-  --brand-700: #A93141;
-  --brand-400: #EB7480;
-  --brand-100: #FCE8EA;
-  --brand-50: #FFF5F6;
+  --brand-50: #FFF1F2;
+  --brand-100: #FFE4E6;
+  --brand-200: #FECDD3;
+  --brand-300: #FDA4AF;
+  --brand-400: #E82936;
+  --brand-500: #DA0812;
+  --brand-600: #B8060F;
+  --brand-700: #94050C;
+  --brand-800: #730409;
+  --brand-900: #530206;
   --ink-950: #0B0B0C;
   --ink-900: #141416;
   --ink-600: #52525B;
   --white: #FFFFFF;
+}
+
+.dark {
+  --ink-950: #0B0B0C;
+  --ink-900: #141416;
+  --ink-600: #A1A1AA;
 }
 
 html {
@@ -26,8 +36,24 @@ body {
   overflow-x: hidden;
 }
 
+.dark body {
+  color: #F4F4F5;
+  background-color: #0B0B0C;
+}
+
+/* Bangla Typography Enhancements */
+html[lang="bn"] body {
+  font-family: var(--font-noto-bengali), var(--font-inter), sans-serif;
+  line-height: 1.7;
+}
+
+html[lang="bn"] .font-serif,
+html[lang="bn"] .font-display {
+  font-family: var(--font-noto-serif-bengali), var(--font-noto-bengali), serif;
+}
+
 ::selection {
-  background-color: #E24F5F;
+  background-color: #DA0812;
   color: #FFFFFF;
 }
 
@@ -58,13 +84,21 @@ body {
   background: #f1f1f1;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: #141416;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #d4d4d8;
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #27272A;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #E24F5F;
+  background: #DA0812;
 }
 
 /* Print styling */

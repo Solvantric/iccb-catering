@@ -53,19 +53,19 @@ export function Modal({
       {/* Content */}
       <div
         className={cn(
-          "relative w-full bg-white rounded-2xl shadow-2xl z-10 overflow-hidden max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200",
+          "relative w-full bg-white dark:bg-ink-900 border border-ink-100 dark:border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200",
           maxWidthStyles[maxWidth],
           className
         )}
       >
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-ink-100">
-            <h3 className="text-lg font-bold font-display uppercase tracking-wider text-ink-900">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-ink-100 dark:border-white/10">
+            <h3 className="text-lg font-bold font-display uppercase tracking-wider text-ink-900 dark:text-ink-50">
               {title}
             </h3>
             <button
               onClick={onClose}
-              className="text-ink-400 hover:text-ink-700 p-1 rounded-lg hover:bg-ink-100 transition-colors"
+              className="text-ink-400 hover:text-ink-700 dark:hover:text-ink-200 p-1 rounded-lg hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

@@ -12,11 +12,11 @@ export function Card({
   ...props
 }: CardProps) {
   const variantStyles = {
-    default: "bg-white border border-ink-100 shadow-soft rounded-2xl",
+    default: "bg-white dark:bg-ink-900 border border-ink-100 dark:border-white/10 shadow-soft rounded-2xl text-ink-950 dark:text-ink-50",
     dark: "bg-ink-900 border border-ink-800 text-white rounded-2xl shadow-dark",
-    bordered: "bg-white border border-ink-200 rounded-2xl",
+    bordered: "bg-white dark:bg-ink-900 border border-ink-200 dark:border-white/10 rounded-2xl text-ink-950 dark:text-ink-50",
     interactive:
-      "bg-white border border-ink-100 shadow-soft rounded-2xl transition-all duration-300 hover:shadow-card hover:-translate-y-1 hover:border-brand-200",
+      "bg-white dark:bg-ink-900 border border-ink-100 dark:border-white/10 shadow-soft rounded-2xl transition-all duration-300 hover:shadow-card hover:-translate-y-1 hover:border-brand-200 dark:hover:border-white/20 text-ink-950 dark:text-ink-50",
   };
 
   return (
