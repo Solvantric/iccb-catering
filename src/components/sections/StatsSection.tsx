@@ -4,47 +4,52 @@ import React from "react";
 import { CountUp } from "@/components/motion";
 import { Building2, Users, CalendarCheck, Award } from "lucide-react";
 import { motion } from "framer-motion";
-
-const stats = [
-  {
-    label: "Operating Since",
-    value: 2015,
-    suffix: "",
-    prefix: "",
-    desc: "1 January 2015",
-    icon: <CalendarCheck className="w-6 h-6" />,
-    isVerified: true,
-  },
-  {
-    label: "Simultaneous Guest Capacity",
-    value: 10000,
-    suffix: "+",
-    prefix: "",
-    desc: "Largest in South Asia",
-    icon: <Users className="w-6 h-6" />,
-    isVerified: true,
-  },
-  {
-    label: "World-Class Convention Halls",
-    value: 4,
-    suffix: " Halls",
-    prefix: "",
-    desc: "Over 100,000 sq ft area",
-    icon: <Building2 className="w-6 h-6" />,
-    isVerified: true,
-  },
-  {
-    label: "HACCP & Halal Certified",
-    value: 100,
-    suffix: "%",
-    prefix: "",
-    desc: "In-house slaughterhouse",
-    icon: <Award className="w-6 h-6" />,
-    isVerified: true,
-  },
-];
+import { useUIStore } from "@/store/uiStore";
+import { translations } from "@/lib/i18n";
 
 export function StatsSection() {
+  const { locale } = useUIStore();
+  const t = translations[locale].stats;
+
+  const stats = [
+    {
+      label: t.stat1Label,
+      value: 2015,
+      suffix: "",
+      prefix: "",
+      desc: t.stat1Desc,
+      icon: <CalendarCheck className="w-6 h-6" />,
+      isVerified: true,
+    },
+    {
+      label: t.stat2Label,
+      value: 10000,
+      suffix: "+",
+      prefix: "",
+      desc: t.stat2Desc,
+      icon: <Users className="w-6 h-6" />,
+      isVerified: true,
+    },
+    {
+      label: t.stat3Label,
+      value: 4,
+      suffix: locale === "bn" ? "টি হল" : " Halls",
+      prefix: "",
+      desc: t.stat3Desc,
+      icon: <Building2 className="w-6 h-6" />,
+      isVerified: true,
+    },
+    {
+      label: t.stat4Label,
+      value: 100,
+      suffix: "%",
+      prefix: "",
+      desc: t.stat4Desc,
+      icon: <Award className="w-6 h-6" />,
+      isVerified: true,
+    },
+  ];
+
   return (
     <section className="py-20 bg-ink-950 text-white relative border-y border-ink-900">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">

@@ -7,16 +7,20 @@ import { IMAGES, PLACEHOLDER_BLUR } from "@/data/images";
 import { track } from "@/lib/analytics";
 import { toast } from "sonner";
 import { MailCheck } from "lucide-react";
+import { useUIStore } from "@/store/uiStore";
+import { translations } from "@/lib/i18n";
 
 export function SubscribeBanner() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { locale } = useUIStore();
+  const t = translations[locale].subscribeBanner;
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      toast.error("Please provide a valid email address.");
+      toast.error(t.errorMessage);
       return;
     }
     setLoading(true);
@@ -39,7 +43,7 @@ export function SubscribeBanner() {
       } catch (err) {
         // ignore
       }
-      toast.success("Thank you! You have subscribed to ICCB Catering seasonal offers.");
+      toast.success(t.successMessage);
     }, 400);
   };
 
@@ -62,22 +66,22 @@ export function SubscribeBanner() {
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div className="max-w-2xl mx-auto space-y-4">
           <span className="font-serif italic text-brand-400 text-lg font-semibold block">
-            ~ Stay Inspired ~
+            ~ {locale === "bn" ? "যুক্ত থাকুন" : "Stay Inspired"} ~
           </span>
 
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
-            SUBSCRIBE FOR SEASONAL MENUS & EXCLUSIVE OFFERS
+            {t.heading}
           </h2>
 
           <p className="text-xs sm:text-sm text-ink-300 leading-relaxed max-w-xl mx-auto">
-            Receive early access to winter wedding dates, corporate conference package specials, and newly curated dishes from Executive Chef Rafiqul.
+            {t.subtitle}
           </p>
 
           {submitted ? (
             <div className="p-6 bg-brand-950/80 border border-brand-500/50 rounded-2xl flex items-center justify-center gap-3 text-brand-300 animate-in fade-in">
               <MailCheck className="w-6 h-6 text-brand-400" />
               <span className="text-sm font-semibold">
-                You&apos;re subscribed! Look out for our upcoming seasonal showcase.
+                {t.subscribed}
               </span>
             </div>
           ) : (
@@ -86,18 +90,18 @@ export function SubscribeBanner() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address..."
+                placeholder={t.placeholder}
                 required
                 className="flex-1 px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white/15 backdrop-blur-md transition-all"
               />
               <Button type="submit" size="md" isLoading={loading} variant="primary" withArrow>
-                Subscribe
+                {t.button}
               </Button>
             </form>
           )}
 
           <p className="text-[11px] text-ink-400 pt-2">
-            We respect your privacy. No spam, ever. Unsubscribe at any time.
+            {t.privacyNote}
           </p>
         </div>
       </div>

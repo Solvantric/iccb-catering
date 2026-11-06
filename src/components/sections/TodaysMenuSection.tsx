@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/Button";
 import { MENU_ITEMS } from "@/data/menu";
 import { formatCurrency } from "@/lib/format";
 import { PLACEHOLDER_BLUR } from "@/data/images";
-import { Sparkles, Utensils } from "lucide-react";
 import { motion } from "framer-motion";
+import { useUIStore } from "@/store/uiStore";
+import { translations } from "@/lib/i18n";
 
 export function TodaysMenuSection() {
+  const { locale } = useUIStore();
+  const t = translations[locale].todaysMenu;
   const todaysDishes = MENU_ITEMS.filter((item) => item.isTodaysMenu).slice(0, 6);
 
   return (
@@ -23,13 +26,13 @@ export function TodaysMenuSection() {
         {/* Section Header */}
         <div className="max-w-2xl mx-auto space-y-3 mb-16">
           <span className="font-serif italic text-brand-400 text-lg font-semibold block">
-            ~ Fresh from the Royal Kitchen ~
+            {t.tag}
           </span>
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white">
-            TODAY&apos;S SPECIAL MENU
+            {t.heading}
           </h2>
           <p className="text-xs sm:text-sm text-ink-300 leading-relaxed">
-            Handpicked signature culinary selections prepared fresh each day with meats from our modern slaughterhouse and tested by food quality inspectors.
+            {t.subtitle}
           </p>
         </div>
 
@@ -48,7 +51,7 @@ export function TodaysMenuSection() {
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border-2 border-brand-500/40 shadow-lg group-hover:scale-105 group-hover:border-brand-500 transition-all duration-300">
                 <Image
                   src={dish.image}
-                  alt={dish.name}
+                  alt={locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
                   fill
                   sizes="100px"
                   placeholder="blur"
@@ -61,7 +64,7 @@ export function TodaysMenuSection() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between w-full">
                   <h3 className="font-display font-bold text-base sm:text-lg uppercase tracking-wider text-white truncate group-hover:text-brand-400 transition-colors">
-                    {dish.name}
+                    {locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
                   </h3>
 
                   {/* Dotted Leader Line (Exact Reference Visual Feature) */}
@@ -75,7 +78,7 @@ export function TodaysMenuSection() {
 
                 {/* Subtitle / Description */}
                 <p className="text-xs text-ink-400 line-clamp-2 mt-1 leading-relaxed">
-                  {dish.description}
+                  {locale === "bn" && dish.descriptionBn ? dish.descriptionBn : dish.description}
                 </p>
 
                 {/* Tags */}
@@ -103,7 +106,7 @@ export function TodaysMenuSection() {
         <div className="pt-16">
           <Link href="/menu">
             <Button size="lg" withArrow variant="primary">
-              View Complete Menu
+              {t.viewAll}
             </Button>
           </Link>
         </div>

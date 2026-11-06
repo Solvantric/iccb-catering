@@ -166,19 +166,27 @@ export interface ServiceItem {
 export interface GalleryItem {
   id: string;
   title: string;
+  titleBn?: string;
   category: 'Weddings' | 'Corporate' | 'Social' | 'Plating' | 'Venues';
+  categoryBn?: string;
   imageUrl: string;
   caption?: string;
+  captionBn?: string;
   isSample?: boolean;
 }
 
 export interface Testimonial {
   id: string;
   author: string;
+  authorBn?: string;
   role: string;
+  roleBn?: string;
   company?: string;
+  companyBn?: string;
   eventType: string;
+  eventTypeBn?: string;
   content: string;
+  contentBn?: string;
   rating: number;
   avatarUrl: string;
   date: string;

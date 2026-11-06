@@ -37,7 +37,7 @@ export function FeatureStrip() {
                   {locale === "bn" ? item.titleBn : item.title}
                 </h3>
                 <p className="text-xs text-white/85 leading-relaxed">
-                  {item.description}
+                  {locale === "bn" && (item as any).descriptionBn ? (item as any).descriptionBn : item.description}
                 </p>
               </div>
             </motion.div>

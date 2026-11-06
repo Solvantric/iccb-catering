@@ -22,6 +22,7 @@ export const SITE_INFO = {
       title: "Modern Slaughterhouse",
       titleBn: "আধুনিক কসাইখানা",
       description: "Dedicated hygienic processing facility ensuring fresh, 100% Halal certified meats.",
+      descriptionBn: "নিজস্ব স্বাস্থ্যকর প্রক্রিয়াকরণ সুবিধা যা প্রতিদিন শতভাগ হালাল ও তাজা মাংস নিশ্চিত করে।",
       icon: "ShieldCheck",
     },
     {
@@ -29,6 +30,7 @@ export const SITE_INFO = {
       title: "Strict Quality Checking",
       titleBn: "কাঁচামাল ও খাদ্যের গুণমান যাচাই",
       description: "Rigorous testing of raw ingredients and finished dishes in our certified food lab.",
+      descriptionBn: "প্রত্যয়িত ফুড ল্যাবে কাঁচামাল ও তৈরি খাবারের কঠোর গুণমান পরীক্ষা।",
       icon: "CheckCircle2",
     },
     {
@@ -36,6 +38,7 @@ export const SITE_INFO = {
       title: "Served in Proper Temperature",
       titleBn: "সঠিক তাপমাত্রায় পরিবেশন",
       description: "State-of-the-art thermal containers and hot-holding banquet units to preserve freshness.",
+      descriptionBn: "উন্নত থার্মাল পাত্র ও হট-হোল্ডিং ইউনিটের মাধ্যমে তাজা ও গরম পরিবেশন।",
       icon: "ThermometerSun",
     },
     {
@@ -43,6 +46,7 @@ export const SITE_INFO = {
       title: "Well-Equipped Modern Kitchen",
       titleBn: "আধুনিক সুযোগ-সুবিধা সম্পন্ন রান্নাঘর",
       description: "Industrial grade culinary infrastructure capable of serving 10,000+ guests simultaneously.",
+      descriptionBn: "একসাথে ১০,০০০+ অতিথির খাবার তৈরিতে সক্ষম আন্তর্জাতিক মানের কিচেন ব্যবস্থা।",
       icon: "UtensilsCrossed",
     },
   ],

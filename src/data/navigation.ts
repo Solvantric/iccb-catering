@@ -1,4 +1,11 @@
-export const PUBLIC_NAV = [
+export interface NavItem {
+  label: string;
+  labelBn?: string;
+  href: string;
+  children?: { label: string; labelBn?: string; href: string }[];
+}
+
+export const PUBLIC_NAV: NavItem[] = [
   { label: "Home", labelBn: "হোম", href: "/" },
   { label: "About", labelBn: "আমাদের সম্পর্কে", href: "/about" },
   {
@@ -6,11 +13,11 @@ export const PUBLIC_NAV = [
     labelBn: "সেবাসমূহ",
     href: "/services",
     children: [
-      { label: "Corporate Catering", href: "/services/corporate-catering" },
-      { label: "Wedding Catering", href: "/services/wedding-catering" },
-      { label: "Birthday & Social", href: "/services/birthday-party-catering" },
-      { label: "Corporate Lunch Box", href: "/lunch-box" },
-      { label: "Food Tasting Session", href: "/tasting" },
+      { label: "Corporate Catering", labelBn: "কর্পোরেট ক্যাটারিং", href: "/services/corporate-catering" },
+      { label: "Wedding Catering", labelBn: "বিবাহ ক্যাটারিং", href: "/services/wedding-catering" },
+      { label: "Birthday & Social", labelBn: "জন্মদিন ও সামাজিক", href: "/services/birthday-party-catering" },
+      { label: "Corporate Lunch Box", labelBn: "কর্পোরেট লাঞ্চ বক্স", href: "/lunch-box" },
+      { label: "Food Tasting Session", labelBn: "ফুড টেস্টিং সেশন", href: "/tasting" },
     ],
   },
   { label: "Menu", labelBn: "মেন্যু", href: "/menu" },
@@ -23,29 +30,29 @@ export const PUBLIC_NAV = [
 
 export const FOOTER_LINKS = {
   services: [
-    { label: "Corporate Catering", href: "/services/corporate-catering" },
-    { label: "Wedding Banquets", href: "/services/wedding-catering" },
-    { label: "Birthday & Private", href: "/services/birthday-party-catering" },
-    { label: "Corporate Lunch Boxes", href: "/lunch-box" },
-    { label: "Custom Menu Packages", href: "/packages" },
-    { label: "Private Food Tasting", href: "/tasting" },
+    { label: "Corporate Catering", labelBn: "কর্পোরেট ক্যাটারিং", href: "/services/corporate-catering" },
+    { label: "Wedding Banquets", labelBn: "বিবাহের ভোজ", href: "/services/wedding-catering" },
+    { label: "Birthday & Private", labelBn: "জন্মদিন ও ঘরোয়া পার্টি", href: "/services/birthday-party-catering" },
+    { label: "Corporate Lunch Boxes", labelBn: "কর্পোরেট লাঞ্চ বক্স", href: "/lunch-box" },
+    { label: "Custom Menu Packages", labelBn: "কাস্টম মেন্যু প্যাকেজ", href: "/packages" },
+    { label: "Private Food Tasting", labelBn: "ফুড টেস্টিং", href: "/tasting" },
   ],
   company: [
-    { label: "About ICCB", href: "/about" },
-    { label: "Our 4 Convention Halls", href: "/venues" },
-    { label: "Our 5-Step Process", href: "/our-process" },
-    { label: "Client Testimonials", href: "/testimonials" },
-    { label: "Seasonal Offers", href: "/offers" },
-    { label: "Careers", href: "/careers" },
+    { label: "About ICCB", labelBn: "আইসিসিবি সম্পর্কে", href: "/about" },
+    { label: "Our 4 Convention Halls", labelBn: "আমাদের ৪টি কনভেনশন হল", href: "/venues" },
+    { label: "Our 5-Step Process", labelBn: "আমাদের ৫-ধাপের প্রক্রিয়া", href: "/our-process" },
+    { label: "Client Testimonials", labelBn: "গ্রাহকদের মতামত", href: "/testimonials" },
+    { label: "Seasonal Offers", labelBn: "বিশেষ অফার", href: "/offers" },
+    { label: "Careers", labelBn: "ক্যারিয়ার", href: "/careers" },
   ],
   useful: [
-    { label: "Request a Quote", href: "/quote" },
-    { label: "Book an Event", href: "/booking" },
-    { label: "General Inquiry", href: "/inquiry" },
-    { label: "Frequently Asked Questions", href: "/faq" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Cancellation Policy", href: "/cancellation-policy" },
+    { label: "Request a Quote", labelBn: "কোটেশন অনুরোধ", href: "/quote" },
+    { label: "Book an Event", labelBn: "ইভেন্ট বুকিং", href: "/booking" },
+    { label: "General Inquiry", labelBn: "সাধারণ অনুসন্ধান", href: "/inquiry" },
+    { label: "Frequently Asked Questions", labelBn: "সাধারণ জিজ্ঞাসা", href: "/faq" },
+    { label: "Privacy Policy", labelBn: "গোপনীয়তা নীতি", href: "/privacy-policy" },
+    { label: "Terms & Conditions", labelBn: "শর্তাবলী", href: "/terms" },
+    { label: "Cancellation Policy", labelBn: "বাতিলকরণ নীতি", href: "/cancellation-policy" },
   ],
 };
 
@@ -98,12 +105,7 @@ export const DASHBOARD_NAV = [
   { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
   { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
   { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
-  { label: "Analytics", href: "/dashboard/analytics", icon: "BarChart3" },
-  { label: "Users & Staff", href: "/dashboard/users", icon: "UserCheck" },
-  { label: "Roles & Permissions", href: "/dashboard/roles", icon: "Shield" },
-  { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "Clock" },
-  { label: "Notifications", href: "/dashboard/notifications", icon: "Bell" },
+  { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "ShieldAlert" },
+  { label: "Users & Roles", href: "/dashboard/users", icon: "UserCheck" },
   { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
-  { label: "My Profile", href: "/dashboard/profile", icon: "User" },
 ];
-
