@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -9,24 +10,31 @@ interface LogoProps {
 
 export function Logo({ className = "", light = false }: LogoProps) {
   return (
-    <Link href="/" className={cn("inline-flex items-center gap-2.5 group", className)}>
-      <div className="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center font-display font-black text-xl tracking-tighter shadow-md group-hover:scale-105 transition-transform duration-200">
-        IC
-      </div>
-      <div className="flex flex-col text-left">
-        <span
-          className={cn(
-            "font-display font-black text-xl tracking-tight leading-none uppercase",
-            light ? "text-white" : "text-ink-950"
-          )}
-        >
-          ICCB
-        </span>
-        <span className="font-display font-bold text-[10px] tracking-[0.25em] text-brand-500 uppercase leading-none mt-1">
-          Catering
-        </span>
+    <Link
+      href="/"
+      className={cn(
+        "inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded",
+        className
+      )}
+      aria-label="International Convention City Bashundhara"
+    >
+      <div
+        className={cn(
+          "transition-all duration-200 inline-flex items-center justify-center",
+          light
+            ? "bg-[#FDFBF7] p-2 sm:p-2.5 rounded-lg shadow-sm"
+            : "dark:bg-[#FDFBF7] dark:p-2 sm:dark:p-2.5 dark:rounded-lg dark:shadow-sm"
+        )}
+      >
+        <Image
+          src="/logo/iccb-logo.png"
+          alt="International Convention City Bashundhara"
+          width={130}
+          height={119}
+          priority
+          className="h-9 sm:h-11 w-auto object-contain"
+        />
       </div>
     </Link>
   );
 }
-
