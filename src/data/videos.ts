@@ -3,6 +3,7 @@ export interface ClientVideo {
   ytId: string;
   label: string;
   labelBn: string;
+  posterZoom?: number;
 }
 
 export const CLIENT_VIDEOS: ClientVideo[] = [
@@ -23,6 +24,7 @@ export const CLIENT_VIDEOS: ClientVideo[] = [
     ytId: "tVXT2ec3ioE",
     label: "Wedding",
     labelBn: "বিবাহ উৎসব",
+    posterZoom: 1.2,
   },
   {
     id: "04",
@@ -43,4 +45,3 @@ export const CLIENT_VIDEOS: ClientVideo[] = [
     labelBn: "সংগীত সন্ধ্যা",
   },
 ];
-

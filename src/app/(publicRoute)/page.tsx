@@ -42,9 +42,9 @@ export default function HomePage() {
       <StatsSection />
       <ClientVideosSection />
       <TestimonialsSection />
-      <FAQSection />
       <TastingBanner />
       <CTABand />
+      <FAQSection />
     </>
   );
 }
