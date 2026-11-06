@@ -33,7 +33,7 @@ export function BookingContactBlock({
               <span>Direct Booking Hotlines</span>
             </div>
             <ul className="space-y-1 text-xs text-ink font-mono">
-              {SITE_FACTS.bookingPhones.map((phone) => (
+              {SITE_FACTS.bookingPhones.map((phone: string) => (
                 <li key={phone}>
                   <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`} className="hover:text-accent transition-colors">
                     {phone}
