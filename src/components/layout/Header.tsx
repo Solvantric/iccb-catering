@@ -51,8 +51,8 @@ export function Header() {
         className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
         style={{ height: "var(--header-h)" }}
       >
-        {/* Logo block: height equals var(--header-h) exactly, flush to top and bottom, at left of container */}
-        <Logo className="h-[var(--header-h)] self-stretch" />
+        {/* Logo block: responsive, prominent and vertically centered */}
+        <Logo className="h-12 sm:h-14 md:h-16 lg:h-[72px] my-auto" />
 
         {/* Desktop Nav: vertically centered */}
         <nav className="hidden lg:flex items-center space-x-7 my-auto">

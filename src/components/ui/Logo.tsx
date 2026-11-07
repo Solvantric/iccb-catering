@@ -8,24 +8,24 @@ interface LogoProps {
   light?: boolean;
 }
 
-export function Logo({ className = "" }: LogoProps) {
+export function Logo({ className = "", light = false }: LogoProps) {
   return (
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-[4px] shrink-0 h-9 sm:h-10 w-auto transition-transform hover:opacity-95",
+        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-xl shrink-0 transition-all duration-200 hover:opacity-95",
         className
       )}
       aria-label="ICCB Catering home"
     >
-      <div className="h-full w-auto max-h-full bg-white rounded-[4px] px-2 py-1 flex items-center justify-center shadow-xs border border-ink-100/50">
+      <div className="h-full w-auto max-h-full bg-white rounded-xl p-1 sm:p-1.5 md:p-2 flex items-center justify-center shadow-xs border border-ink-100/70">
         <Image
           src="/logo/iccb-logo.png"
           alt="International Convention City Bashundhara"
-          width={280}
-          height={70}
+          width={390}
+          height={358}
           priority
-          className="h-full w-auto max-h-7 sm:max-h-8 object-contain shrink-0"
+          className="h-full w-auto max-h-full object-contain shrink-0"
         />
       </div>
     </Link>

@@ -94,16 +94,20 @@ export const DASHBOARD_NAV = [
   },
   { label: "Quotations", href: "/dashboard/quotations", icon: "FileText" },
   { label: "Bookings", href: "/dashboard/bookings", icon: "Calendar" },
+
+  // Key Commercial & Visual Management (Important additions)
+  { label: "Banquet Packages", href: "/dashboard/packages", icon: "PackageCheck" },
+  { label: "Catering Services", href: "/dashboard/services", icon: "ConciergeBell" },
+  { label: "Contact Inquiries", href: "/dashboard/contacts", icon: "Mail" },
+  { label: "Banquet Gallery", href: "/dashboard/gallery", icon: "Image" },
+  { label: "Testimonials & Reviews", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
+
   { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
 
-  // --- COMMENTED OUT ROUTES (~40%+ secondary routes hidden for streamlined executive dashboard) ---
-  // { label: "Packages", href: "/dashboard/packages", icon: "PackageCheck" },
-  // { label: "Contact Messages", href: "/dashboard/contacts", icon: "Mail" },
+  // --- COMMENTED OUT ROUTES (Secondary / technical utilities kept hidden) ---
   // { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
-  // { label: "Services", href: "/dashboard/services", icon: "ConciergeBell" },
   // { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
   // { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
-  // { label: "Gallery", href: "/dashboard/gallery", icon: "Image" },
   // { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
   // {
   //   label: "Blog & Articles",
@@ -117,7 +121,6 @@ export const DASHBOARD_NAV = [
   //   ],
   // },
   // { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
-  // { label: "Testimonials", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
   // { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
   // { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
   // { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
