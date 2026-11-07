@@ -7,7 +7,7 @@ import { HERO_SLIDES, HeroSlide } from "@/data/images";
 import { SITE_INFO } from "@/data/site";
 import { useUIStore } from "@/store/uiStore";
 import { translations } from "@/lib/i18n";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const HERO_FADE_MS = 1100;
@@ -235,7 +235,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.12 }}
               className="font-serif italic font-semibold tracking-wide"
               style={{
-                color: "#F2949E",
+                color: "#F8A3A9",
                 fontSize: "clamp(1.25rem, 2vw, 1.75rem)",
                 textShadow: "0 2px 12px rgba(0,0,0,0.6)",
               }}
@@ -267,17 +267,23 @@ export function HeroSection() {
               <Link href="/quote" className="inline-block">
                 <button
                   type="button"
-                  className="px-6 sm:px-7 py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm sm:text-base tracking-wide shadow-md transition-all active:scale-[0.98]"
+                  className="px-6 sm:px-7 py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm sm:text-base tracking-wide shadow-md transition-all active:scale-[0.98] inline-flex items-center gap-2.5 group hover:shadow-[0_8px_25px_rgba(220,5,17,0.4)]"
                 >
-                  {t.ctaQuote}
+                  <span>{t.ctaQuote}</span>
+                  <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-all duration-200 group-hover:translate-x-1 shrink-0">
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </button>
               </Link>
               <Link href="/menu" className="inline-block">
                 <button
                   type="button"
-                  className="px-6 sm:px-7 py-3 rounded-lg border border-white/80 hover:border-white text-white hover:bg-white hover:text-ink-950 font-semibold text-sm sm:text-base tracking-wide transition-all active:scale-[0.98]"
+                  className="px-6 sm:px-7 py-3 rounded-lg border border-white/80 hover:border-white text-white hover:bg-white hover:text-ink-950 font-semibold text-sm sm:text-base tracking-wide transition-all active:scale-[0.98] inline-flex items-center gap-2.5 group backdrop-blur-sm bg-black/20"
                 >
-                  {t.ctaMenu}
+                  <span>{t.ctaMenu}</span>
+                  <span className="w-5 h-5 rounded-full bg-white/20 group-hover:bg-ink-950/20 flex items-center justify-center transition-all duration-200 group-hover:translate-x-1 shrink-0">
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </button>
               </Link>
             </motion.div>

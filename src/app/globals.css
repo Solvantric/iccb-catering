@@ -4,16 +4,16 @@
 
 :root {
   --header-h: 88px;
-  --brand-50: #FFF5F6;
-  --brand-100: #FCE8EA;
-  --brand-200: #F8BFC5;
-  --brand-300: #F2949E;
-  --brand-400: #EB7480;
-  --brand-500: #E24F5F;
-  --brand-600: #C73E4E;
-  --brand-700: #A93141;
-  --brand-800: #8B2433;
-  --brand-900: #6F1B27;
+  --brand-50: #FFF5F5;
+  --brand-100: #FCE5E7;
+  --brand-200: #F8A3A9;
+  --brand-300: #F0656E;
+  --brand-400: #E6303B;
+  --brand-500: #DC0511;
+  --brand-600: #BE040E;
+  --brand-700: #9E030B;
+  --brand-800: #7D0208;
+  --brand-900: #5C0106;
   --ink-950: #0B0B0C;
   --ink-900: #141416;
   --ink-600: #52525B;
@@ -60,7 +60,7 @@ html[lang="bn"] .font-display {
 }
 
 ::selection {
-  background-color: #E24F5F;
+  background-color: #DC0511;
   color: #FFFFFF;
 }
 
@@ -105,7 +105,7 @@ html[lang="bn"] .font-display {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E24F5F;
+  background: #DC0511;
 }
 
 /* Print styling */

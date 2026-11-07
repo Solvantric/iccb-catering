@@ -21,9 +21,9 @@ export const PUBLIC_NAV: NavItem[] = [
   },
   { label: "Menu", labelBn: "মেন্যু", href: "/menu" },
   { label: "Packages", labelBn: "প্যাকেজ", href: "/packages" },
-  { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
+  // { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
   { label: "Venues", labelBn: "ভেন্যু", href: "/venues" },
-  { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
+  // { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
   { label: "Contact", labelBn: "যোগাযোগ", href: "/contact" },
 ];
 

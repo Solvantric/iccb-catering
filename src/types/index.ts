@@ -139,6 +139,7 @@ export interface Package {
   pricePerHead: number; // BDT
   minGuests: number;
   cuisineType: string;
+  image?: string;
   courses: {
     name: string;
     items: string[];

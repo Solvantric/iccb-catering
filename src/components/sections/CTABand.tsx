@@ -40,9 +40,11 @@ export function CTABand() {
             <a
               href={`tel:${SITE_INFO.contact.cateringPhone}`}
               onClick={() => track("call_clicked", { channel: "cta_band" })}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-ink-950 font-bold text-sm hover:bg-brand-50 transition-colors shadow-md"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-ink-950 font-bold text-sm hover:bg-brand-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
             >
-              <Phone className="w-4 h-4 text-brand-500" />
+              <span className="w-7 h-7 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                <Phone className="w-4 h-4" />
+              </span>
               <span>{SITE_INFO.contact.cateringPhone}</span>
             </a>
 
@@ -52,15 +54,17 @@ export function CTABand() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("whatsapp_clicked", { channel: "cta_band" })}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-colors shadow-md"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#128C7E] to-[#25D366] text-white font-bold text-sm hover:brightness-110 transition-all shadow-[0_6px_20px_rgba(37,211,102,0.35)] hover:-translate-y-0.5 group"
             >
-              <MessageCircle className="w-4 h-4" />
+              <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                <MessageCircle className="w-4 h-4 text-white" />
+              </span>
               <span>{t.whatsapp}</span>
             </a>
 
             {/* Quote Form */}
             <Link href="/quote">
-              <Button variant="dark" size="md" withArrow>
+              <Button variant="dark" size="md" withArrow className="px-6 py-3.5 shadow-lg">
                 {t.requestQuote}
               </Button>
             </Link>

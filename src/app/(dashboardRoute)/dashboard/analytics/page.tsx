@@ -29,7 +29,7 @@ const MONTHLY_LEADS = [
 ];
 
 const CUISINE_SHARE = [
-  { name: "Local Mughal (Kacchi & Shahi)", value: 58, color: "#E24F5F" },
+  { name: "Local Mughal (Kacchi & Shahi)", value: 58, color: "#DC0511" },
   { name: "Multi-Cuisine Fusion", value: 24, color: "#141416" },
   { name: "Continental & Live Grills", value: 18, color: "#8E8E93" },
 ];
@@ -143,8 +143,8 @@ export default function AnalyticsDashboardPage() {
               <AreaChart data={MONTHLY_LEADS}>
                 <defs>
                   <linearGradient id="colorInq" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#E24F5F" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#E24F5F" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#DC0511" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#DC0511" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorConf" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#141416" stopOpacity={0.3} />
@@ -168,7 +168,7 @@ export default function AnalyticsDashboardPage() {
                   type="monotone"
                   dataKey="inquiries"
                   name="Inquiries"
-                  stroke="#E24F5F"
+                  stroke="#DC0511"
                   strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#colorInq)"
@@ -243,7 +243,7 @@ export default function AnalyticsDashboardPage() {
               <XAxis type="number" tick={{ fontSize: 12, fill: "#71717A" }} />
               <YAxis dataKey="name" type="category" tick={{ fontSize: 12, fill: "#141416" }} width={140} />
               <Tooltip />
-              <Bar dataKey="orders" name="Catered Batches" fill="#E24F5F" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="orders" name="Catered Batches" fill="#DC0511" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

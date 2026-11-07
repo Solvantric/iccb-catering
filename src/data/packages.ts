@@ -12,6 +12,7 @@ export const PACKAGES: Package[] = [
     pricePerHead: 1450,
     minGuests: 150,
     cuisineType: "Traditional Mughal & Bengali",
+    image: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80",
     courses: [
       {
         name: "Welcome Drinks & Starters",
@@ -53,6 +54,7 @@ export const PACKAGES: Package[] = [
     pricePerHead: 1150,
     minGuests: 50,
     cuisineType: "Continental & Multi-Cuisine",
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
     courses: [
       {
         name: "Salad & Starters",
@@ -93,6 +95,7 @@ export const PACKAGES: Package[] = [
     pricePerHead: 890,
     minGuests: 30,
     cuisineType: "Bengali & Asian Fusion",
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80",
     courses: [
       {
         name: "Starters & Finger Foods",
@@ -133,6 +136,7 @@ export const PACKAGES: Package[] = [
     pricePerHead: 650,
     minGuests: 40,
     cuisineType: "Continental & Bakery High-Tea",
+    image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=1200&q=80",
     courses: [
       {
         name: "Savouries & Canapés",

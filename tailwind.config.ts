@@ -12,16 +12,16 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: "#FFF5F6",
-          100: "#FCE8EA",
-          200: "#F8BFC5",
-          300: "#F2949E",
-          400: "#EB7480",
-          500: "#E24F5F",
-          600: "#C73E4E",
-          700: "#A93141",
-          800: "#8B2433",
-          900: "#6F1B27",
+          50: "#FFF5F5",
+          100: "#FCE5E7",
+          200: "#F8A3A9",
+          300: "#F0656E",
+          400: "#E6303B",
+          500: "#DC0511",
+          600: "#BE040E",
+          700: "#9E030B",
+          800: "#7D0208",
+          900: "#5C0106",
         },
         ink: {
           50: "#F4F4F5",
@@ -50,7 +50,7 @@ const config: Config = {
       boxShadow: {
         soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
         card: "0 10px 30px -5px rgba(0, 0, 0, 0.08)",
-        floating: "0 20px 40px -10px rgba(226, 79, 95, 0.25)",
+        floating: "0 20px 40px -10px rgba(220, 5, 17, 0.35)",
         dark: "0 10px 30px -5px rgba(0, 0, 0, 0.5)",
       },
       animation: {
