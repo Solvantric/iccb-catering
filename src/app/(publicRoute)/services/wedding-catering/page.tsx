@@ -1,24 +1,19 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
-import { SERVICES } from "@/data/services";
 import { PACKAGES } from "@/data/packages";
 import { IMAGES, PLACEHOLDER_BLUR } from "@/data/images";
 import { formatCurrency } from "@/lib/format";
-import { generatePageMetadata } from "@/lib/seo";
-import { CheckCircle2, Heart, Award, Sparkles } from "lucide-react";
-
-export const metadata: Metadata = generatePageMetadata({
-  title: "Royal Wedding Catering in Dhaka | Holud, Reception & Walima",
-  description:
-    "Authentic Old Dhaka Kacchi Biryani, Shahi Mutton Rezala, and royal hospitality crafted for unforgettable wedding receptions at ICCB.",
-  path: "/services/wedding-catering",
-});
+import { useUIStore } from "@/store/uiStore";
+import { CheckCircle2 } from "lucide-react";
 
 export default function WeddingCateringPage() {
+  const { locale } = useUIStore();
+  const isBn = locale === "bn";
   const weddingPkg = PACKAGES.find((p) => p.slug === "royal-mughal-wedding-feast") || PACKAGES[0];
 
   return (
@@ -29,19 +24,21 @@ export default function WeddingCateringPage() {
           <div className="flex justify-center">
             <Breadcrumbs
               items={[
-                { label: "Services", href: "/services" },
-                { label: "Wedding Catering" },
+                { label: isBn ? "সেবাসমূহ" : "Services", href: "/services" },
+                { label: isBn ? "বিয়ের ক্যাটারিং" : "Wedding Catering" },
               ]}
             />
           </div>
           <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
-            ~ Royal Mughal Banquets ~
+            {isBn ? "~ রাজকীয় মুঘল বিয়ের ভোজ ~" : "~ Royal Mughal Banquets ~"}
           </span>
           <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
-            WEDDING CATERING
+            {isBn ? "বিয়ের ক্যাটারিং" : "WEDDING CATERING"}
           </h1>
           <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
-            Crafting legendary wedding feasts where tender Kacchi Biryani, rich Rezala, and authentic Borhani create memories cherished for generations.
+            {isBn
+              ? "কোমল কাচ্চি বিরিয়ানি, সমৃদ্ধ রেজালা এবং খাঁটি বোরহানির স্বাদে অবিস্মরণীয় বিয়ের অনুষ্ঠান গড়ে তুলি আমরা — প্রজন্মের পর প্রজন্ম ধরে মনে রাখার মতো।"
+              : "Crafting legendary wedding feasts where tender Kacchi Biryani, rich Rezala, and authentic Borhani create memories cherished for generations."}
           </p>
         </div>
       </section>
@@ -51,42 +48,58 @@ export default function WeddingCateringPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6 text-left">
             <span className="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">
-              The Taste of Happiness
+              {isBn ? "সুখের স্বাদ" : "The Taste of Happiness"}
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-              WHERE TRADITION MEETS FLAWLESS HYGIENE
+              {isBn ? "ঐতিহ্য ও নিখুঁত স্বাস্থ্যবিধির মেলবন্ধন" : "WHERE TRADITION MEETS FLAWLESS HYGIENE"}
             </h2>
             <p className="text-xs sm:text-sm text-ink-700 leading-relaxed">
-              In Bangladesh, the success of a wedding reception hinges on the quality, fragrance, and temperature of the banquet feast. For years, wedding families had to gamble with third-party cooks or chaotic bazaar slaughtering.
+              {isBn
+                ? "বাংলাদেশে বিয়ের অনুষ্ঠানের সাফল্য নির্ভর করে মূলত খাবারের মান, সুঘ্রাণ ও পরিবেশনের উপর। বহু বছর ধরে বিয়ের পরিবারগুলোকে তৃতীয় পক্ষের রাঁধুনি বা বাজারের বিশৃঙ্খল ব্যবস্থার উপর নির্ভর করতে হতো।"
+                : "In Bangladesh, the success of a wedding reception hinges on the quality, fragrance, and temperature of the banquet feast. For years, wedding families had to gamble with third-party cooks or chaotic bazaar slaughtering."}
             </p>
             <p className="text-xs sm:text-sm text-ink-700 leading-relaxed">
-              At ICCB Catering, your mutton is processed in our own dedicated modern slaughterhouse, seasoned with whole stone-ground spices, and cooked by master Ustads who have guarded royal Mughal culinary secrets for decades.
+              {isBn
+                ? "আইসিসিবি ক্যাটারিংয়ে আপনার মাংস আমাদের নিজস্ব আধুনিক কসাইখানায় প্রক্রিয়াজাত করা হয়, গোটা পাথরে পেষা মশলায় মেরিনেট করা হয় এবং রান্না করেন মুঘল রন্ধনশৈলীর গোপন রহস্য বহনকারী মাস্টার উস্তাদরা।"
+                : "At ICCB Catering, your mutton is processed in our own dedicated modern slaughterhouse, seasoned with whole stone-ground spices, and cooked by master Ustads who have guarded royal Mughal culinary secrets for decades."}
             </p>
 
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-xs text-ink-800 font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>100% Halal certified young mutton & tender chicken</span>
+                <span>
+                  {isBn
+                    ? "১০০% হালাল সার্টিফাইড তরুণ মাটন ও কোমল মুরগি"
+                    : "100% Halal certified young mutton & tender chicken"}
+                </span>
               </div>
               <div className="flex items-center gap-3 text-xs text-ink-800 font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>Private VIP tasting session before wedding confirmation</span>
+                <span>
+                  {isBn
+                    ? "বিয়ে নিশ্চিতের আগে প্রাইভেট ভিআইপি টেস্টিং সেশন"
+                    : "Private VIP tasting session before wedding confirmation"}
+                </span>
               </div>
               <div className="flex items-center gap-3 text-xs text-ink-800 font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>Dedicated bridal head table butler service</span>
+                <span>
+                  {isBn
+                    ? "বর-কনে টেবিলে ডেডিকেটেড বাটলার সার্ভিস"
+                    : "Dedicated bridal head table butler service"}
+                </span>
               </div>
             </div>
 
             <div className="pt-4 flex flex-wrap gap-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Book Wedding Catering
+                  {isBn ? "বিয়ের ক্যাটারিং বুক করুন" : "Book Wedding Catering"}
                 </Button>
               </Link>
               <Link href="/tasting">
                 <Button size="lg" variant="outline">
-                  Book a Food Tasting
+                  {isBn ? "ফুড টেস্টিং বুক করুন" : "Book a Food Tasting"}
                 </Button>
               </Link>
             </div>
@@ -113,17 +126,21 @@ export default function WeddingCateringPage() {
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="max-w-xl mx-auto space-y-3">
             <span className="font-serif italic text-brand-600 text-lg font-semibold block">
-              ~ Our Signature Feast ~
+              {isBn ? "~ আমাদের সিগনেচার ভোজ ~" : "~ Our Signature Feast ~"}
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-              {weddingPkg.name}
+              {isBn ? "রাজকীয় মুঘল বিয়ের ভোজ" : weddingPkg.name}
             </h2>
             <p className="text-xs sm:text-sm text-ink-600">
-              {weddingPkg.description}
+              {isBn
+                ? "আমাদের কিংবদন্তি শাহী কাচ্চি বিরিয়ানি, নরম মাটন রেজালা, সোনালী চিকেন রোস্ট এবং ঐতিহ্যবাহী ঢাকাই মিষ্টান্ন নিয়ে রাজকীয় ভোজ।"
+                : weddingPkg.description}
             </p>
             <p className="font-display font-black text-3xl text-brand-600">
               {formatCurrency(weddingPkg.pricePerHead)}{" "}
-              <span className="text-xs font-normal text-ink-500 font-sans">/ guest</span>
+              <span className="text-xs font-normal text-ink-500 font-sans">
+                {isBn ? "/ জন" : "/ guest"}
+              </span>
             </p>
           </div>
 
@@ -131,7 +148,15 @@ export default function WeddingCateringPage() {
             {weddingPkg.courses.map((course, idx) => (
               <div key={idx} className="space-y-2">
                 <h4 className="font-display font-bold text-sm uppercase text-brand-600 tracking-wider">
-                  {course.name}
+                  {isBn
+                    ? course.name === "Welcome Drinks & Starters"
+                      ? "স্বাগত পানীয় ও স্টার্টার"
+                      : course.name === "Main Course"
+                      ? "মূল খাবার"
+                      : course.name === "Desserts & Sweets"
+                      ? "মিষ্টি ও ডেজার্ট"
+                      : course.name
+                    : course.name}
                 </h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-ink-700">
                   {course.items.map((item, i) => (
@@ -145,10 +170,12 @@ export default function WeddingCateringPage() {
             ))}
 
             <div className="pt-4 border-t border-ink-100 flex justify-between items-center">
-              <span className="text-xs text-ink-500">Min. {weddingPkg.minGuests} guests</span>
+              <span className="text-xs text-ink-500">
+                {isBn ? `সর্বনিম্ন ${weddingPkg.minGuests} অতিথি` : `Min. ${weddingPkg.minGuests} guests`}
+              </span>
               <Link href={`/packages/${weddingPkg.slug}`}>
                 <Button size="sm" withArrow>
-                  Inquire for This Package
+                  {isBn ? "এই প্যাকেজের জন্য যোগাযোগ করুন" : "Inquire for This Package"}
                 </Button>
               </Link>
             </div>
@@ -158,4 +185,5 @@ export default function WeddingCateringPage() {
     </div>
   );
 }
+
 

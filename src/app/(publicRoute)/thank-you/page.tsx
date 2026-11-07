@@ -45,13 +45,13 @@ export default function ThankYouPage() {
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <Link href="/" className="flex-1">
-            <Button variant="outline" className="w-full text-xs font-bold uppercase">
+            <Button variant="outline" className="w-full h-12 text-xs font-bold uppercase">
               <Home className="w-3.5 h-3.5 mr-1.5" />
               Return Home
             </Button>
           </Link>
           <Link href="/menu" className="flex-1">
-            <Button variant="primary" className="w-full text-xs font-bold uppercase" withArrow>
+            <Button variant="primary" className="w-full h-12 text-xs font-bold uppercase" withArrow>
               Explore Dishes
             </Button>
           </Link>

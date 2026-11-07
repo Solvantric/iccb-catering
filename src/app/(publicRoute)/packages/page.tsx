@@ -10,6 +10,91 @@ import { PackageCalculator } from "@/components/calculator/PackageCalculator";
 import { useUIStore } from "@/store/uiStore";
 import { motion } from "framer-motion";
 
+// ─── Bangla translation maps ────────────────────────────────────────────────
+const PKG_NAMES_BN: Record<string, string> = {
+  "Royal Mughal Wedding Feast": "রাজকীয় মুঘল বিয়ের ভোজ",
+  "Executive Corporate Buffet": "এক্সিকিউটিভ কর্পোরেট বুফে",
+  "Social & Birthday Celebration": "সামাজিক ও জন্মদিনের উৎসব",
+  "Grand High-Tea Reception": "গ্র্যান্ড হাই-টি রিসেপশন",
+};
+
+const COURSE_NAMES_BN: Record<string, string> = {
+  "Welcome Drinks & Starters": "স্বাগত পানীয় ও স্টার্টার",
+  "Main Course": "মূল খাবার",
+  "Desserts & Sweets": "মিষ্টি ও ডেজার্ট",
+  "Salad & Starters": "সালাদ ও স্টার্টার",
+  "Desserts & Beverages": "ডেজার্ট ও পানীয়",
+  "Starters & Finger Foods": "স্টার্টার ও ফিঙ্গার ফুড",
+  "Desserts & Refreshments": "মিষ্টি ও রিফ্রেশমেন্ট",
+  "Savouries & Canapés": "লোনা নাস্তা ও ক্যানাপে",
+  "Sweet Bites": "মিষ্টি কামড়",
+  Beverages: "পানীয়",
+};
+
+const DISH_BN: Record<string, string> = {
+  "Chilled Dhakai Borhani": "ঠান্ডা ঢাকাই বোরহানি",
+  "Zafrani Sharbat": "জাফরানি শরবত",
+  "Crispy Vegetable Singara": "ক্রিসপি সবজি সিঙ্গারা",
+  "Fresh Mint Chutney": "তাজা পুদিনা চাটনি",
+  "Signature Mutton Kacchi Biryani with Aloo & Boiled Egg": "সিগনেচার মাটন কাচ্চি বিরিয়ানি আলু ও ডিমসহ",
+  "Shahi Mutton Rezala": "শাহী মাটন রেজালা",
+  "Golden Dhakai Chicken Roast": "গোল্ডেন ঢাকাই চিকেন রোস্ট",
+  "Roghni Naan / Butter Naan": "রোঘনি নান / বাটার নান",
+  "Mixed Onion Cucumber Salad with Lime & Green Chilies": "পেঁয়াজ-শসার মিশ্র সালাদ লেবু ও কাঁচামরিচসহ",
+  "Clay Pot Zafrani Shahi Firni": "মাটির পাত্রে জাফরানি শাহী ফিরনি",
+  "Mini Shahi Tukra with Rabri": "মিনি শাহী টুকরা রাবরিসহ",
+  "Traditional Sweet Paan": "ঐতিহ্যবাহী মিষ্টি পান",
+  "Classic Chicken Caesar Salad": "ক্লাসিক চিকেন সিজার সালাদ",
+  "Sweet Corn Vegetable Soup": "সুইট কর্ন ভেজিটেবল স্যুপ",
+  "Warm Bread Rolls & Butter": "উষ্ণ ব্রেড রোল ও মাখন",
+  "Herb-Crusted Beef Medallions in Peppercorn Glaze": "পেপারকর্ন গ্লেজে হার্ব ক্রাস্টেড বিফ মেডালিয়ন",
+  "Grilled Chicken Breast with Mushroom Demi-Glace": "মাশরুম ডেমি-গ্লেসে গ্রিলড চিকেন ব্রেস্ট",
+  "Steamed Jasmine / Basmati Rice": "স্টিমড জেসমিন / বাসমতী চাল",
+  "Penne Pasta with Sun-Dried Tomato Cream": "সানড্রাইড টমেটো ক্রিমে পেনে পাস্তা",
+  "Sautéed Seasonal Butter Vegetables": "মৌসুমি বাটার ভেজিটেবল স্যুটে",
+  "Fresh Fruit Tartlets": "ফ্রেশ ফ্রুট টার্টলেট",
+  "Chocolate Mousse Cups": "চকলেট মুস কাপ",
+  "Freshly Brewed Tea & Coffee Station": "তাজা চা ও কফি স্টেশন",
+  "Crispy Fried Chicken Wontons": "ক্রিসপি ফ্রাইড চিকেন ওয়ান্টন",
+  "Mini Seekh Kebabs": "মিনি শিক কাবাব",
+  "Tangy Tamarind Dip": "টেংটি তেঁতুলের ডিপ",
+  "Saffron Polao with Ghee Rice": "জাফরান পোলাও ঘি চালসহ",
+  "Spicy Beef Bhuna": "স্পাইসি গরুর ভুনা",
+  "Chicken Korma with Golden Almonds": "গোল্ডেন বাদামে চিকেন কোরমা",
+  "Chinese Vegetable Fried Rice": "চাইনিজ ভেজিটেবল ফ্রাইড রাইস",
+  "Szechuan Chilli Chicken Gravy": "সেচুয়ান চিলি চিকেন গ্রেভি",
+  "Creamy Caramel Custard": "ক্রিমি ক্যারামেল কাস্টার্ড",
+  "Gulab Jamun in Warm Syrup": "গরম সিরাপে গোলাপ জামুন",
+  "Soft Drinks & Mineral Water": "কোমল পানীয় ও মিনারেল ওয়াটার",
+  "Smoked Chicken & Cucumber Finger Sandwiches": "স্মোকড চিকেন ও শসার ফিঙ্গার স্যান্ডউইচ",
+  "Mini Beef Sausage Rolls": "মিনি বিফ সোসেজ রোল",
+  "Crispy Paneer Pakora": "ক্রিসপি পনির পাকোড়া",
+  "Chicken Quiche Bites": "চিকেন কুইশ বাইট",
+  "Freshly Baked Scones with Cream & Jam": "তাজা বেকড স্কোন ক্রিম ও জ্যামসহ",
+  "Mini Éclairs": "মিনি এক্লেয়ার",
+  "Fruit Skewers with Honey Glaze": "হানি গ্লেজে ফ্রুট স্কিউয়ার",
+  "Masala Milk Tea": "মশলা দুধ চা",
+  "English Breakfast Tea": "ইংলিশ ব্রেকফাস্ট টি",
+  "Artisanal Black Coffee": "আর্টিসানাল ব্ল্যাক কফি",
+  "Chilled Lemon Mint Ice Tea": "ঠান্ডা লেবু-পুদিনা আইস টি",
+};
+
+function translateDish(dish: string, isBn: boolean): string {
+  if (!isBn) return dish;
+  return DISH_BN[dish] ?? dish;
+}
+
+function translateCourseName(name: string, isBn: boolean): string {
+  if (!isBn) return name;
+  return COURSE_NAMES_BN[name] ?? name;
+}
+
+function translatePkgName(name: string, isBn: boolean): string {
+  if (!isBn) return name;
+  return PKG_NAMES_BN[name] ?? name;
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 function PackageCardItem({
   pkg,
   idx,
@@ -65,7 +150,7 @@ function PackageCardItem({
         {/* Package name over image top-left: Playfair Display, uppercase, tracking-[0.12em], white, 24px */}
         <div className="absolute top-0 left-0 right-0 p-6 z-10">
           <h3 className="font-display font-black uppercase text-white tracking-tight text-[20px] sm:text-[24px] leading-snug drop-shadow-sm">
-            {pkg.name}
+            {translatePkgName(pkg.name, isBn)}
           </h3>
         </div>
       </div>
@@ -99,13 +184,13 @@ function PackageCardItem({
               {isBn ? "যা যা অন্তর্ভুক্ত রয়েছে" : "WHAT'S INCLUDED"}
             </span>
 
-            {/* Dishes in 2 columns: compact small font for clean presentation */}
+            {/* Dishes in 2 columns: compact small font, single-line truncate */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
               {allDishes.map((dish, i) => (
-                <div key={i} className="flex items-start gap-1.5">
-                  <span className="w-1 h-1 rounded-full bg-brand-500 mt-1.5 shrink-0" />
-                  <span className="font-sans text-[12px] sm:text-[13px] text-ink-700 dark:text-ink-300 leading-snug">
-                    {dish}
+                <div key={i} className="flex items-center gap-1.5 min-w-0">
+                  <span className="w-1 h-1 rounded-full bg-brand-500 shrink-0" />
+                  <span className="font-sans text-[11px] sm:text-[12px] text-ink-700 dark:text-ink-300 leading-snug truncate">
+                    {translateDish(dish, isBn)}
                   </span>
                 </div>
               ))}

@@ -62,158 +62,10 @@ export function ContactPageClient() {
         </div>
       </section>
 
-      {/* 2. Top 3 Sleek Cards */}
-      <section className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Booking Hotline */}
-          <div className="bg-white dark:bg-ink-900 rounded-2xl p-7 border border-ink-100 dark:border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                  {t.bookingTitle}
-                </span>
-                <div className="w-11 h-11 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                  <Phone className="w-5 h-5 stroke-[1.75]" />
-                </div>
-              </div>
-
-              <div>
-                <a
-                  href={`tel:${primaryBookingPhone}`}
-                  className="font-display font-black text-2xl text-ink-950 dark:text-white leading-tight hover:text-brand-600 transition-colors block tracking-tight"
-                >
-                  {primaryBookingPhone}
-                </a>
-                <a
-                  href={`mailto:${SITE_INFO.contact.bookingEmail}`}
-                  className="text-xs text-ink-500 dark:text-ink-400 mt-1 block hover:text-brand-500 transition-colors font-sans"
-                >
-                  {SITE_INFO.contact.bookingEmail}
-                </a>
-              </div>
-
-              {/* More numbers toggle */}
-              <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => setShowMoreBooking((prev) => !prev)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline"
-                >
-                  <span>{showMoreBooking ? t.hideNumbers : t.moreNumbers}</span>
-                  {showMoreBooking ? (
-                    <ChevronUp className="w-3.5 h-3.5" />
-                  ) : (
-                    <ChevronDown className="w-3.5 h-3.5" />
-                  )}
-                </button>
-
-                {showMoreBooking && (
-                  <div className="mt-3 pt-3 border-t border-ink-100 dark:border-white/10 grid grid-cols-1 gap-1 text-xs text-ink-600 dark:text-ink-300">
-                    {additionalBookingPhones.map((ph, idx) => (
-                      <a
-                        key={idx}
-                        href={`tel:${ph}`}
-                        className="hover:text-brand-600 transition-colors font-medium py-0.5"
-                      >
-                        {ph}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
-              <a
-                href={`tel:${primaryBookingPhone}`}
-                className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
-              >
-                <span>{t.callNow}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Card 2: Catering Inquiries */}
-          <div className="bg-white dark:bg-ink-900 rounded-2xl p-7 border border-ink-100 dark:border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                  {t.cateringTitle}
-                </span>
-                <div className="w-11 h-11 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                  <Mail className="w-5 h-5 stroke-[1.75]" />
-                </div>
-              </div>
-
-              <div>
-                <a
-                  href={`tel:${SITE_INFO.contact.cateringPhone}`}
-                  className="font-display font-black text-2xl text-ink-950 dark:text-white leading-tight hover:text-brand-600 transition-colors block tracking-tight"
-                >
-                  {SITE_INFO.contact.cateringPhone}
-                </a>
-                <a
-                  href={`mailto:${SITE_INFO.contact.cateringEmail}`}
-                  className="text-xs text-ink-500 dark:text-ink-400 mt-1 block hover:text-brand-500 transition-colors font-sans"
-                >
-                  {SITE_INFO.contact.cateringEmail}
-                </a>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
-              <a
-                href={`tel:${SITE_INFO.contact.cateringPhone}`}
-                className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
-              >
-                <span>{t.callCatering}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Card 3: Visit Us */}
-          <div className="bg-white dark:bg-ink-900 rounded-2xl p-7 border border-ink-100 dark:border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                  {t.visitTitle}
-                </span>
-                <div className="w-11 h-11 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                  <MapPin className="w-5 h-5 stroke-[1.75]" />
-                </div>
-              </div>
-
-              <div>
-                <p className="font-display font-black text-2xl text-ink-950 dark:text-white leading-tight tracking-tight">
-                  Kuril Bishwa Road
-                </p>
-                <p className="text-xs text-ink-500 dark:text-ink-400 mt-1 leading-relaxed font-sans">
-                  Next to 300 ft Purbachal Express Highway, Kuril Bishwa Road, Dhaka 1229
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
-              <a
-                href={directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
-              >
-                <span>{t.getDirections}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Main Split Section: LEFT Form | RIGHT Info */}
-      <section className="py-16 sm:py-24 bg-white dark:bg-ink-950 transition-colors">
+      {/* 2. Main Section: Left Form & Right 3 Cards */}
+      <section className="py-16 sm:py-20 bg-white dark:bg-ink-950 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             {/* LEFT Column (Col 7): The Inquiry Form */}
             <div className="lg:col-span-7 bg-white dark:bg-ink-900 rounded-3xl p-8 sm:p-10 border border-ink-100 dark:border-white/10 shadow-xl space-y-6 text-left">
               <div className="space-y-2 border-b border-ink-100 dark:border-white/10 pb-6">
@@ -233,103 +85,147 @@ export function ContactPageClient() {
               <ContactForm />
             </div>
 
-            {/* RIGHT Column (Col 5): Info & Assistance Highlights */}
+            {/* RIGHT Column (Col 5): The 3 Cards */}
             <div className="lg:col-span-5 space-y-6 text-left">
-              {/* Info Card 1: Operating Hours */}
-              <div className="bg-white dark:bg-ink-900 rounded-3xl p-7 border border-ink-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 stroke-[1.75]" />
+              {/* Card 1: Booking Hotline */}
+              <div className="bg-white dark:bg-ink-900 rounded-2xl p-6 sm:p-7 border border-ink-100 dark:border-white/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                      {t.bookingTitle}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                      <Phone className="w-5 h-5 stroke-[1.75]" />
+                    </div>
                   </div>
+
                   <div>
-                    <h3 className="font-display font-black text-lg uppercase tracking-tight text-ink-950 dark:text-white">
-                      {isBn ? "অফিস ও ভিজিট সময়সূচি" : "OFFICE & VISIT HOURS"}
-                    </h3>
-                    <p className="text-xs text-ink-500 font-sans">
-                      {isBn ? "সপ্তাহে ৭ দিন খোলা" : "Open 7 Days a Week"}
-                    </p>
+                    <a
+                      href={`tel:${primaryBookingPhone}`}
+                      className="font-display font-black text-xl sm:text-2xl text-ink-950 dark:text-white leading-tight hover:text-brand-600 transition-colors block tracking-tight"
+                    >
+                      {primaryBookingPhone}
+                    </a>
+                    <a
+                      href={`mailto:${SITE_INFO.contact.bookingEmail}`}
+                      className="text-xs text-ink-500 dark:text-ink-400 mt-1 block hover:text-brand-500 transition-colors font-sans"
+                    >
+                      {SITE_INFO.contact.bookingEmail}
+                    </a>
+                  </div>
+
+                  {/* More numbers toggle */}
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowMoreBooking((prev) => !prev)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline"
+                    >
+                      <span>{showMoreBooking ? t.hideNumbers : t.moreNumbers}</span>
+                      {showMoreBooking ? (
+                        <ChevronUp className="w-3.5 h-3.5" />
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+
+                    {showMoreBooking && (
+                      <div className="mt-3 pt-3 border-t border-ink-100 dark:border-white/10 grid grid-cols-1 gap-1 text-xs text-ink-600 dark:text-ink-300">
+                        {additionalBookingPhones.map((ph, idx) => (
+                          <a
+                            key={idx}
+                            href={`tel:${ph}`}
+                            className="hover:text-brand-600 transition-colors font-medium py-0.5"
+                          >
+                            {ph}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="space-y-2 text-xs font-sans text-ink-700 dark:text-ink-300 pt-1 border-t border-ink-100 dark:border-white/10">
-                  <div className="flex justify-between py-1">
-                    <span className="text-ink-500">{isBn ? "শনিবার – বৃহস্পতিবার:" : "Saturday – Thursday:"}</span>
-                    <span className="font-semibold text-ink-950 dark:text-white">9:00 AM – 9:00 PM</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-ink-500">{isBn ? "শুক্রবার (জুম্মা বিরতি সহ):" : "Friday (Banquet Desk):"}</span>
-                    <span className="font-semibold text-ink-950 dark:text-white">10:00 AM – 8:00 PM</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-ink-500">{isBn ? "ফুড টেস্টিং সেশন:" : "Tasting Sessions:"}</span>
-                    <span className="font-semibold text-brand-600">{isBn ? "পূর্ব নির্ধারিত স্লট" : "By Prior Appointment"}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Info Card 2: Rapid Response Pledge */}
-              <div className="bg-white dark:bg-ink-900 rounded-3xl p-7 border border-ink-100 dark:border-white/10 shadow-sm space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
-                    <Headphones className="w-5 h-5 stroke-[1.75]" />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-black text-lg uppercase tracking-tight text-ink-950 dark:text-white">
-                      {isBn ? "গ্রাহক সেবা নিশ্চয়তা" : "DEDICATED COORDINATION"}
-                    </h3>
-                    <p className="text-xs text-ink-500 font-sans">
-                      {isBn ? "দ্রুত প্রতিক্রিয়া ও সহযোগিতা" : "Fast Turnaround Time"}
-                    </p>
-                  </div>
-                </div>
-
-                <ul className="space-y-2.5 text-xs font-sans text-ink-600 dark:text-ink-300 pt-1 border-t border-ink-100 dark:border-white/10">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{isBn ? "কর্মঘণ্টায় ২ ঘণ্টার মধ্যে কোটেশন ও রেসপন্স প্রদান।" : "Direct quotation and date verification within 2 business hours."}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{isBn ? "প্রতিটি বড় ইভেন্টের জন্য সার্বক্ষণিক ডেডিকেটেড ক্যাটারিং ম্যানেজার।" : "On-site banquet captain and kitchen supervisor assigned for every event."}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{isBn ? "ক্যাটারিং চূড়ান্ত করার পূর্বে বর-কনে পরিবারের জন্য টেস্ট টেস্টিং সুবিধা।" : "Complimentary multi-dish tasting table available for wedding families."}</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Info Card 3: Instant Hotline CTA */}
-              <div className="rounded-3xl p-7 bg-brand-500 text-white shadow-lg space-y-4">
-                <div className="space-y-1">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-brand-100">
-                    {isBn ? "জরুরি বুকিং প্রয়োজন?" : "NEED INSTANT HELP?"}
-                  </span>
-                  <h4 className="font-display font-black text-xl uppercase tracking-tight text-white">
-                    {isBn ? "সরাসরি বুকিং হটলাইনে ডায়াল করুন" : "SPEAK WITH A BANQUET MANAGER"}
-                  </h4>
-                  <p className="text-xs text-brand-100 font-sans leading-relaxed pt-1">
-                    {isBn
-                      ? "তারিখ হোল্ড বা মেন্যু কাস্টমাইজেশনের জন্য সরাসরি কথা বলতে এখনই কল করুন।"
-                      : "For urgent date holds or customized corporate proposals, dial our direct concierge."}
-                  </p>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center gap-3">
+                <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
                   <a
                     href={`tel:${primaryBookingPhone}`}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-brand-600 font-bold text-xs uppercase tracking-wider hover:bg-brand-50 transition-colors shadow-sm"
+                    className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
                   >
-                    <Phone className="w-4 h-4" />
-                    <span>{primaryBookingPhone}</span>
+                    <span>{t.callNow}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </a>
+                </div>
+              </div>
+
+              {/* Card 2: Catering Inquiries */}
+              <div className="bg-white dark:bg-ink-900 rounded-2xl p-6 sm:p-7 border border-ink-100 dark:border-white/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                      {t.cateringTitle}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                      <Mail className="w-5 h-5 stroke-[1.75]" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <a
+                      href={`tel:${SITE_INFO.contact.cateringPhone}`}
+                      className="font-display font-black text-xl sm:text-2xl text-ink-950 dark:text-white leading-tight hover:text-brand-600 transition-colors block tracking-tight"
+                    >
+                      {SITE_INFO.contact.cateringPhone}
+                    </a>
+                    <a
+                      href={`mailto:${SITE_INFO.contact.cateringEmail}`}
+                      className="text-xs text-ink-500 dark:text-ink-400 mt-1 block hover:text-brand-500 transition-colors font-sans"
+                    >
+                      {SITE_INFO.contact.cateringEmail}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
                   <a
-                    href={`https://wa.me/8801926686000`}
+                    href={`tel:${SITE_INFO.contact.cateringPhone}`}
+                    className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
+                  >
+                    <span>{t.callCatering}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 3: Visit Us */}
+              <div className="bg-white dark:bg-ink-900 rounded-2xl p-6 sm:p-7 border border-ink-100 dark:border-white/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                      {t.visitTitle}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-white/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                      <MapPin className="w-5 h-5 stroke-[1.75]" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="font-display font-black text-xl sm:text-2xl text-ink-950 dark:text-white leading-tight tracking-tight">
+                      Kuril Bishwa Road
+                    </p>
+                    <p className="text-xs text-ink-500 dark:text-ink-400 mt-1 leading-relaxed font-sans">
+                      Next to 300 ft Purbachal Express Highway, Kuril Bishwa Road, Dhaka 1229
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-ink-100 dark:border-white/10 mt-4">
+                  <a
+                    href={directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-700 transition-colors border border-white/20"
+                    className="text-xs font-bold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
                   >
-                    <span>WhatsApp</span>
+                    <span>{t.getDirections}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
