@@ -72,18 +72,18 @@ function HallCard({ venue, idx, isBn }: { venue: Venue; idx: number; isBn: boole
 
         {/* Bottom details: Name + Seats + View hall row */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-left space-y-1.5 z-10">
-          <h3 className="font-serif text-[24px] sm:text-[28px] text-white font-normal leading-tight">
+          <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white leading-tight">
             {venue.name}
           </h3>
 
           {seatsLine && (
-            <p className="text-[12px] uppercase tracking-[0.15em] text-white/80 line-clamp-1">
+            <p className="text-xs uppercase tracking-wider text-white/90 font-sans line-clamp-1">
               {seatsLine}
             </p>
           )}
 
           {/* Hidden row "View hall →" that slides up on hover */}
-          <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <div className="pt-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 font-sans">
             <span>{isBn ? "হলটি দেখুন" : "View hall"}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>
@@ -137,30 +137,25 @@ export default function VenuesPage() {
             <Breadcrumbs items={[{ label: isBn ? "ভেন্যুসমূহ" : "Venues" }]} />
           </div>
 
-          <h1 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-[0.12em] text-white">
-            <span className="italic text-brand-300 mr-3">
-              {isBn ? "আমাদের" : "Our"}
-            </span>
-            <span className="uppercase font-normal">
-              {isBn ? "ভেন্যুসমূহ" : "VENUES"}
-            </span>
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-white leading-tight">
+            {isBn ? "আমাদের বিশেষ ভেন্যুসমূহ" : "OUR ICONIC VENUES"}
           </h1>
 
           <div className="w-12 h-[2px] bg-brand-500 mx-auto" />
 
-          <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-white/90 max-w-2xl mx-auto leading-relaxed font-sans">
             {isBn
-              ? "মেলা ও প্রদর্শনী, সম্মেলন, ফ্যাশন শো, অ্যাওয়ার্ড নাইট, সমাবর্তন এবং রাজকীয় বিবাহের জন্য নির্মিত।"
+              ? "মেলা ও প্রদর্শনী, আন্তর্জাতিক সম্মেলন, ফ্যাশন শো, অ্যাওয়ার্ড নাইট, সমাবর্তন এবং রাজকীয় বিবাহের জন্য নির্মিত।"
               : "Built for fairs and expos, conferences, fashion shows, award nights, convocations and weddings."}
           </p>
         </div>
       </section>
 
-      {/* b) Intro strip: Playfair statement + 3 count-ups */}
+      {/* b) Intro strip: Display statement + 3 count-ups */}
       <section className="py-14 sm:py-16 border-b border-ink-100 dark:border-white/10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 text-left">
-            <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white leading-snug">
+            <h2 className="font-display font-black text-2xl sm:text-3xl text-ink-950 dark:text-white leading-snug uppercase tracking-tight">
               {isBn
                 ? "কনভেনশন হল, এক্সপো ভিলেজ এবং প্রাইভেট ডাইনিং রুম। একই ঠিকানায়।"
                 : "Halls, an expo village and private dining rooms. One address."}
@@ -169,26 +164,26 @@ export default function VenuesPage() {
 
           <div className="lg:col-span-6 grid grid-cols-3 gap-4 text-center">
             <div className="space-y-1">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+              <span className="font-display font-black text-3xl sm:text-4xl text-brand-600 dark:text-brand-400">
                 2015
               </span>
-              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400 font-sans">
                 {isBn ? "যাত্রা শুরু" : "Operating since"}
               </p>
             </div>
             <div className="space-y-1">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+              <span className="font-display font-black text-3xl sm:text-4xl text-brand-600 dark:text-brand-400">
                 6
               </span>
-              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400 font-sans">
                 {isBn ? "টি হল" : "Halls"}
               </p>
             </div>
             <div className="space-y-1">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+              <span className="font-display font-black text-3xl sm:text-4xl text-brand-600 dark:text-brand-400">
                 1
               </span>
-              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400 font-sans">
                 {isBn ? "এক্সপো ভিলেজ" : "Expo Village"}
               </p>
             </div>
@@ -199,15 +194,15 @@ export default function VenuesPage() {
       {/* c) Hall Grid: 6 halls, all visible, 3 cols lg, 2 cols sm, 1 col mobile */}
       <section className="py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-left mb-8 space-y-1">
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {isBn ? "কনভেনশন হলসমূহ" : "Convention Halls"}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+          <h2 className="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight text-ink-950 dark:text-white">
             {isBn ? "আমাদের ৬টি বিশেষ হল" : "Our Six Signature Halls"}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {halls.map((hall, idx) => (
             <HallCard key={hall.slug} venue={hall} idx={idx} isBn={isBn} />
           ))}
@@ -217,15 +212,15 @@ export default function VenuesPage() {
       {/* d) More Spaces: Expo Village + Heritage Dining (2 wide cards, aspect-[16/10]) */}
       <section className="pb-16 lg:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-left mb-8 space-y-1">
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {isBn ? "অন্যান্য বিশেষ স্পেস" : "More Spaces"}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+          <h2 className="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight text-ink-950 dark:text-white">
             {isBn ? "এক্সপো ভিলেজ ও প্রাইভেট ডাইনিং" : "Expo Village & Dining"}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {moreSpaces.map((space, idx) => {
             const shortFact =
               space.slug === "expo-village"
@@ -238,8 +233,8 @@ export default function VenuesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative aspect-[16/10] rounded-[2px] overflow-hidden group bg-ink-900 border border-ink-900/10 dark:border-white/10"
+                transition={{ duration: 0.5, delay: idx * 0.12 }}
+                className="relative aspect-[16/10] rounded-3xl overflow-hidden group bg-ink-900 border border-ink-100 dark:border-white/10 shadow-sm hover:shadow-lg transition-all"
               >
                 <Link
                   href={`/venues/${space.slug}`}
@@ -252,22 +247,22 @@ export default function VenuesPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-[700ms] group-hover:scale-[1.06]"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/90 via-black/45 to-transparent pointer-events-none" />
 
                   {/* Top-right pill */}
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-[11px] uppercase tracking-wider text-white font-medium">
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[11px] uppercase tracking-wider text-white font-bold font-sans">
                     {space.label}
                   </div>
 
                   {/* Bottom details */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-left space-y-1.5 z-10">
-                    <h3 className="font-serif text-[22px] sm:text-[26px] text-white font-normal leading-tight">
+                    <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white leading-tight">
                       {space.name}
                     </h3>
-                    <p className="text-[12px] uppercase tracking-[0.15em] text-white/80">
+                    <p className="text-xs uppercase tracking-wider text-white/80 font-sans">
                       {shortFact}
                     </p>
-                    <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="pt-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 font-sans">
                       <span>{isBn ? "বিস্তারিত দেখুন" : "View details"}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
@@ -282,16 +277,16 @@ export default function VenuesPage() {
       </section>
 
       {/* e) Banquet seating at a glance: horizontal animated bars from VENUES */}
-      <section className="py-16 bg-[#F7F3EE] dark:bg-ink-900 border-t border-ink-100 dark:border-white/10 transition-colors">
+      <section className="py-16 bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-8">
           <div className="space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               {isBn ? "ধারণক্ষমতা এক নজরে" : "Capacity Overview"}
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+            <h2 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-ink-950 dark:text-white">
               {isBn ? "ব্যাঙ্কোয়েট টেবিল আসন সংখ্যা" : "Banquet Seating at a Glance"}
             </h2>
-            <p className="text-xs text-ink-500 dark:text-ink-400">
+            <p className="text-xs text-ink-500 dark:text-ink-400 font-sans">
               {isBn
                 ? "ব্যাঙ্কোয়েট টেবিল সেটআপের সর্বোচ্চ ধারণক্ষমতা।"
                 : "Seats with banquet tables."}
@@ -303,17 +298,17 @@ export default function VenuesPage() {
               const pct = (hall.seats / maxBanquet) * 100;
               return (
                 <div key={hall.name} className="space-y-1.5">
-                  <div className="flex justify-between text-xs sm:text-sm font-medium">
-                    <span className="text-ink-900 dark:text-white font-serif">
+                  <div className="flex justify-between text-xs sm:text-sm font-semibold font-sans">
+                    <span className="text-ink-900 dark:text-white">
                       {hall.name} ({hall.label})
                     </span>
-                    <span className="font-serif font-bold text-ink-900 dark:text-white">
+                    <span className="font-display font-black text-brand-600 dark:text-brand-400">
                       {hall.rawSeats}
                     </span>
                   </div>
 
                   {/* 1px track with 4px brand-500 bar that grows from 0 in 900ms */}
-                  <div className="relative h-1 w-full bg-ink-200/70 dark:bg-white/10 rounded-full overflow-hidden">
+                  <div className="relative h-1.5 w-full bg-ink-100 dark:bg-white/10 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: "0%" }}
                       whileInView={{ width: `${pct}%` }}
@@ -329,13 +324,13 @@ export default function VenuesPage() {
         </div>
       </section>
 
-      {/* f) Closing Dark Band: Plan your event at ICCB + Enquire button to /inquiry */}
-      <section className="py-16 bg-ink-950 text-white border-t border-white/10 text-center px-4">
+      {/* f) Closing Band: Pure white in light mode with display typography */}
+      <section className="py-16 bg-white dark:bg-ink-950 text-ink-950 dark:text-white border-t border-ink-100 dark:border-white/10 text-center px-4">
         <div className="max-w-2xl mx-auto space-y-4">
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-wide">
+          <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950 dark:text-white">
             {isBn ? "আইসিসিবিতে আপনার ইভেন্ট পরিকল্পনা করুন" : "Plan your event at ICCB"}
           </h2>
-          <p className="text-xs sm:text-sm text-white/70 max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-white/70 max-w-lg mx-auto font-sans">
             {isBn
               ? "আমাদের অভিজ্ঞ ব্যাঙ্কোয়েট টিম আপনার আয়োজন নিখুঁত করতে প্রস্তুত।"
               : "Our experienced banquet specialists are ready to tailor our venues to your exact specifications."}
@@ -344,7 +339,7 @@ export default function VenuesPage() {
             <Link href="/inquiry">
               <button
                 type="button"
-                className="bg-brand-500 hover:bg-brand-600 text-white uppercase tracking-[0.2em] text-[12px] px-8 py-3.5 rounded-none font-medium transition-colors inline-block"
+                className="bg-brand-500 hover:bg-brand-600 text-white uppercase tracking-wider text-xs px-8 py-3.5 rounded-full font-bold transition-all shadow-md inline-block"
               >
                 {isBn ? "অনুসন্ধান করুন" : "Enquire"}
               </button>

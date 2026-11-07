@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Venue, VENUES, COMMON_GALLERY } from "@/data/venues";
+import { PLACEHOLDER_BLUR } from "@/data/images";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Modal } from "@/components/ui/Modal";
+import { Button } from "@/components/ui/Button";
 import { useUIStore } from "@/store/uiStore";
 import {
   Check,
@@ -17,6 +19,8 @@ import {
   Ruler,
   Car,
   Users,
+  ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 
 export function VenueDetailClient({ venue }: { venue: Venue }) {
@@ -30,29 +34,63 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
   const isDining = venue.slug === "heritage-restaurant-venues";
   const isHall = venue.type === "hall";
 
+  // Venue Bengali localized content
+  const venueTitle =
+    venue.slug === "gulnaksha"
+      ? isBn ? "গুলনকশা (কনভেনশন হল ০১)" : "Gulnaksha (Hall 01)"
+      : venue.slug === "pushpaguchha"
+      ? isBn ? "পুষ্পগুচ্ছ (কনভেনশন হল ০২)" : "Pushpaguchha (Hall 02)"
+      : venue.slug === "rajdarshan"
+      ? isBn ? "রাজদর্শন (কনভেনশন হল ০৩)" : "Rajdarshan (Hall 03)"
+      : venue.slug === "naboratna"
+      ? isBn ? "নবরত্ন (কনভেনশন হল ০৪)" : "Naboratna (Hall 04)"
+      : venue.name;
+
+  const venueIntro =
+    venue.slug === "gulnaksha" && isBn
+      ? "আইসিসিবি-তে প্রবেশের মুখে হাতের ডানে অবস্থিত প্রথম হল, যার রয়েছে সবুজ বাগান ও দৃষ্টিনন্দন রোডসাইড ভিউ। ভেতরে কোনো পিলার নেই এবং রয়েছে চমৎকার উঁচু সিলিং, যার ফলে যেকোনো ধরনের স্টেজ, বিয়ের সেটআপ কিংবা কর্পোরেট এক্সপো আয়োজন করা যায় অত্যন্ত স্বাচ্ছন্দ্যে।"
+      : venue.intro;
+
+  const venueRent =
+    isBn && venue.rent
+      ? venue.slug === "gulnaksha"
+        ? "ভাড়া: ৪,০০,০০০ টাকা (+ ভ্যাট/অন্যান্য চার্জ)"
+        : venue.rent
+      : venue.rent;
+
+  const venueParking =
+    isBn && venue.parking
+      ? "৫০০টিরও বেশি গাড়ির নিজস্ব সুরক্ষিত পার্কিং"
+      : venue.parking;
+
+  const venueMaxEvent =
+    isBn && venue.maxEvent
+      ? "১,৬০০ জন অতিথি পর্যন্ত ধারণক্ষমতা"
+      : venue.maxEvent;
+
   // Seat types that exist
   const seatsList: { label: string; count: string }[] = [];
   if (venue.seats?.theater) {
     seatsList.push({
-      label: isBn ? "থিয়েটার" : "THEATER",
+      label: isBn ? "থিয়েটার স্টাইল" : "THEATER",
       count: venue.seats.theater,
     });
   }
   if (venue.seats?.banquet) {
     seatsList.push({
-      label: isBn ? "ব্যাঙ্কোয়েট" : "BANQUET",
+      label: isBn ? "ব্যাঙ্কোয়েট ডাইনিং" : "BANQUET",
       count: venue.seats.banquet,
     });
   }
   if (venue.seats?.classroom) {
     seatsList.push({
-      label: isBn ? "ক্লাসরুম" : "CLASSROOM",
+      label: isBn ? "ক্লাসরুম সিটিং" : "CLASSROOM",
       count: venue.seats.classroom,
     });
   }
   if (venue.seats?.uShape) {
     seatsList.push({
-      label: isBn ? "ইউ-শেপ" : "U-SHAPE",
+      label: isBn ? "ইউ-শেপ বৈঠক" : "U-SHAPE",
       count: venue.seats.uShape,
     });
   }
@@ -68,57 +106,57 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
   ];
 
   return (
-    <div className="bg-[#F7F3EE] dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors text-[16px]">
-      {/* 1. Hero: full-bleed (h-[60vh] min-h-[420px]) with black/55 overlay */}
-      <section className="relative w-full h-[60vh] min-h-[420px] overflow-hidden bg-ink-950">
+    <div className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors text-base font-sans">
+      {/* 1. Hero: full-bleed with cinematic scrim */}
+      <section className="relative w-full h-[60vh] min-h-[440px] max-h-[640px] overflow-hidden bg-ink-950">
         <Image
           src={venue.image}
-          alt={venue.name}
+          alt={venueTitle}
           fill
           priority
           sizes="100vw"
-          className="object-cover transition-transform duration-[12000ms] scale-105 hover:scale-100 ease-out"
+          className="object-cover transition-transform duration-[10000ms] scale-105 hover:scale-100 ease-out"
         />
-        <div className="absolute inset-0 bg-black/55 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/35 pointer-events-none" />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 space-y-3">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 space-y-3 max-w-4xl mx-auto">
           <div className="flex justify-center text-white/80 mb-2">
             <Breadcrumbs
               items={[
                 { label: isBn ? "ভেন্যুসমূহ" : "Venues", href: "/venues" },
-                { label: venue.name },
+                { label: venueTitle },
               ]}
             />
           </div>
 
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-300 block">
-            {venue.label}
-          </span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20">
+            <Sparkles className="w-3.5 h-3.5 text-brand-400" />
+            <span className="text-[11px] font-bold uppercase tracking-widest text-brand-300">
+              {venue.label}
+            </span>
+          </div>
 
-          <h1 className="font-serif uppercase tracking-[0.1em] text-[clamp(2.25rem,4.5vw,4rem)] text-white font-normal leading-tight max-w-4xl drop-shadow-md">
-            {venue.name}
+          <h1 className="font-display font-black uppercase tracking-tight text-3xl sm:text-5xl lg:text-6xl text-white leading-tight drop-shadow-md">
+            {venueTitle}
           </h1>
 
-          <div className="w-12 h-[2px] bg-brand-500 mx-auto" />
+          <p className="font-serif italic text-brand-200 text-sm sm:text-base max-w-2xl mx-auto">
+            ~ {isBn ? "আইসিসিবি বসুন্ধরা আন্তর্জাতিক মানের কনভেনশন সেন্টার" : "International Convention City Bashundhara"} ~
+          </p>
         </div>
       </section>
 
-      {/* 2. Numbers row (halls only): only existing seat types, Playfair 44px */}
+      {/* 2. Numbers row (halls only): Bold Display Typography like Home Page */}
       {isHall && seatsList.length > 0 && (
-        <section className="py-10 bg-white dark:bg-ink-900 border-b border-ink-200/60 dark:border-white/10 transition-colors">
+        <section className="py-10 bg-white dark:bg-ink-900 border-b border-ink-100 dark:border-white/10 transition-colors">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div
-              className={`grid grid-cols-2 md:grid-cols-${Math.min(
-                seatsList.length,
-                4
-              )} gap-8 text-center`}
-            >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {seatsList.map((st) => (
                 <div key={st.label} className="space-y-1">
-                  <span className="font-serif text-[38px] sm:text-[44px] font-bold text-ink-950 dark:text-white block leading-none">
+                  <span className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-brand-600 dark:text-brand-400 block leading-none">
                     {st.count}
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400 font-semibold block">
+                  <span className="text-xs uppercase tracking-wider text-ink-500 dark:text-ink-400 font-semibold block pt-1 font-sans">
                     {st.label}
                   </span>
                 </div>
@@ -135,61 +173,64 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
           <div className="lg:col-span-8 space-y-10 text-left">
             {/* Intro paragraph */}
             <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400 block">
-                {isBn ? "ভেন্যু পরিচিতি" : "Overview"}
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 block">
+                {isBn ? "ভেন্যু পরিচিতি ও বিবরণ" : "Overview"}
               </span>
-              <p className="font-serif text-lg sm:text-xl text-ink-900 dark:text-ink-100 leading-relaxed">
-                {venue.intro}
+              <h2 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-ink-950 dark:text-white">
+                {isBn ? "বিশাল পরিসর ও পিলারলেস স্থাপত্যশৈলী" : "EXPANSIVE PILLARLESS ARCHITECTURE"}
+              </h2>
+              <p className="text-xs sm:text-sm text-ink-700 dark:text-ink-300 leading-relaxed font-sans">
+                {venueIntro}
               </p>
             </div>
 
-            {/* Hall Measurements Table (only existing fields: mezzanine, width, height, length) */}
+            {/* Hall Measurements Table */}
             {venue.size && (
-              <div className="space-y-4 pt-4 border-t border-ink-200/60 dark:border-white/10">
-                <div className="flex items-center gap-2 text-ink-900 dark:text-white">
+              <div className="space-y-4 pt-4 border-t border-ink-100 dark:border-white/10">
+                <div className="flex items-center gap-2 text-ink-950 dark:text-white">
                   <Ruler className="w-5 h-5 text-brand-500" />
-                  <h3 className="font-serif uppercase tracking-[0.12em] text-xl font-normal">
-                    {isBn ? "হলের পরিমাপ" : "Hall Measurements"}
+                  <h3 className="font-display font-black uppercase tracking-tight text-lg sm:text-xl">
+                    {isBn ? "হলের পরিমাপ ও স্পেসিফিকেশন" : "Hall Measurements"}
                   </h3>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-[2px] bg-white/70 dark:bg-white/[0.03] border border-ink-200/60 dark:border-white/10 text-center">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-white dark:bg-white/[0.03] border border-ink-200 dark:border-white/10 text-center">
                   {venue.size.length && (
                     <div>
-                      <span className="text-[11px] uppercase tracking-wider text-ink-400 block">
-                        Length
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-ink-400 block font-sans">
+                        {isBn ? "দৈর্ঘ্য" : "Length"}
                       </span>
-                      <span className="font-serif text-lg font-bold text-ink-900 dark:text-white">
+                      <span className="font-display font-black text-lg text-ink-900 dark:text-white">
                         {venue.size.length}
                       </span>
                     </div>
                   )}
                   {venue.size.width && (
                     <div>
-                      <span className="text-[11px] uppercase tracking-wider text-ink-400 block">
-                        Width
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-ink-400 block font-sans">
+                        {isBn ? "প্রস্থ" : "Width"}
                       </span>
-                      <span className="font-serif text-lg font-bold text-ink-900 dark:text-white">
+                      <span className="font-display font-black text-lg text-ink-900 dark:text-white">
                         {venue.size.width}
                       </span>
                     </div>
                   )}
                   {venue.size.height && (
                     <div>
-                      <span className="text-[11px] uppercase tracking-wider text-ink-400 block">
-                        Height
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-ink-400 block font-sans">
+                        {isBn ? "সিলিং উচ্চতা" : "Height"}
                       </span>
-                      <span className="font-serif text-lg font-bold text-ink-900 dark:text-white">
+                      <span className="font-display font-black text-lg text-ink-900 dark:text-white">
                         {venue.size.height}
                       </span>
                     </div>
                   )}
                   {venue.size.mezzanine && (
                     <div>
-                      <span className="text-[11px] uppercase tracking-wider text-ink-400 block">
-                        Mezzanine Floor
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-ink-400 block font-sans">
+                        {isBn ? "মেজানাইন ফ্লোর" : "Mezzanine Floor"}
                       </span>
-                      <span className="font-serif text-lg font-bold text-ink-900 dark:text-white">
+                      <span className="font-display font-black text-lg text-ink-900 dark:text-white">
                         {venue.size.mezzanine}
                       </span>
                     </div>
@@ -198,14 +239,14 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
               </div>
             )}
 
-            {/* Parking and Event size lines if present */}
+            {/* Parking and Event size lines */}
             {(venue.parking || venue.maxEvent) && (
-              <div className="space-y-3 pt-4 border-t border-ink-200/60 dark:border-white/10 text-sm">
+              <div className="space-y-3 pt-4 border-t border-ink-100 dark:border-white/10 text-xs sm:text-sm font-sans">
                 {venue.parking && (
                   <div className="flex items-center gap-2.5 text-ink-800 dark:text-ink-200">
                     <Car className="w-4 h-4 text-brand-500 shrink-0" />
                     <span>
-                      <strong>Parking:</strong> {venue.parking}
+                      <strong>{isBn ? "পার্কিং সুবিধা:" : "Parking:"}</strong> {venueParking}
                     </span>
                   </div>
                 )}
@@ -213,7 +254,7 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
                   <div className="flex items-center gap-2.5 text-ink-800 dark:text-ink-200">
                     <Users className="w-4 h-4 text-brand-500 shrink-0" />
                     <span>
-                      <strong>Event Size:</strong> {venue.maxEvent}
+                      <strong>{isBn ? "সর্বোচ্চ অতিথি ধারণক্ষমতা:" : "Event Size:"}</strong> {venueMaxEvent}
                     </span>
                   </div>
                 )}
@@ -222,15 +263,15 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
 
             {/* Layouts list if present */}
             {venue.layouts && venue.layouts.length > 0 && (
-              <div className="space-y-3 pt-4 border-t border-ink-200/60 dark:border-white/10">
-                <h3 className="font-serif uppercase tracking-[0.12em] text-lg text-ink-950 dark:text-white font-normal">
-                  {isBn ? "সম্ভাব্য লেআউট" : "Available Layouts"}
+              <div className="space-y-3 pt-4 border-t border-ink-100 dark:border-white/10">
+                <h3 className="font-display font-black uppercase tracking-tight text-lg text-ink-950 dark:text-white">
+                  {isBn ? "সম্ভাব্য সিটিং লেআউট" : "Available Layouts"}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {venue.layouts.map((l, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 text-sm text-ink-800 dark:text-ink-200"
+                      className="flex items-center gap-2 text-xs sm:text-sm text-ink-800 dark:text-ink-200 font-sans"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
                       <span>{l}</span>
@@ -242,13 +283,13 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
 
             {/* Expo Village: Facts checklist + in-tile YouTube Player */}
             {isExpo && (
-              <div className="space-y-8 pt-4 border-t border-ink-200/60 dark:border-white/10">
+              <div className="space-y-8 pt-4 border-t border-ink-100 dark:border-white/10">
                 {venue.facts && (
                   <div className="space-y-3">
-                    <h3 className="font-serif uppercase tracking-[0.12em] text-lg text-ink-950 dark:text-white font-normal">
-                      {isBn ? "এক্সপো ভিলেজের বৈশিষ্ট্য" : "Key Facts & Features"}
+                    <h3 className="font-display font-black uppercase tracking-tight text-lg text-ink-950 dark:text-white">
+                      {isBn ? "এক্সপো ভিলেজের মূল বৈশিষ্ট্যসমূহ" : "Key Facts & Features"}
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-ink-800 dark:text-ink-200">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-ink-800 dark:text-ink-200 font-sans">
                       {venue.facts.map((f, i) => (
                         <div key={i} className="flex items-center gap-2.5">
                           <Check className="w-4 h-4 text-brand-500 shrink-0" />
@@ -260,7 +301,7 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
                 )}
 
                 {/* In-tile YouTube Player */}
-                <div className="relative aspect-video w-full rounded-[2px] overflow-hidden bg-black border border-ink-900/10 dark:border-white/10 group">
+                <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black border border-ink-200 dark:border-white/10 group shadow-md">
                   {videoPlaying ? (
                     <>
                       <iframe
@@ -273,7 +314,7 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
                         type="button"
                         onClick={() => setVideoPlaying(false)}
                         aria-label="Stop video"
-                        className="absolute top-3 right-3 z-20 w-[36px] h-[36px] rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-md transition-all active:scale-95"
+                        className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-md transition-all active:scale-95"
                       >
                         <X size={16} strokeWidth={2} />
                       </button>
@@ -291,40 +332,30 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
                       />
                       <div className="absolute inset-0 bg-black/25 pointer-events-none" />
 
-                      {/* Small white Play icon top-right */}
-                      <div className="absolute top-3 right-3 z-10 w-[36px] h-[36px] rounded-full bg-black/35 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 pointer-events-none">
-                        <Play className="w-[18px] h-[18px] fill-white text-white translate-x-[1px]" />
+                      <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/35 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 pointer-events-none">
+                        <Play className="w-4 h-4 fill-white text-white translate-x-[1px]" />
                       </div>
                     </div>
                   )}
                 </div>
               </div>
             )}
-
-            {/* Dining: Note only */}
-            {isDining && venue.note && (
-              <div className="p-5 rounded-[2px] bg-white/70 dark:bg-white/[0.03] border border-ink-200/60 dark:border-white/10">
-                <p className="text-sm text-ink-700 dark:text-ink-300 italic">
-                  * {venue.note}
-                </p>
-              </div>
-            )}
           </div>
 
-          {/* Right Column: Sticky Booking / Rent Panel */}
+          {/* Right Column: Sticky Booking / Rent Panel (Pure White in Light Mode) */}
           <div className="lg:col-span-4 sticky top-[calc(var(--header-h)+24px)]">
-            <div className="border border-ink-200/80 dark:border-white/10 rounded-[4px] bg-[#F7F3EE] dark:bg-white/[0.03] p-8 space-y-6 text-left shadow-xs">
+            <div className="border border-ink-200 dark:border-white/10 rounded-3xl bg-white dark:bg-ink-900 p-6 sm:p-8 space-y-6 text-left shadow-soft">
               {/* Hall Rent if present */}
               {venue.rent && (
-                <div className="space-y-1.5 pb-4 border-b border-ink-200/60 dark:border-white/10">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-ink-500 dark:text-ink-400 block">
-                    HALL RENT
+                <div className="space-y-1.5 pb-4 border-b border-ink-100 dark:border-white/10">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-600 block font-sans">
+                    {isBn ? "হল ভাড়া ও চার্জ" : "HALL RENT"}
                   </span>
-                  <div className="font-serif text-[26px] sm:text-[30px] font-bold text-ink-950 dark:text-white leading-tight">
-                    {venue.rent}
+                  <div className="font-display font-black text-2xl sm:text-3xl text-ink-950 dark:text-white leading-tight">
+                    {venueRent}
                   </div>
-                  <p className="text-[11px] text-ink-400 dark:text-ink-500 italic">
-                    Please confirm current rates with our booking team.
+                  <p className="text-[11px] text-ink-500 italic font-sans">
+                    {isBn ? "* বর্তমান ভ্যাট ও চার্জ নিশ্চিত করতে কল করুন" : "Please confirm current rates with our booking team."}
                   </p>
                 </div>
               )}
@@ -332,199 +363,134 @@ export function VenueDetailClient({ venue }: { venue: Venue }) {
               {/* Facilities check list if present */}
               {venue.facilities && venue.facilities.length > 0 && (
                 <div className="space-y-3">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-ink-500 dark:text-ink-400 block">
-                    INCLUDED FACILITIES
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-ink-400 block font-sans">
+                    {isBn ? "অন্তর্ভুক্ত সুযোগ-সুবিধাসমূহ" : "INCLUDED FACILITIES"}
                   </span>
-                  <ul className="space-y-2 text-sm text-ink-700 dark:text-ink-300">
+                  <ul className="space-y-2 text-xs sm:text-sm text-ink-700 dark:text-ink-300 font-sans">
                     {venue.facilities.map((fac, i) => (
                       <li key={i} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-                        <span>{fac}</span>
+                        <Check className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" strokeWidth={1.75} />
+                        <span>
+                          {isBn
+                            ? fac.includes("green room")
+                              ? "২টি শীতাতপ নিয়ন্ত্রিত গ্রিন রুম"
+                              : fac.includes("air conditioning")
+                              ? "কেন্দ্রীয় এয়ার কন্ডিশনিং ব্যবস্থা"
+                              : fac.includes("Generator")
+                              ? "নিরবচ্ছিন্ন জেনারেটর ব্যাকআপ পাওয়ার"
+                              : fac.includes("Fire")
+                              ? "আধুনিক অগ্নিনির্বাপণ ব্যবস্থা"
+                              : fac.includes("VIP")
+                              ? "ভিআইপি স্যুট ও লাউঞ্জ"
+                              : fac
+                            : fac}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
 
-              {/* Action Buttons */}
+              {/* CTAs */}
               <div className="space-y-3 pt-2">
-                <Link href="/inquiry" className="block">
-                  <button
-                    type="button"
-                    className="w-full bg-brand-500 hover:bg-brand-600 text-white font-medium uppercase tracking-[0.2em] text-[12px] py-3.5 rounded-none transition-colors"
-                  >
-                    {isBn ? "অনুসন্ধান করুন" : "Enquire"}
-                  </button>
+                <Link href="/quote" className="block w-full">
+                  <Button variant="primary" className="w-full text-xs font-bold uppercase tracking-wider py-3.5 shadow-md" withArrow>
+                    {isBn ? "ক্যাটারিং ও ভেন্যু বুক করুন" : "Book Catering & Venue"}
+                  </Button>
                 </Link>
 
-                <a href="tel:+88-02-41091551" className="block">
-                  <button
-                    type="button"
-                    className="w-full border border-ink-900/40 dark:border-white/40 text-ink-900 dark:text-white uppercase tracking-[0.15em] text-[12px] py-3.5 rounded-none font-medium hover:border-brand-500 hover:text-brand-500 transition-colors inline-flex items-center justify-center gap-2"
-                  >
-                    <Phone size={14} />
-                    <span>Call booking team</span>
-                  </button>
+                <a
+                  href="tel:+8801991197719"
+                  className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border border-ink-200 dark:border-white/15 text-ink-800 dark:text-ink-100 hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 text-xs font-bold uppercase tracking-wider transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-brand-500" strokeWidth={1.75} />
+                  <span>+88-01991-197719</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* 4. Common Gallery: ~ A Look Around ~, MORE FROM ICCB */}
-        <div className="mt-24 pt-16 border-t border-ink-200/60 dark:border-white/10 text-center">
-          <div className="max-w-2xl mx-auto space-y-2 mb-10">
-            <span className="font-serif italic text-brand-600 dark:text-brand-400 text-sm sm:text-base font-semibold block">
-              ~ A Look Around ~
+      {/* 4. Common Hall Gallery */}
+      <section className="py-16 bg-white dark:bg-ink-950 border-t border-ink-100 dark:border-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
+          <div className="max-w-2xl mx-auto space-y-2">
+            <span className="font-serif italic text-brand-600 text-lg font-semibold block">
+              ~ {isBn ? "ফটো গ্যালারি" : "Photo Gallery"} ~
             </span>
-            <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-ink-950 dark:text-white">
-              MORE FROM ICCB
+            <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950 dark:text-white">
+              {isBn ? "আন্তর্জাতিক মানের মেগা ইভেন্ট গ্যালারি" : "MAGNIFICENT HALL PERSPECTIVES"}
             </h2>
+            <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 font-sans">
+              {isBn ? "আমাদের বিভিন্ন সফল ব্যাঙ্কোয়েট ও এক্সপো আয়োজনের কিছু স্থিরচিত্র।" : "A visual glimpse of grand banquet setups, corporate expos, and wedding decors."}
+            </p>
           </div>
 
-          {/* 4 photos in 2-column grid, gap-1.5, max-w-5xl */}
-          <div className="max-w-5xl mx-auto grid grid-cols-2 gap-1.5">
-            {/* Left Column: aspect-[4/5] then aspect-[4/3] */}
-            <div className="space-y-1.5">
-              {colLeft.map((photo) => (
-                <div
-                  key={photo.originalIdx}
-                  onClick={() => setSelectedPhotoIdx(photo.originalIdx)}
-                  className={`relative ${photo.aspect} w-full overflow-hidden bg-ink-900 rounded-[2px] cursor-pointer group`}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.label || "ICCB Venue"}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 40vw"
-                    className="object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]"
-                  />
-                  {/* Captions ONLY on heritage restaurant venues page */}
-                  {isDining && photo.label && (
-                    <div className="absolute bottom-3 left-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded-[2px] text-[11px] uppercase tracking-wider text-white">
-                      {photo.label}
-                    </div>
-                  )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {COMMON_GALLERY.map((photo, i) => (
+              <div
+                key={i}
+                className="relative h-60 rounded-2xl overflow-hidden shadow-sm group cursor-pointer border border-ink-100 bg-ink-100"
+                onClick={() => setSelectedPhotoIdx(i)}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.label || "ICCB Venue"}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  placeholder="blur"
+                  blurDataURL={PLACEHOLDER_BLUR}
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="text-xs text-white font-medium font-sans">{photo.label || "ICCB Venue"}</span>
                 </div>
-              ))}
-            </div>
-
-            {/* Right Column: aspect-[4/3] then aspect-[4/5] */}
-            <div className="space-y-1.5">
-              {colRight.map((photo) => (
-                <div
-                  key={photo.originalIdx}
-                  onClick={() => setSelectedPhotoIdx(photo.originalIdx)}
-                  className={`relative ${photo.aspect} w-full overflow-hidden bg-ink-900 rounded-[2px] cursor-pointer group`}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.label || "ICCB Venue"}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 40vw"
-                    className="object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]"
-                  />
-                  {/* Captions ONLY on heritage restaurant venues page */}
-                  {isDining && photo.label && (
-                    <div className="absolute bottom-3 left-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded-[2px] text-[11px] uppercase tracking-wider text-white">
-                      {photo.label}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* 5. Other Venues row */}
-        <div className="mt-20 pt-12 border-t border-ink-200/60 dark:border-white/10 text-left">
-          <div className="space-y-2 mb-8">
-            <h3 className="font-serif uppercase tracking-[0.12em] text-2xl text-ink-950 dark:text-white font-normal">
-              {isBn ? "অন্যান্য ভেন্যুসমূহ" : "Other Venues"}
+      {/* 5. Explore Other Venues */}
+      <section className="py-16 bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
+          <div className="max-w-2xl mx-auto space-y-2">
+            <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-ink-950 dark:text-white">
+              {isBn ? "আইসিসিবি-র অন্যান্য হলসমূহ" : "EXPLORE OTHER HALLS & SPACES"}
             </h3>
-            <div className="w-10 h-[1.5px] bg-brand-500" />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {otherVenues.map((ov) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+            {otherVenues.slice(0, 3).map((v) => (
               <Link
-                key={ov.slug}
-                href={`/venues/${ov.slug}`}
-                className="group flex flex-col space-y-2"
+                key={v.slug}
+                href={`/venues/${v.slug}`}
+                className="group block bg-white dark:bg-ink-950 rounded-2xl overflow-hidden border border-ink-200 dark:border-white/10 shadow-sm hover:shadow-md hover:border-brand-500/50 transition-all"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink-900 rounded-[2px]">
+                <div className="relative h-44 w-full bg-ink-100">
                   <Image
-                    src={ov.image}
-                    alt={ov.name}
+                    src={v.image}
+                    alt={v.name}
                     fill
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 text-white text-[10px] font-bold">
+                    {v.label}
+                  </div>
                 </div>
-                <div className="pt-1">
-                  <h4 className="font-serif text-sm sm:text-base font-normal text-ink-950 dark:text-white truncate">
-                    {ov.name}
+                <div className="p-4 space-y-1">
+                  <h4 className="font-display font-black text-lg uppercase text-ink-950 dark:text-white group-hover:text-brand-600 transition-colors">
+                    {v.name}
                   </h4>
-                  {ov.seats?.banquet && (
-                    <span className="text-[11px] text-ink-500 dark:text-ink-400 block">
-                      Banquet: {ov.seats.banquet}
-                    </span>
-                  )}
+                  <p className="text-xs text-ink-500 font-sans line-clamp-1">{v.intro}</p>
                 </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Gallery Modal with large photo and prev/next */}
-      {selectedPhotoIdx !== null && (
-        <Modal
-          isOpen={selectedPhotoIdx !== null}
-          onClose={() => setSelectedPhotoIdx(null)}
-          maxWidth="5xl"
-          className="!bg-black/95 !border-white/10"
-        >
-          <div className="relative w-full aspect-[16/10] max-h-[80vh] flex items-center justify-center">
-            <Image
-              src={COMMON_GALLERY[selectedPhotoIdx].src}
-              alt={COMMON_GALLERY[selectedPhotoIdx].label || "ICCB Photo"}
-              fill
-              className="object-contain"
-            />
-
-            {/* Prev/Next Buttons */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedPhotoIdx(
-                  (prev) => (prev! - 1 + COMMON_GALLERY.length) % COMMON_GALLERY.length
-                );
-              }}
-              aria-label="Previous photo"
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedPhotoIdx(
-                  (prev) => (prev! + 1) % COMMON_GALLERY.length
-                );
-              }}
-              aria-label="Next photo"
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </Modal>
-      )}
     </div>
   );
 }
-

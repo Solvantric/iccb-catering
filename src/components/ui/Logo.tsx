@@ -18,7 +18,7 @@ export function Logo({ className = "", light = false }: LogoProps) {
       )}
       aria-label="ICCB Catering home"
     >
-      <div className="h-full w-auto bg-[#FFFFFF] p-[6px] border-r border-ink-100 dark:border-white/10 flex items-center justify-center">
+      <div className="h-full w-auto bg-transparent p-1.5 flex items-center justify-center border-none">
         <Image
           src="/logo/iccb-logo.png"
           alt="International Convention City Bashundhara"

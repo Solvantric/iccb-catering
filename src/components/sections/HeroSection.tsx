@@ -113,7 +113,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative w-full h-[100svh] min-h-[580px] overflow-hidden bg-ink-950 text-white select-none focus:outline-none"
+      className="relative w-full h-[70vh] min-h-[500px] sm:min-h-[560px] max-h-[780px] overflow-hidden bg-ink-950 text-white select-none focus:outline-none"
       aria-roledescription="carousel"
       aria-label="ICCB Highlights Slider"
       onKeyDown={handleKeyDown}
@@ -217,7 +217,7 @@ export function HeroSection() {
       <div
         className="relative z-20 w-full h-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end"
         style={{
-          paddingBottom: "clamp(40px, 9vh, 96px)",
+          paddingBottom: "clamp(24px, 5vh, 52px)",
         }}
       >
         <div className="flex flex-col lg:flex-row items-end justify-between gap-8 w-full">

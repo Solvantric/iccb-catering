@@ -136,9 +136,12 @@ export interface Package {
   id: string;
   slug: string;
   name: string;
+  nameBn?: string;
   tagline: string;
+  taglineBn?: string;
   tag?: string; // e.g. "Most Popular", "Executive Choice"
   description: string;
+  descriptionBn?: string;
   pricePerHead: number; // BDT
   minGuests: number;
   cuisineType: string;
@@ -166,6 +169,8 @@ export interface ServiceItem {
   sampleMenu?: string[];
   isSample?: boolean;
 }
+
+export type Service = ServiceItem;
 
 export interface GalleryItem {
   id: string;

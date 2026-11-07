@@ -36,7 +36,8 @@ export function Header() {
   }, []);
 
   const isHome = pathname === "/";
-  const isTransparent = isHome && !scrolled;
+  // Always solid white background on public navbar (no transparent mode)
+  const isTransparent = false;
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -44,12 +45,7 @@ export function Header() {
 
   return (
     <header
-      className={cn(
-        "fixed top-0 inset-x-0 w-full z-50 transition-all duration-300",
-        isTransparent
-          ? "bg-ink-950/40 backdrop-blur-md border-b border-white/10 text-white"
-          : "bg-white/95 dark:bg-ink-950/95 backdrop-blur-md shadow-sm border-b border-ink-100 dark:border-white/10 text-ink-900 dark:text-white"
-      )}
+      className="fixed top-0 inset-x-0 w-full z-50 transition-all duration-300 bg-white/98 dark:bg-ink-950/98 backdrop-blur-md shadow-sm border-b border-ink-100 dark:border-white/10 text-ink-900 dark:text-white"
       style={{ height: "var(--header-h)" }}
     >
       <div

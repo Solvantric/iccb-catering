@@ -39,7 +39,7 @@ export function TodaysMenuSection() {
           </p>
         </div>
 
-        {/* Clean, Fresh Plate Cards Grid */}
+        {/* Clean, Fresh Plate Cards Grid: Whole Card is Clickable */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 text-left">
           {todaysDishes.map((dish, idx) => (
             <motion.div
@@ -48,47 +48,48 @@ export function TodaysMenuSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="bg-white dark:bg-ink-900 border border-ink-100 dark:border-white/10 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all duration-300 group"
             >
-              {/* Highlighted Clean Plate */}
-              <div className="relative shrink-0">
-                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-brand-500/20 dark:border-white/15 shadow-md group-hover:scale-105 group-hover:border-brand-500 transition-all duration-500">
-                  <Image
-                    src={dish.image}
-                    alt={locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
-                    fill
-                    sizes="(max-width: 640px) 112px, 128px"
-                    placeholder="blur"
-                    blurDataURL={PLACEHOLDER_BLUR}
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+              <Link
+                href={`/menu/${dish.slug}`}
+                className="bg-white dark:bg-ink-900 border border-ink-100 dark:border-white/10 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 shadow-sm hover:shadow-lg hover:border-brand-500/50 hover:-translate-y-1 transition-all duration-300 group cursor-pointer h-full"
+              >
+                {/* Highlighted Clean Plate */}
+                <div className="relative shrink-0">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-brand-500/20 dark:border-white/15 shadow-md group-hover:scale-105 group-hover:border-brand-500 transition-all duration-500">
+                    <Image
+                      src={dish.image}
+                      alt={locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
+                      fill
+                      sizes="(max-width: 640px) 112px, 128px"
+                      placeholder="blur"
+                      blurDataURL={PLACEHOLDER_BLUR}
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Dish Content: Concise & Fresh */}
-              <div className="flex-1 min-w-0 text-center sm:text-left space-y-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-500 block">
-                  {dish.cuisine || "Specialty"}
-                </span>
+                {/* Dish Content: Concise & Fresh */}
+                <div className="flex-1 min-w-0 text-center sm:text-left space-y-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-500 block">
+                    {dish.cuisine || "Specialty"}
+                  </span>
 
-                <h3 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-ink-950 dark:text-white group-hover:text-brand-500 transition-colors">
-                  {locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
-                </h3>
+                  <h3 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-ink-950 dark:text-white group-hover:text-brand-500 transition-colors">
+                    {locale === "bn" && dish.nameBn ? dish.nameBn : dish.name}
+                  </h3>
 
-                <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed line-clamp-2">
-                  {locale === "bn" && dish.descriptionBn ? dish.descriptionBn : dish.description}
-                </p>
+                  <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed line-clamp-2">
+                    {locale === "bn" && dish.descriptionBn ? dish.descriptionBn : dish.description}
+                  </p>
 
-                <div className="pt-2">
-                  <Link
-                    href={`/menu/${dish.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-500 hover:text-brand-600 transition-colors group/dish"
-                  >
-                    <span>{locale === "bn" ? "বিস্তারিত দেখুন" : "View Dish"}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/dish:translate-x-1" strokeWidth={1.75} />
-                  </Link>
+                  <div className="pt-2">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-500 group-hover:text-brand-600 transition-colors">
+                      <span>{locale === "bn" ? "বিস্তারিত দেখুন" : "View Dish"}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.75} />
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
