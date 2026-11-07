@@ -67,21 +67,34 @@ Moving away from glossy gradients, complex multi-color shadows, and animated pin
 
 ## 5. Streamlined Sections: Less Content, Fresh & Premium
 
-### 5.1 Occasion Grid Section (`OccasionGridSection.tsx`)
-- Pristine white background in white mode (`bg-white dark:bg-ink-950`).
-- Removed redundant paragraphs, multi-layered badges, and cluttered taglines.
-- Fresh image-first cards with high-res photography, clean occasion title, a concise 1-line description, capacity badge, and a lite one-color arrow link.
+### 5.1 "Choose Your Menu" Cards (Homepage & /menu Consistency)
+- Replaced the overlapping circular plate style with the clean, modern `/menu` card layout.
+- High-resolution rectangular dish banner with subtle hover scale (`scale-105`), category/cuisine badges, bold typography, italic tagline, description, service tag, and clean outline button with directional arrow.
+- Pure white background in light mode with delicate `border-ink-100` and dark mode compatibility.
 
-### 5.2 Today's Menu Section (`TodaysMenuSection.tsx`)
-- Pristine white background in white mode (`bg-white dark:bg-ink-950`).
-- Removed dietary tag walls, multi-gradient haloes, and price clutter.
-- Highlighted circular plates with clean borders, dish name, concise 1-line note, and a lite one-color action link.
+### 5.2 Banquet Occasion Grid (`OccasionGridSection.tsx`)
+- Elevated from generic split-card boxes to **luxury full-bleed editorial portals** inspired by 5-star international hospitality groups (Marriott Luxury, Rosewood, Aman).
+- Full-bleed photography with cinematic multi-stop gradient scrims (`from-black via-black/55 to-black/25`) ensuring high-contrast readable typography.
+- Frosted glass badges for category index (`01 • Grand Weddings`) and guest capacity (`Users` icon with badge).
+- Romantic serif italic accents, bold uppercase display headings, and sleek floating pill CTAs (`bg-white text-ink-950 font-bold hover:bg-brand-500 hover:text-white`).
 
-### 5.3 Curated Packages Page (`/packages`)
-- Streamlined editorial cards focused on high-res photography, per-guest rates, 5 punchy signature dishes, included services, and direct booking button.
-- Eliminates multi-level nested boxes and walls of text.
-
-### 5.4 Multi-Step Booking Wizard (`QuoteForm.tsx`)
-- 4 clear steps: Contact Details &rarr; Event Logistics &rarr; Menu & Cuisine &rarr; **Review & Payment**.
+### 5.3 Multi-Step Booking Wizard & Customization (`QuoteForm.tsx`)
+- 4 clear steps: Contact Details &rarr; Event Logistics &rarr; **Menu & Cuisine** &rarr; **Review & Payment**.
+- **Dedicated Custom Dish Section**: Allows clients to specify exact custom items, live counters, or specialty dishes.
+- **Dedicated Inquiries & Chef Notes Field**: Dedicated space for spice preferences, slaughterhouse inquiries, allergy notes, or VIP dining requests.
+- **Review & Payment Step 4**: Both custom dishes and special notes are prominently reflected in the client's order summary card before bKash advance booking.
 - Intercepts Enter key and prevents premature submission after Step 3.
-- Full bKash merchant integration with TrxID validation and advance booking confirmation.
+- Full bKash integration with TrxID validation and advance booking confirmation.
+
+### 5.4 Dashboard Layout & Curated Navigation
+- **Responsive Top-Left Logo**: Responsive scaling across mobile, tablet, and desktop with container constraints, preventing distortion or clipping.
+- **Curated Executive Routes**: Reordered to prioritize high-level management:
+  1. `Overview` (`/dashboard`)
+  2. `Analytics` (`/dashboard/analytics`)
+  3. `User Management` (`/dashboard/users`)
+  4. `Product Management` (`/dashboard/menu`, with Dishes, Categories, and Packages)
+  5. `Leads & Inquiries` (`/dashboard/leads`)
+  6. `Quotations` (`/dashboard/quotations`)
+  7. `Bookings` (`/dashboard/bookings`)
+  8. `Settings` (`/dashboard/settings`)
+- 40%+ secondary routes (such as blog tags, email templates, audit logs, raw forms) commented out to keep the CMS dashboard clean, focused, and executive-ready.

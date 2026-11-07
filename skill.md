@@ -55,6 +55,13 @@ This skill defines the technical, visual, and operational standards for developi
   - All dashboard routes stay inside `src/app/(dashboardRoute)/dashboard/`.
 - **Theme Tokens**:
   - Keep `tailwind.config.ts` and `src/app/globals.css` in sync with `#DC0511`.
+- **Card Design Conventions**:
+  - Home "Choose Your Menu" cards follow `/menu` page card design pattern (rectangular hero image banner, tags, description, outline button).
+  - Occasion Grid cards follow full-bleed luxury editorial pattern with multi-stop dark scrims and pill badges.
+- **Booking Customization**:
+  - `/quote` Step 3 includes custom dish items and special chef notes, persisted into Step 4 Review.
+- **Dashboard Navigation**:
+  - Order: Overview &rarr; Analytics &rarr; User Management &rarr; Product Management &rarr; Leads &rarr; Quotations &rarr; Bookings &rarr; Settings. Secondary routes remain commented out.
 - **Validation**:
   - Run `npm run build` after changes to verify zero TypeScript errors and ensure 100/100 routes compile.
 - **Git Safety Rule**:

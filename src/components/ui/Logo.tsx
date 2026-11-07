@@ -13,19 +13,19 @@ export function Logo({ className = "" }: LogoProps) {
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-[2px] shrink-0",
+        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-[4px] shrink-0 h-9 sm:h-10 w-auto transition-transform hover:opacity-95",
         className
       )}
-      aria-label="ICCB home"
+      aria-label="ICCB Catering home"
     >
-      <div className="h-full w-auto bg-white rounded-[2px] p-1 sm:p-1.5 flex items-center justify-center shadow-xs">
+      <div className="h-full w-auto max-h-full bg-white rounded-[4px] px-2 py-1 flex items-center justify-center shadow-xs border border-ink-100/50">
         <Image
           src="/logo/iccb-logo.png"
           alt="International Convention City Bashundhara"
-          width={319}
-          height={291}
+          width={280}
+          height={70}
           priority
-          className="h-full w-auto max-h-full object-contain"
+          className="h-full w-auto max-h-7 sm:max-h-8 object-contain shrink-0"
         />
       </div>
     </Link>

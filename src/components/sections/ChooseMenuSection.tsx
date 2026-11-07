@@ -8,6 +8,7 @@ import { IMAGES, PLACEHOLDER_BLUR } from "@/data/images";
 import { motion } from "framer-motion";
 import { useUIStore } from "@/store/uiStore";
 import { translations } from "@/lib/i18n";
+import { Sparkles } from "lucide-react";
 
 export function ChooseMenuSection() {
   const { locale } = useUIStore();
@@ -21,6 +22,7 @@ export function ChooseMenuSection() {
       desc: t.categories.mughal.desc,
       image: IMAGES.kacchiBiryani,
       tag: t.categories.mughal.tag,
+      cuisine: locale === "bn" ? "মুঘল ঐতিহ্য" : "Mughal Heritage",
       href: "/cuisines/mughal",
     },
     {
@@ -30,6 +32,7 @@ export function ChooseMenuSection() {
       desc: t.categories.continental.desc,
       image: IMAGES.salmonPlatter,
       tag: t.categories.continental.tag,
+      cuisine: locale === "bn" ? "কন্টিনেন্টাল বুফে" : "Continental Gourmet",
       href: "/cuisines/continental",
     },
     {
@@ -39,68 +42,99 @@ export function ChooseMenuSection() {
       desc: t.categories.multicuisine.desc,
       image: IMAGES.grilledKebab,
       tag: t.categories.multicuisine.tag,
+      cuisine: locale === "bn" ? "মাল্টি-কুইজিন ফিউশন" : "Multi-Cuisine Fusion",
       href: "/cuisines/multi-cuisine",
     },
   ];
 
   return (
-    <section className="py-24 bg-brand-50/50 dark:bg-ink-950/70 relative overflow-hidden transition-colors">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="py-20 sm:py-24 bg-white dark:bg-ink-950 text-ink-950 dark:text-white border-y border-ink-100 dark:border-ink-900 relative overflow-hidden transition-colors">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-2xl mx-auto space-y-3 mb-20">
-          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
-            {t.tag}
-          </span>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-ink-50">
+        <div className="max-w-2xl mx-auto text-center space-y-3 mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 dark:bg-white/10 border border-brand-100 dark:border-white/15">
+            <Sparkles className="w-3.5 h-3.5 text-brand-500" strokeWidth={1.75} />
+            <span className="font-serif italic text-brand-600 dark:text-brand-300 text-xs font-semibold tracking-wide">
+              {t.tag}
+            </span>
+          </div>
+          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-ink-950 dark:text-white">
             {t.heading}
           </h2>
-          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-xl mx-auto leading-relaxed">
             {t.subtitle}
           </p>
         </div>
 
-        {/* 3 Menu Cards with Overlapping Circular Plate on Top (Exact Reference Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8 pt-10">
+        {/* Menu Cards: Same Design as /menu Page Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {menuCategories.map((card, idx) => (
             <motion.div
               key={card.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="relative bg-white dark:bg-ink-900 rounded-3xl p-8 pt-24 border border-ink-100 dark:border-white/10 shadow-soft hover:shadow-card hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group"
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              className="bg-white dark:bg-ink-900 rounded-3xl p-6 border border-ink-100 dark:border-white/10 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all flex flex-col justify-between group"
             >
-              {/* Overlapping Circular Plate Image on Top (Key Reference Feature) */}
-              <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-ink-800 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  sizes="140px"
-                  placeholder="blur"
-                  blurDataURL={PLACEHOLDER_BLUR}
-                  className="object-cover"
-                />
-              </div>
+              <div>
+                {/* Hero Dish Image */}
+                <div className="relative h-56 rounded-2xl overflow-hidden mb-5 border border-ink-100 dark:border-ink-800 bg-ink-100 dark:bg-ink-950">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    placeholder="blur"
+                    blurDataURL={PLACEHOLDER_BLUR}
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Floating Tag Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-ink-950/80 text-white backdrop-blur-sm border border-white/10">
+                      {card.tag}
+                    </span>
+                  </div>
+                </div>
 
-              {/* Card Body */}
-              <div className="space-y-3 text-center">
-                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-brand-700 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full">
-                  {card.tag}
-                </span>
-                <h3 className="font-display font-bold text-xl uppercase tracking-wider text-ink-950 dark:text-ink-50">
-                  {card.title}
-                </h3>
-                <p className="text-xs text-brand-700 dark:text-brand-400 font-semibold">{card.subtitle}</p>
-                <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed pt-2">
+                {/* Category & Cuisine */}
+                <div className="flex items-center justify-between text-[10px] uppercase font-bold tracking-wider text-brand-600 dark:text-brand-400 mb-1.5">
+                  <span>{card.cuisine}</span>
+                  <span className="text-ink-400 dark:text-ink-500 font-medium">Bespoke Course</span>
+                </div>
+
+                {/* Title */}
+                <Link href={card.href}>
+                  <h3 className="font-display font-bold text-xl uppercase text-ink-950 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                    {card.title}
+                  </h3>
+                </Link>
+
+                {/* Subtitle */}
+                {card.subtitle && (
+                  <p className="text-xs text-brand-600 dark:text-brand-400 font-serif italic mb-2">
+                    {card.subtitle}
+                  </p>
+                )}
+
+                {/* Description */}
+                <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed mb-6">
                   {card.desc}
                 </p>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-8">
-                <Link href={card.href} className="block w-full">
-                  <Button variant="outline" className="w-full text-xs font-bold uppercase tracking-wider group-hover:bg-brand-500 group-hover:text-white group-hover:border-brand-500 dark:border-white/20 dark:text-ink-100 transition-colors" withArrow>
+              {/* Footer Details & Explore Action */}
+              <div className="pt-4 border-t border-ink-100 dark:border-ink-800 flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] text-ink-400 dark:text-ink-500 uppercase tracking-wider block font-semibold">
+                    Service
+                  </span>
+                  <span className="font-display font-bold text-sm text-ink-900 dark:text-white">
+                    ICCB Master Chef
+                  </span>
+                </div>
+                <Link href={card.href}>
+                  <Button size="sm" variant="outline" withArrow>
                     {t.exploreBtn}
                   </Button>
                 </Link>
@@ -112,4 +146,3 @@ export function ChooseMenuSection() {
     </section>
   );
 }
-

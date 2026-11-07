@@ -45,6 +45,8 @@ const quoteSchema = z.object({
   cuisinePreference: z.string().min(1, "Please select preferred cuisine"),
   packagePreference: z.string().optional(),
   budgetRange: z.string().optional(),
+  customDishes: z.string().optional(),
+  specialNotes: z.string().optional(),
   message: z.string().optional(),
 
   // Step 4: Review & Payment (bKash)
@@ -123,6 +125,8 @@ export function QuoteForm() {
       cuisinePreference: "Traditional Mughal",
       packagePreference: quoteDraft.packageName || "Royal Mughal Wedding Feast",
       budgetRange: "৳5,00,000 - ৳10,00,000",
+      customDishes: "",
+      specialNotes: "",
       message: "",
       bkashNumber: "",
       trxId: "",
@@ -190,7 +194,13 @@ export function QuoteForm() {
         cuisinePreference: data.cuisinePreference,
         packagePreference: data.packagePreference,
         budgetRange: data.budgetRange,
-        message: data.message,
+        message: [
+          data.customDishes ? `[Custom Dish Items: ${data.customDishes}]` : "",
+          data.specialNotes ? `[Inquiry / Chef Notes: ${data.specialNotes}]` : "",
+          data.message,
+        ]
+          .filter(Boolean)
+          .join("\n\n"),
         bkashNumber: data.bkashNumber,
         trxId: data.trxId,
         advanceAmount: Number(data.advanceAmount),
@@ -366,12 +376,20 @@ export function QuoteForm() {
           </div>
         )}
 
-        {/* STEP 3: Menu & Budget */}
+        {/* STEP 3: Menu & Cuisine */}
         {currentStep === 3 && (
-          <div className="space-y-4 animate-in fade-in">
-            <h4 className="font-display font-black text-lg uppercase tracking-wider text-ink-950 mb-3">
-              {locale === "bn" ? "ধাপ ৩: খাবারের মেনু ও পছন্দ" : "Step 3: Cuisine Preference & Menu Package"}
-            </h4>
+          <div className="space-y-5 animate-in fade-in">
+            <div>
+              <h4 className="font-display font-black text-lg uppercase tracking-wider text-ink-950">
+                {locale === "bn" ? "ধাপ ৩: খাবারের মেনু ও কাস্টমাইজেশন" : "Step 3: Menu & Cuisine Selection"}
+              </h4>
+              <p className="text-xs text-ink-500 mt-0.5">
+                {locale === "bn"
+                  ? "পছন্দের কুইজিন নির্বাচন করুন এবং আপনার পছন্দমতো যেকোনো কাস্টম আইটেম যোগ করুন।"
+                  : "Choose your preferred banquet cuisine and personalize with any custom dishes or inquiries."}
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Select
                 label={locale === "bn" ? "পছন্দের খাবার ধরন *" : "Cuisine Preference *"}
@@ -391,11 +409,52 @@ export function QuoteForm() {
                   {...register("packagePreference")}
                 />
               </div>
-              <div className="sm:col-span-2">
+
+              {/* Dedicated Customization Section */}
+              <div className="sm:col-span-2 p-4 rounded-2xl bg-brand-50/60 border border-brand-100 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-500" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-700">
+                    {locale === "bn" ? "কাস্টম খাবারের আইটেম যোগ করুন" : "Custom Dish Customization"}
+                  </span>
+                </div>
+                <p className="text-[11px] text-ink-500">
+                  {locale === "bn"
+                    ? "মেন্যুর বাইরে কোনো নির্দিষ্ট খাবার বা বিশেষ পদ যোগ করতে চাইলে এখানে উল্লেখ করুন।"
+                    : "Add any specific food items, live counters, or signature dishes you wish to include in your menu."}
+                </p>
                 <Textarea
-                  label={locale === "bn" ? "বিশেষ কোনো নির্দেশনা / লাইভ স্টেশন" : "Special Requirements / Live Stations / Notes"}
-                  placeholder="e.g. Live Jalebi counter, Cha bar, VIP dining table service, children menu, etc."
-                  {...register("message")}
+                  placeholder={
+                    locale === "bn"
+                      ? "যেমন: অতিরিক্ত জাফরানি কাচ্চি, স্পেশাল খাসির রেজালা, লাইভ জিলাপি কাউন্টার, বোরহানি..."
+                      : "e.g. Extra saffron Shahi Kacchi, Live Jalebi counter, Special Borhani, Fish Tikka, kids meal..."
+                  }
+                  rows={3}
+                  {...register("customDishes")}
+                />
+              </div>
+
+              {/* Dedicated Inquiries & Notes Section */}
+              <div className="sm:col-span-2 p-4 rounded-2xl bg-ink-50/80 border border-ink-200/80 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-ink-600" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-ink-800">
+                    {locale === "bn" ? "বিশেষ জিজ্ঞাসা ও নির্দেশনা (Inquiry & Notes)" : "Special Inquiry & Chef Notes"}
+                  </span>
+                </div>
+                <p className="text-[11px] text-ink-500">
+                  {locale === "bn"
+                    ? "অনুষ্ঠানের সময়সূচি, স্পাইস লেভেল, অ্যালার্জি বা শেফের সাথে পরামর্শের কোনো প্রশ্ন থাকলে লিখুন।"
+                    : "Any questions about spice levels, slaughterhouse hygiene, dining setup, or dietary restrictions."}
+                </p>
+                <Textarea
+                  placeholder={
+                    locale === "bn"
+                      ? "আপনার কোনো প্রশ্ন বা বিশেষ নির্দেশনা থাকলে এখানে বিস্তারিত জানান..."
+                      : "e.g. We require mild spice for children, VIP stage dining table service, inquiries about guest entry timing..."
+                  }
+                  rows={3}
+                  {...register("specialNotes")}
                 />
               </div>
             </div>
@@ -479,10 +538,28 @@ export function QuoteForm() {
                 </div>
               </div>
 
+              {formValues.customDishes && (
+                <div className="pt-2 border-t border-ink-200">
+                  <span className="text-brand-600 font-semibold uppercase text-[10px] tracking-wider block">
+                    {locale === "bn" ? "কাস্টম খাবারের আইটেম" : "Custom Dish Additions"}
+                  </span>
+                  <p className="text-ink-900 font-medium">{formValues.customDishes}</p>
+                </div>
+              )}
+
+              {formValues.specialNotes && (
+                <div className="pt-2 border-t border-ink-200">
+                  <span className="text-ink-500 font-semibold uppercase text-[10px] tracking-wider block">
+                    {locale === "bn" ? "বিশেষ জিজ্ঞাসা ও শেফের নোট" : "Special Inquiry & Chef Notes"}
+                  </span>
+                  <p className="text-ink-700 italic">{formValues.specialNotes}</p>
+                </div>
+              )}
+
               {formValues.message && (
                 <div className="pt-2 border-t border-ink-200">
                   <span className="text-ink-400 font-semibold uppercase text-[10px] tracking-wider block">
-                    {locale === "bn" ? "বিশেষ নির্দেশনা" : "Special Notes"}
+                    {locale === "bn" ? "অন্যান্য নির্দেশনা" : "Additional Notes"}
                   </span>
                   <p className="text-ink-700 italic">{formValues.message}</p>
                 </div>

@@ -92,18 +92,20 @@ export function Sidebar() {
         collapsed ? "w-20" : "w-64"
       )}
     >
-      {/* Brand Header */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-ink-800 shrink-0">
+      {/* Brand Header: Responsive Logo with Collapse Toggle */}
+      <div className="h-16 flex items-center justify-between px-3 sm:px-4 border-b border-ink-800 shrink-0 gap-2">
         {!collapsed ? (
-          <Logo light />
+          <div className="min-w-0 flex-1 flex items-center overflow-hidden">
+            <Logo light className="h-8 sm:h-9 max-w-[130px] sm:max-w-[155px] w-auto shrink-0" />
+          </div>
         ) : (
-          <div className="w-9 h-9 rounded-xl bg-brand-500 text-white flex items-center justify-center font-display font-black text-lg mx-auto">
+          <div className="w-9 h-9 rounded-xl bg-brand-500 text-white flex items-center justify-center font-display font-black text-lg mx-auto shrink-0 shadow-sm">
             IC
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="text-ink-400 hover:text-white p-1.5 rounded-lg hover:bg-ink-900 transition-colors hidden lg:block"
+          className="text-ink-400 hover:text-white p-1.5 rounded-lg hover:bg-ink-900 transition-colors shrink-0"
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}

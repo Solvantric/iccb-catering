@@ -27,9 +27,9 @@ export function Topbar() {
   };
 
   return (
-    <header className="h-16 bg-white border-b border-ink-100 flex items-center justify-between px-6 sticky top-0 z-20 shadow-xs">
+    <header className="h-16 bg-white border-b border-ink-100 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-20 shadow-xs">
       {/* Search Input */}
-      <div className="relative w-72 md:w-96">
+      <div className="relative w-full max-w-[180px] sm:max-w-xs md:max-w-md">
         <input
           type="text"
           placeholder="Search leads, quotations, dishes, bookings..."

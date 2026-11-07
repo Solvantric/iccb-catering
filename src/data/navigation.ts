@@ -56,7 +56,33 @@ export const FOOTER_LINKS = {
 };
 
 export const DASHBOARD_NAV = [
+  // 1. Overview
   { label: "Overview", href: "/dashboard", icon: "LayoutDashboard" },
+
+  // 2. Analytics (Placed immediately after Overview as requested)
+  { label: "Analytics", href: "/dashboard/analytics", icon: "BarChart3" },
+
+  // 3. User Management (Placed after Analytics as requested)
+  {
+    label: "User Management",
+    href: "/dashboard/users",
+    icon: "UserCheck",
+  },
+
+  // 4. Product Management (Dishes, Categories & Packages)
+  {
+    label: "Product Management",
+    href: "/dashboard/menu",
+    icon: "Utensils",
+    children: [
+      { label: "All Dishes", href: "/dashboard/menu" },
+      { label: "Add Dish", href: "/dashboard/menu/new" },
+      { label: "Categories", href: "/dashboard/menu/categories" },
+      { label: "Packages", href: "/dashboard/packages" },
+    ],
+  },
+
+  // Core Operations & Sales
   {
     label: "Leads & Inquiries",
     href: "/dashboard/leads",
@@ -68,43 +94,34 @@ export const DASHBOARD_NAV = [
   },
   { label: "Quotations", href: "/dashboard/quotations", icon: "FileText" },
   { label: "Bookings", href: "/dashboard/bookings", icon: "Calendar" },
-  { label: "Contact Messages", href: "/dashboard/contacts", icon: "Mail" },
-  { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
-  {
-    label: "Menu Management",
-    href: "/dashboard/menu",
-    icon: "Utensils",
-    children: [
-      { label: "Dishes & Items", href: "/dashboard/menu" },
-      { label: "Add Dish", href: "/dashboard/menu/new" },
-      { label: "Categories", href: "/dashboard/menu/categories" },
-    ],
-  },
-  { label: "Packages", href: "/dashboard/packages", icon: "PackageCheck" },
-  { label: "Services", href: "/dashboard/services", icon: "ConciergeBell" },
-  { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
-  { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
-  { label: "Gallery", href: "/dashboard/gallery", icon: "Image" },
-  { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
-  {
-    label: "Blog & Articles",
-    href: "/dashboard/blog",
-    icon: "BookOpen",
-    children: [
-      { label: "All Posts", href: "/dashboard/blog" },
-      { label: "New Post", href: "/dashboard/blog/new" },
-      { label: "Categories", href: "/dashboard/blog/categories" },
-      { label: "Tags", href: "/dashboard/blog/tags" },
-    ],
-  },
-  { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
-  { label: "Testimonials", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
-  { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
-  { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
-  { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
-  { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
-  { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
-  { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "ShieldAlert" },
-  { label: "Users & Roles", href: "/dashboard/users", icon: "UserCheck" },
   { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
+
+  // --- COMMENTED OUT ROUTES (~40%+ secondary routes hidden for streamlined executive dashboard) ---
+  // { label: "Packages", href: "/dashboard/packages", icon: "PackageCheck" },
+  // { label: "Contact Messages", href: "/dashboard/contacts", icon: "Mail" },
+  // { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
+  // { label: "Services", href: "/dashboard/services", icon: "ConciergeBell" },
+  // { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
+  // { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
+  // { label: "Gallery", href: "/dashboard/gallery", icon: "Image" },
+  // { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
+  // {
+  //   label: "Blog & Articles",
+  //   href: "/dashboard/blog",
+  //   icon: "BookOpen",
+  //   children: [
+  //     { label: "All Posts", href: "/dashboard/blog" },
+  //     { label: "New Post", href: "/dashboard/blog/new" },
+  //     { label: "Categories", href: "/dashboard/blog/categories" },
+  //     { label: "Tags", href: "/dashboard/blog/tags" },
+  //   ],
+  // },
+  // { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
+  // { label: "Testimonials", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
+  // { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
+  // { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
+  // { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
+  // { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
+  // { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
+  // { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "Shield" },
 ];
