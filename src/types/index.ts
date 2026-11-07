@@ -142,7 +142,7 @@ export interface Package {
   pricePerHead: number; // BDT
   minGuests: number;
   cuisineType: string;
-  image?: string;
+  image: string;
   courses: {
     name: string;
     items: string[];
@@ -192,7 +192,7 @@ export interface Testimonial {
   content: string;
   contentBn?: string;
   rating: number;
-  avatarUrl?: string;
+  avatarUrl: string;
   avatar?: string;
   date: string;
   approved: boolean;

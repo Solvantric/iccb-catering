@@ -65,6 +65,7 @@ export const SITE_INFO = {
     cateringEmail: "iccbcatering@bga-bd.com",
     generalEmail: "iccb@bga-bd.com",
     whatsappNumber: "+8801969999866",
+    hours: "",
   },
   halls: [
     {

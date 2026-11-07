@@ -20,6 +20,8 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5,
     avatar:
       "https://bd.finance/_next/image?url=%2Fimages%2Fpeople%2Fleadership%2Fkhondokar-mahmudul-hasan.webp&w=3840&q=75",
+    avatarUrl:
+      "https://bd.finance/_next/image?url=%2Fimages%2Fpeople%2Fleadership%2Fkhondokar-mahmudul-hasan.webp&w=3840&q=75",
     date: "14 October, 2026",
     approved: true,
     isSample: true,
@@ -40,6 +42,8 @@ export const TESTIMONIALS: Testimonial[] = [
       "আমাদের বিয়ের শাহী কাচ্চি বিরিয়ানি ও বোরহানির প্রশংসা এখনও আত্মীয়-স্বজনের মুখে মুখে! খাবারের পরিচ্ছন্নতা ও সঠিক তাপমাত্রা আমাদের সবচেয়ে বেশি মুগ্ধ করেছে। ভিআইপি টেবিল সার্ভিসের কারণে বাবা-মা ছিলেন সম্পূর্ণ নিশ্চিন্ত।",
     rating: 5,
     avatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9Jf-Xx8FtqknOf3tucq0mgUHRYs9GXIOMhs0r4T9_ioiF__Omvs4wb_q&s=10",
+    avatarUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9Jf-Xx8FtqknOf3tucq0mgUHRYs9GXIOMhs0r4T9_ioiF__Omvs4wb_q&s=10",
     date: "28 September, 2026",
     approved: true,
@@ -62,6 +66,8 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5,
     avatar:
       "https://img.magnific.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80",
+    avatarUrl:
+      "https://img.magnific.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80",
     date: "05 August, 2026",
     approved: true,
     isSample: true,
@@ -82,6 +88,8 @@ export const TESTIMONIALS: Testimonial[] = [
       "দুই দিনব্যাপী জাতীয় সম্মেলনের খাবারের ব্যবস্থাপনা একটি বড় চ্যালেঞ্জ ছিল। আইসিসিবির আধুনিক রান্নাঘর এবং সময়ানুবর্তী পরিবেশনা পুরো আয়োজনকে অত্যন্ত সফল ও সুন্দর করে তুলেছে।",
     rating: 5,
     avatar:
+      "https://www.tbsnews.net/sites/default/files/styles/big_3/public/images/2020/10/24/saif_khondoker.jpg",
+    avatarUrl:
       "https://www.tbsnews.net/sites/default/files/styles/big_3/public/images/2020/10/24/saif_khondoker.jpg",
     date: "12 July, 2026",
     approved: true,
