@@ -258,8 +258,8 @@ export function QuoteForm() {
                   s.num === currentStep
                     ? "bg-brand-500 text-white shadow-floating"
                     : s.num < currentStep
-                    ? "bg-emerald-100 text-emerald-700"
-                    : "bg-ink-100 text-ink-500"
+                    ? "bg-white text-brand-600 border border-brand-500"
+                    : "bg-white text-ink-400 border border-ink-200"
                 }`}
               >
                 {s.num < currentStep ? "✓" : s.num}
@@ -411,10 +411,10 @@ export function QuoteForm() {
               </div>
 
               {/* Dedicated Customization Section */}
-              <div className="sm:col-span-2 p-4 rounded-2xl bg-brand-50/60 border border-brand-100 space-y-2">
+              <div className="sm:col-span-2 p-4 rounded-2xl bg-white border border-ink-200 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-brand-500" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-600">
                     {locale === "bn" ? "কাস্টম খাবারের আইটেম যোগ করুন" : "Custom Dish Customization"}
                   </span>
                 </div>
@@ -435,9 +435,9 @@ export function QuoteForm() {
               </div>
 
               {/* Dedicated Inquiries & Notes Section */}
-              <div className="sm:col-span-2 p-4 rounded-2xl bg-ink-50/80 border border-ink-200/80 space-y-2">
+              <div className="sm:col-span-2 p-4 rounded-2xl bg-white border border-ink-200 space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-ink-600" />
+                  <span className="w-2 h-2 rounded-full bg-ink-400" />
                   <span className="text-xs font-bold uppercase tracking-wider text-ink-800">
                     {locale === "bn" ? "বিশেষ জিজ্ঞাসা ও নির্দেশনা (Inquiry & Notes)" : "Special Inquiry & Chef Notes"}
                   </span>
@@ -478,8 +478,8 @@ export function QuoteForm() {
               </p>
             </div>
 
-            {/* Order Review Card */}
-            <div className="bg-ink-50/70 p-5 sm:p-6 rounded-2xl border border-ink-200/80 space-y-4 text-xs">
+            {/* Order Review Card: Clean Pure White */}
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-ink-200 space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4 border-b border-ink-200">
                 <div>
                   <span className="text-ink-400 font-semibold uppercase text-[10px] tracking-wider block">
@@ -566,12 +566,12 @@ export function QuoteForm() {
               )}
             </div>
 
-            {/* bKash Payment Module */}
-            <div className="rounded-2xl p-6 border-2 border-[#E2136E]/30 bg-gradient-to-br from-[#FFF0F5] to-white space-y-5 shadow-sm">
+            {/* bKash Payment Module: Pure White Background */}
+            <div className="rounded-2xl p-6 border border-ink-200 bg-white space-y-5 shadow-xs">
               {/* bKash Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E2136E]/20">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-ink-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#E2136E] text-white flex items-center justify-center font-black text-xs shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-ink-200 text-[#E2136E] flex items-center justify-center font-black text-xs shadow-xs">
                     bKash
                   </div>
                   <div>
@@ -587,7 +587,7 @@ export function QuoteForm() {
                 </div>
 
                 {/* ICCB Merchant Number Badge with Copy */}
-                <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-[#E2136E]/30 shadow-sm">
+                <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-ink-200 shadow-xs">
                   <div className="text-left">
                     <span className="text-[10px] uppercase font-bold text-ink-400 block leading-tight">
                       Merchant bKash
@@ -599,7 +599,7 @@ export function QuoteForm() {
                   <button
                     type="button"
                     onClick={copyBkash}
-                    className="p-1.5 rounded-lg bg-pink-50 hover:bg-pink-100 text-[#E2136E] transition-colors ml-1"
+                    className="p-1.5 rounded-lg bg-white border border-ink-200 hover:bg-ink-50 text-ink-700 transition-colors ml-1"
                     title="Copy bKash Number"
                   >
                     {copiedBkash ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
@@ -607,8 +607,8 @@ export function QuoteForm() {
                 </div>
               </div>
 
-              {/* Instructions Guide */}
-              <div className="bg-white/80 p-3.5 rounded-xl border border-pink-100 text-xs text-ink-700 space-y-1.5">
+              {/* Instructions Guide: Clean White */}
+              <div className="bg-white p-4 rounded-xl border border-ink-200 text-xs text-ink-700 space-y-1.5">
                 <span className="font-bold uppercase tracking-wider text-[10px] text-[#E2136E] block">
                   {locale === "bn" ? "পেমেন্ট নির্দেশনাবলী:" : "Quick 3-Step Payment Guide:"}
                 </span>
