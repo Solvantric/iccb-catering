@@ -50,7 +50,7 @@ export default function PackageDetailPage({
   );
 
   return (
-    <div className="bg-[#F7F3EE] dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors text-[16px]">
+    <div className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors text-[16px]">
       {/* Top Full-width Cover Image: h-[380px] lg:h-[440px] */}
       <section className="relative w-full h-[380px] lg:h-[440px] overflow-hidden bg-ink-950">
         <Image
@@ -74,7 +74,7 @@ export default function PackageDetailPage({
               ]}
             />
           </div>
-          <h1 className="font-serif uppercase tracking-[0.12em] text-[clamp(2rem,4.5vw,3.5rem)] text-white font-normal leading-tight max-w-4xl drop-shadow-md">
+          <h1 className="font-display font-black uppercase tracking-tight text-[clamp(2rem,4.5vw,3.5rem)] text-white leading-tight max-w-4xl drop-shadow-md">
             {pkg.name}
           </h1>
           <div className="w-12 h-[2px] bg-brand-500 mx-auto" />
@@ -88,7 +88,7 @@ export default function PackageDetailPage({
           <div className="lg:col-span-8 space-y-12 text-left">
             {pkg.courses.map((course, idx) => (
               <div key={idx} className="space-y-4">
-                <h2 className="font-serif uppercase tracking-[0.12em] text-xl sm:text-2xl text-ink-950 dark:text-white font-normal">
+                <h2 className="font-display font-black uppercase tracking-tight text-xl sm:text-2xl text-ink-950 dark:text-white">
                   {course.name}
                 </h2>
                 <div className="w-10 h-[1.5px] bg-brand-500" />
@@ -121,7 +121,7 @@ export default function PackageDetailPage({
                         </div>
 
                         {/* Dish Name: Playfair 17px */}
-                        <p className="font-serif text-[17px] text-ink-900 dark:text-ink-100 leading-snug">
+                        <p className="font-sans text-[16px] text-ink-900 dark:text-ink-100 leading-snug">
                           {dish}
                         </p>
                       </div>
@@ -134,7 +134,7 @@ export default function PackageDetailPage({
 
           {/* Right 4 columns: Sticky Booking Panel */}
           <div className="lg:col-span-4 sticky top-[calc(var(--header-h)+24px)]">
-            <div className="border border-ink-200/80 dark:border-white/10 rounded-[4px] bg-[#F7F3EE] dark:bg-white/[0.03] p-8 space-y-6 text-left shadow-xs">
+            <div className="border border-ink-200/80 dark:border-white/10 rounded-2xl bg-white dark:bg-white/[0.03] p-8 space-y-6 text-left shadow-sm">
               {/* Small caps "Package price" */}
               <div className="space-y-1">
                 <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-ink-500 dark:text-ink-400 block">
@@ -142,7 +142,7 @@ export default function PackageDetailPage({
                 </span>
                 {/* Large price: Playfair 36px with per guest */}
                 <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-[36px] font-bold text-ink-950 dark:text-white leading-none">
+                  <span className="font-display font-bold text-[36px] text-ink-950 dark:text-white leading-none">
                     {formatCurrency(pkg.pricePerHead)}
                   </span>
                   <span className="text-sm text-ink-500 dark:text-ink-400">
@@ -161,7 +161,7 @@ export default function PackageDetailPage({
                 </div>
                 <div className="flex justify-between text-ink-600 dark:text-ink-300">
                   <span>Minimum total:</span>
-                  <span className="font-serif text-[17px] font-bold text-brand-600 dark:text-brand-400">
+                  <span className="font-display font-bold text-[17px] text-brand-600 dark:text-brand-400">
                     {formatCurrency(pkg.minGuests * pkg.pricePerHead)}
                   </span>
                 </div>
@@ -201,7 +201,7 @@ export default function PackageDetailPage({
         {/* Related Packages */}
         <div className="mt-20 pt-12 border-t border-ink-200/60 dark:border-white/10 text-left">
           <div className="space-y-2 mb-8">
-            <h3 className="font-serif uppercase tracking-[0.12em] text-2xl text-ink-950 dark:text-white font-normal">
+            <h3 className="font-display font-black uppercase tracking-tight text-2xl text-ink-950 dark:text-white">
               Other Packages
             </h3>
             <div className="w-10 h-[1.5px] bg-brand-500" />
@@ -220,10 +220,10 @@ export default function PackageDetailPage({
                   />
                 </div>
                 <div className="flex items-baseline justify-between pt-1">
-                  <h4 className="font-serif text-lg font-normal text-ink-950 dark:text-white">
+                  <h4 className="font-display font-bold text-lg text-ink-950 dark:text-white">
                     {rp.name}
                   </h4>
-                  <span className="font-serif text-base font-bold text-ink-900 dark:text-ink-200">
+                  <span className="font-display font-bold text-base text-ink-900 dark:text-ink-200">
                     {formatCurrency(rp.pricePerHead)}
                   </span>
                 </div>

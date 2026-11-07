@@ -64,7 +64,7 @@ function PackageCardItem({
 
         {/* Package name over image top-left: Playfair Display, uppercase, tracking-[0.12em], white, 24px */}
         <div className="absolute top-0 left-0 right-0 p-6 z-10">
-          <h3 className="font-serif uppercase text-white tracking-[0.12em] text-[20px] sm:text-[24px] leading-snug drop-shadow-sm font-normal">
+          <h3 className="font-display font-black uppercase text-white tracking-tight text-[20px] sm:text-[24px] leading-snug drop-shadow-sm">
             {pkg.name}
           </h3>
         </div>
@@ -76,7 +76,7 @@ function PackageCardItem({
         <div>
           <div className="flex items-baseline justify-between gap-4">
             <div className="flex items-baseline gap-2">
-              <span className="font-serif text-[28px] sm:text-[30px] font-bold text-ink-950 dark:text-white leading-none">
+              <span className="font-display font-bold text-[28px] sm:text-[30px] text-ink-950 dark:text-white leading-none">
                 {formatCurrency(pkg.pricePerHead)}
               </span>
               <span className="text-xs sm:text-sm text-ink-500 dark:text-ink-400">
@@ -104,7 +104,7 @@ function PackageCardItem({
               {allDishes.map((dish, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />
-                  <span className="font-serif text-[15px] sm:text-[16px] text-ink-800 dark:text-ink-200 leading-snug">
+                  <span className="font-sans text-[15px] sm:text-[16px] text-ink-800 dark:text-ink-200 leading-snug">
                     {dish}
                   </span>
                 </div>
@@ -161,7 +161,7 @@ export default function PackagesPage() {
   };
 
   return (
-    <div className="bg-[#F7F3EE] dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors">
+    <div className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white min-h-screen transition-colors">
       {/* Calm Cream Hero */}
       <section className="pt-12 sm:pt-16 pb-12 sm:pb-16 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
@@ -169,12 +169,12 @@ export default function PackagesPage() {
             <Breadcrumbs items={[{ label: isBn ? "প্যাকেজসমূহ" : "Packages" }]} />
           </div>
 
-          {/* Title: 'Our' in Playfair Display italic brand-500, 'PACKAGES' uppercase */}
-          <h1 className="text-center font-serif text-[clamp(2.25rem,5vw,4rem)] leading-tight tracking-[0.12em]">
-            <span className="italic text-brand-500 mr-3">
+          {/* Title */}
+          <h1 className="text-center font-display font-black text-[clamp(2.25rem,5vw,4rem)] leading-tight tracking-tight uppercase">
+            <span className="text-brand-500 mr-3">
               {isBn ? "আমাদের" : "Our"}
             </span>
-            <span className="uppercase text-ink-900 dark:text-white font-normal">
+            <span className="text-ink-900 dark:text-white">
               {isBn ? "প্যাকেজসমূহ" : "PACKAGES"}
             </span>
           </h1>
@@ -183,7 +183,7 @@ export default function PackagesPage() {
           <div className="w-12 h-[2px] bg-brand-500 mx-auto my-4" />
 
           {/* Sub-line (muted, max-w-xl) */}
-          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm font-sans text-ink-600 dark:text-ink-400 max-w-xl mx-auto leading-relaxed">
             {isBn
               ? "আপনার অনুষ্ঠানের জন্য একটি প্যাকেজ বেছে নিন, আমরা আপনার তারিখ, ভেন্যু ও অতিথি সংখ্যা অনুযায়ী এটি কাস্টমাইজ করব।"
               : "Choose a package for your event and we will tailor it to your date, venue and guests."}
@@ -207,7 +207,7 @@ export default function PackagesPage() {
       </section>
 
       {/* Interactive Budget Calculator */}
-      <section className="py-20 bg-[#F7F3EE] dark:bg-ink-950 border-t border-ink-200/50 dark:border-white/10 transition-colors">
+      <section className="py-20 bg-white dark:bg-ink-950 border-t border-ink-200/50 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 space-y-1.5">
             <span className="text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 block">

@@ -15,7 +15,7 @@ export default function PublicLayout({
     <div className="flex flex-col min-h-screen relative selection:bg-brand-500 selection:text-white">
       <Header />
       <MobileMenu />
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow pt-[var(--header-h)]">{children}</main>
       <Footer />
       <FloatingActions />
       <OfferPopup />
