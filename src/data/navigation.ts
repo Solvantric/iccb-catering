@@ -21,9 +21,9 @@ export const PUBLIC_NAV: NavItem[] = [
   },
   { label: "Menu", labelBn: "মেন্যু", href: "/menu" },
   { label: "Packages", labelBn: "প্যাকেজ", href: "/packages" },
-  // { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
+  { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
   { label: "Venues", labelBn: "ভেন্যু", href: "/venues" },
-  // { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
+  { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
   { label: "Contact", labelBn: "যোগাযোগ", href: "/contact" },
 ];
 
@@ -95,36 +95,33 @@ export const DASHBOARD_NAV = [
   { label: "Quotations", href: "/dashboard/quotations", icon: "FileText" },
   { label: "Bookings", href: "/dashboard/bookings", icon: "Calendar" },
 
-  // Key Commercial & Visual Management (Important additions)
+  // Commercial & Visual Offerings
   { label: "Banquet Packages", href: "/dashboard/packages", icon: "PackageCheck" },
   { label: "Catering Services", href: "/dashboard/services", icon: "ConciergeBell" },
   { label: "Contact Inquiries", href: "/dashboard/contacts", icon: "Mail" },
+  { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
+  { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
+  { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
   { label: "Banquet Gallery", href: "/dashboard/gallery", icon: "Image" },
+  { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
+  {
+    label: "Blog & Articles",
+    href: "/dashboard/blog",
+    icon: "BookOpen",
+    children: [
+      { label: "All Posts", href: "/dashboard/blog" },
+      { label: "New Post", href: "/dashboard/blog/new" },
+      { label: "Categories", href: "/dashboard/blog/categories" },
+      { label: "Tags", href: "/dashboard/blog/tags" },
+    ],
+  },
+  { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
   { label: "Testimonials & Reviews", href: "/dashboard/testimonials", icon: "MessageSquareQuote" },
-
+  { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
+  { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
+  { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
+  { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
+  { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
+  { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "Shield" },
   { label: "Settings", href: "/dashboard/settings", icon: "Settings" },
-
-  // --- COMMENTED OUT ROUTES (Secondary / technical utilities kept hidden) ---
-  // { label: "Subscribers", href: "/dashboard/subscribers", icon: "Send" },
-  // { label: "Page Content", href: "/dashboard/pages", icon: "Layout" },
-  // { label: "Banners & Popups", href: "/dashboard/banners", icon: "Megaphone" },
-  // { label: "Media Library", href: "/dashboard/media", icon: "FolderArchive" },
-  // {
-  //   label: "Blog & Articles",
-  //   href: "/dashboard/blog",
-  //   icon: "BookOpen",
-  //   children: [
-  //     { label: "All Posts", href: "/dashboard/blog" },
-  //     { label: "New Post", href: "/dashboard/blog/new" },
-  //     { label: "Categories", href: "/dashboard/blog/categories" },
-  //     { label: "Tags", href: "/dashboard/blog/tags" },
-  //   ],
-  // },
-  // { label: "News & Releases", href: "/dashboard/news", icon: "Newspaper" },
-  // { label: "FAQs", href: "/dashboard/faqs", icon: "HelpCircle" },
-  // { label: "Client Logos", href: "/dashboard/clients", icon: "Award" },
-  // { label: "SEO & Redirects", href: "/dashboard/seo", icon: "Search" },
-  // { label: "Forms Builder-Lite", href: "/dashboard/forms", icon: "FormInput" },
-  // { label: "Email Templates", href: "/dashboard/email-templates", icon: "MailCheck" },
-  // { label: "Audit Logs", href: "/dashboard/audit-logs", icon: "Shield" },
 ];

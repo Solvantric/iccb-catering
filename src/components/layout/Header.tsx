@@ -55,7 +55,7 @@ export function Header() {
         <Logo className="h-12 sm:h-14 md:h-16 lg:h-[72px] my-auto" />
 
         {/* Desktop Nav: vertically centered */}
-        <nav className="hidden lg:flex items-center space-x-7 my-auto">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 my-auto">
           {PUBLIC_NAV.map((item) => {
             const isActive = pathname === item.href;
             const hasChildren = !!item.children;
