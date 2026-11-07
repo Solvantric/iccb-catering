@@ -33,16 +33,17 @@ This skill defines the technical, visual, and operational standards for developi
   - Avoid literal Western terms like "Request a Quote" / "Get a Quote".
   - Use natural terms: **"Book Catering"** / **"ক্যাটারিং বুকিং"**, **"Check Pricing & Availability"**, **"Book This Package"** / **"প্যাকেজটি বুক করুন"**.
   - Reservation & Date Locking: Step 4 of the booking wizard is **"Review & Payment"** with official ICCB Merchant bKash integration (`01991-197719`), customer mobile number, Transaction ID (TrxID), and advance booking token deposit (BDT `৳`).
+- **Light & Dark Mode Standards**:
+  - **White Mode Rule**: Absolutely NO dark background colors in white mode. The website is exclusively pristine white (`#FFFFFF`), soft clean brand tint (`#FFF5F5`), and primary brand red (`#DC0511`).
+  - **Dark Mode**: Fully supported via theme toggle (`dark:bg-ink-950 text-white`).
 - **Iconography Standards**:
-  - Never use plain unstyled line icons for primary communication triggers.
-  - **WhatsApp**: Use branded WhatsApp emerald green gradient (`from-[#128C7E] to-[#25D366]`) with white badge and pulse animation.
-  - **Phone / Concierge**: Use brand crimson gradient (`from-[#7D0208] to-[#DC0511]`) with glowing ring.
-  - **Action Arrows**: Use sculpted circular buttons with hover translate effects (`translate-x-1 -translate-y-0.5`).
+  - Solid one-color treatment (primary brand red `#DC0511`, solid WhatsApp green `#25D366`).
+  - Lite, elegant stroke weight (`strokeWidth={1.75}`).
+  - No glossy multi-color gradients, complex drop shadows, or animated ping rings.
 - **Occasion Cards**:
-  - Must look luxurious and editorial: deep photographic backgrounds, glassmorphic labels, guest capacity tags, and elegant arrow triggers.
+  - Content-light, fresh, and modern: clean white cards, high-res photography, concise 1-line copy, capacity badge, and a lite one-color arrow link.
 - **Today's Menu**:
-  - No price clutter on Today's Menu. Pricing is reserved for packages and formal booking calculations.
-  - Highlight the dish image prominently with generous circular framing, radiant brand glow, and chef craft notes.
+  - Content-light and fresh: clean white cards, circular plate presentation, 1-line description, and a lite one-color link. Zero price clutter.
 - **Packages**:
   - To-the-point, high-impact cards with high-res photography, per-guest rates, 5 signature dishes, included services, and direct booking button.
   - Eliminates multi-level course nesting and wall-of-text clutter.

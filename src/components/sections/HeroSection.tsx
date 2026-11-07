@@ -267,23 +267,19 @@ export function HeroSection() {
               <Link href="/quote" className="inline-block">
                 <button
                   type="button"
-                  className="px-6 sm:px-7 py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm sm:text-base tracking-wide shadow-md transition-all active:scale-[0.98] inline-flex items-center gap-2.5 group hover:shadow-[0_8px_25px_rgba(220,5,17,0.4)]"
+                  className="px-6 sm:px-7 py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm sm:text-base tracking-wide shadow-md transition-all active:scale-[0.98] inline-flex items-center gap-2 group"
                 >
                   <span>{t.ctaQuote}</span>
-                  <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-all duration-200 group-hover:translate-x-1 shrink-0">
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.75} />
                 </button>
               </Link>
               <Link href="/menu" className="inline-block">
                 <button
                   type="button"
-                  className="px-6 sm:px-7 py-3 rounded-lg border border-white/80 hover:border-white text-white hover:bg-white hover:text-ink-950 font-semibold text-sm sm:text-base tracking-wide transition-all active:scale-[0.98] inline-flex items-center gap-2.5 group backdrop-blur-sm bg-black/20"
+                  className="px-6 sm:px-7 py-3 rounded-lg border border-white/80 hover:border-white text-white hover:bg-white hover:text-ink-950 font-semibold text-sm sm:text-base tracking-wide transition-all active:scale-[0.98] inline-flex items-center gap-2 group backdrop-blur-sm bg-black/20"
                 >
                   <span>{t.ctaMenu}</span>
-                  <span className="w-5 h-5 rounded-full bg-white/20 group-hover:bg-ink-950/20 flex items-center justify-center transition-all duration-200 group-hover:translate-x-1 shrink-0">
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.75} />
                 </button>
               </Link>
             </motion.div>

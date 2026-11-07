@@ -45,44 +45,44 @@ export default function PackagesPage() {
   return (
     <div className="bg-ink-50/30 text-ink-950 min-h-screen">
       {/* Premium Minimal Hero Banner */}
-      <section className="bg-ink-950 text-white py-20 relative overflow-hidden text-center">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative overflow-hidden text-center border-b border-ink-100 dark:border-white/10 transition-colors">
         {/* Ambient Crimson Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand-500/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand-500/5 dark:bg-brand-500/15 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: locale === "bn" ? "প্যাকেজসমূহ" : "Banquet Packages" }]} />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-brand-400" />
-            <span className="font-serif italic text-brand-300 text-xs font-semibold tracking-wide">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-50 dark:bg-white/10 border border-brand-100 dark:border-white/15">
+            <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+            <span className="font-serif italic text-brand-600 dark:text-brand-300 text-xs font-semibold tracking-wide">
               {locale === "bn" ? "~ অল-ইনক্লুসিভ ক্যাটারিং মেনু ~" : "~ Curated Banquet Menus & Rates ~"}
             </span>
           </div>
 
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-white max-w-3xl mx-auto leading-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white max-w-3xl mx-auto leading-tight">
             {locale === "bn" ? "ক্যাটারিং প্যাকেজ ও রেট" : "BANQUET PACKAGES"}
           </h1>
 
-          <p className="text-xs sm:text-sm text-ink-300 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-xl mx-auto leading-relaxed">
             {locale === "bn"
               ? "বিবাহ, কর্পোরেট সামিট ও সামাজিক অনুষ্ঠানের জন্য স্বচ্ছ জনপ্রতি রেট। শেফ সার্ভিস, চিনামাটির ক্রোকারিজ ও গরম পরিবেশন অন্তর্ভুক্ত।"
               : "All-inclusive per-person rates for weddings, corporate galas, and social celebrations with full buffet setup and chef service."}
           </p>
 
           {/* Clean trust chips */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-white/80">
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-ink-700 dark:text-white/80">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-brand-400" />
+              <ShieldCheck className="w-4 h-4 text-brand-500" />
               <span>100% Halal Meats</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Utensils className="w-4 h-4 text-brand-400" />
+              <Utensils className="w-4 h-4 text-brand-500" />
               <span>Served Hot 65°C+</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-brand-400" />
+              <Award className="w-4 h-4 text-brand-500" />
               <span>Crockery & Staff Included</span>
             </div>
           </div>

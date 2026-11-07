@@ -18,13 +18,11 @@ The primary brand color has been upgraded to `#DC0511`, an authoritative, rich c
 | `brand-800` | `#7D0208` | Dark background accents, borders in dark mode |
 | `brand-900` | `#5C0106` | Deep crimson shadow tints, vignette overlays |
 
-### 1.2 Neutral & Background Tokens
-- **`ink-950` (`#0B0B0C`)**: Deep luxury black used for Hero, Today's Menu, Video Story, and Footer sections.
-- **`ink-900` (`#141416`)**: Card surfaces in dark sections, dropdown menus, and elevated containers.
-- **`ink-800` (`#27272A`)**: Borders, subtle dividers, and dark input backgrounds.
+### 1.2 Neutral & Background Tokens (Strict Light/Dark Separation)
+- **Light / White Mode Rule**: NO dark background colors in white mode. The website is exclusively **pristine white (`#FFFFFF`)**, soft clean brand tint (`#FFF5F5`), and **primary brand red (`#DC0511`)**.
+- **Dark Mode (`dark:`)**: When toggled to dark mode, sections switch to `dark:bg-ink-950` (`#0B0B0C`), dark cards `dark:bg-ink-900` (`#141416`), and `dark:text-white`.
 - **`ink-600` (`#52525B`)**: High-contrast readable secondary typography on light surfaces.
-- **`ink-50` (`#F4F4F5`)**: Light gray background tint for section contrast.
-- **`whatsapp-green` (`#25D366`)**: Authentic WhatsApp emerald green gradient for floating contact concierge.
+- **`whatsapp-green` (`#25D366`)**: Solid emerald green for WhatsApp action.
 - **`bkash-pink` (`#E2136E`)**: Authentic bKash brand magenta for payment vouchers and transaction confirmation badges.
 
 ---
@@ -55,27 +53,29 @@ Western catering terms like "Request a Quote" or "Get a Quote" are unnatural for
 
 ---
 
-## 4. Premium Iconography System
+## 4. Lite, One-Color Premium Iconography System
 
-1. **WhatsApp Trigger**:
-   - Authentic emerald green gradient (`bg-gradient-to-tr from-[#128C7E] to-[#25D366]`), white authentic WhatsApp badge, subtle emerald ping ring, and direct Bangladesh chat hotline.
-2. **Phone Concierge Trigger**:
-   - Rich brand crimson gradient (`bg-gradient-to-tr from-[#7D0208] to-[#DC0511]`), crisp telephone handset icon, radiating soundwave animation, and direct hotline display.
-3. **Sculpted Directional Arrows**:
-   - Circular glass/metallic backplates with directional arrow glide on hover (`group-hover:translate-x-1 group-hover:-translate-y-0.5`).
-4. **bKash Payment Badge**:
-   - Distinctive bKash magenta card (`#E2136E`) with merchant number badge and one-click clipboard copy.
+Moving away from glossy gradients, complex multi-color shadows, and animated ping rings:
+1. **One-Color Solid Treatment**:
+   - Icons use a single solid color: primary brand red (`#DC0511`), solid WhatsApp green (`#25D366`), or crisp monochrome.
+2. **Lite Stroke Weight**:
+   - Elegant `strokeWidth={1.75}`, crisp vector geometry, no heavy pill backplates on every arrow.
+3. **Floating Actions**:
+   - Clean, lightweight circular buttons. Back-to-Top is clean white in light mode (`bg-white text-ink-700`). WhatsApp is solid `#25D366`. Phone is solid `#DC0511`. No glossy gradient reflection.
 
 ---
 
-## 5. Section Upgrades & Refinements
+## 5. Streamlined Sections: Less Content, Fresh & Premium
 
 ### 5.1 Occasion Grid Section (`OccasionGridSection.tsx`)
-- Editorial format with cinematic banquet photography, deep ambient dark gradients, dark frosted glassmorphism (`backdrop-blur-xl bg-ink-950/75`), verified capacity badges, and sculpted circular arrow buttons.
+- Pristine white background in white mode (`bg-white dark:bg-ink-950`).
+- Removed redundant paragraphs, multi-layered badges, and cluttered taglines.
+- Fresh image-first cards with high-res photography, clean occasion title, a concise 1-line description, capacity badge, and a lite one-color arrow link.
 
 ### 5.2 Today's Menu Section (`TodaysMenuSection.tsx`)
-- Removed price clutter to elevate luxury positioning.
-- Magnified circular plates with glowing ambient halo and chef signature details.
+- Pristine white background in white mode (`bg-white dark:bg-ink-950`).
+- Removed dietary tag walls, multi-gradient haloes, and price clutter.
+- Highlighted circular plates with clean borders, dish name, concise 1-line note, and a lite one-color action link.
 
 ### 5.3 Curated Packages Page (`/packages`)
 - Streamlined editorial cards focused on high-res photography, per-guest rates, 5 punchy signature dishes, included services, and direct booking button.

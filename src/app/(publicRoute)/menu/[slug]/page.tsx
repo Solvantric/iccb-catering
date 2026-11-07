@@ -34,7 +34,7 @@ export default function DishDetailPage({ params }: { params: { slug: string } })
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <section className="bg-ink-950 text-white py-16 relative overflow-hidden">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-14 sm:py-16 relative overflow-hidden border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <div className="flex justify-center">
             <Breadcrumbs
@@ -44,14 +44,14 @@ export default function DishDetailPage({ params }: { params: { slug: string } })
               ]}
             />
           </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
             ~ {dish.cuisine} Culinary Special ~
           </span>
-          <h1 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+          <h1 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-white">
             {dish.name}
           </h1>
           {dish.nameBn && (
-            <p className="text-sm font-semibold text-brand-400">{dish.nameBn}</p>
+            <p className="text-sm font-semibold text-brand-600 dark:text-brand-400">{dish.nameBn}</p>
           )}
         </div>
       </section>

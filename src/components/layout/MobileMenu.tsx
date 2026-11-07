@@ -37,12 +37,12 @@ export function MobileMenu() {
       />
 
       {/* Drawer */}
-      <div className="relative ml-auto w-4/5 max-w-sm h-full bg-ink-950 text-white flex flex-col p-6 overflow-y-auto z-10 border-l border-ink-800 shadow-2xl">
-        <div className="flex items-center justify-between pb-6 border-b border-ink-800">
+      <div className="relative ml-auto w-4/5 max-w-sm h-full bg-white dark:bg-ink-950 text-ink-950 dark:text-white flex flex-col p-6 overflow-y-auto z-10 border-l border-ink-100 dark:border-ink-800 shadow-2xl transition-colors">
+        <div className="flex items-center justify-between pb-6 border-b border-ink-100 dark:border-ink-800">
           <Logo className="h-12" />
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 text-ink-400 hover:text-white rounded-lg hover:bg-ink-900"
+            className="p-2 text-ink-500 hover:text-ink-900 dark:text-ink-400 dark:hover:text-white rounded-lg hover:bg-ink-50 dark:hover:bg-ink-900 transition-colors"
             aria-label="Close menu"
           >
             <X className="w-6 h-6" />
@@ -52,11 +52,11 @@ export function MobileMenu() {
         {/* Locale & Theme Controls */}
         <div className="flex items-center justify-between pt-4 pb-2">
           {/* Language Switch */}
-          <div className="inline-flex items-center rounded-full bg-white/10 p-1 border border-white/10 text-xs">
+          <div className="inline-flex items-center rounded-full bg-ink-50 dark:bg-white/10 p-1 border border-ink-200 dark:border-white/10 text-xs">
             <button
               onClick={() => setLocale("en")}
               className={`px-3 py-1 rounded-full font-bold transition-all ${
-                locale === "en" ? "bg-brand-500 text-white shadow-sm" : "text-ink-300 hover:text-white"
+                locale === "en" ? "bg-brand-500 text-white shadow-sm" : "text-ink-600 dark:text-ink-300 hover:text-ink-950 dark:hover:text-white"
               }`}
             >
               EN
@@ -64,7 +64,7 @@ export function MobileMenu() {
             <button
               onClick={() => setLocale("bn")}
               className={`px-3 py-1 rounded-full font-bold transition-all ${
-                locale === "bn" ? "bg-brand-500 text-white shadow-sm" : "text-ink-300 hover:text-white"
+                locale === "bn" ? "bg-brand-500 text-white shadow-sm" : "text-ink-600 dark:text-ink-300 hover:text-ink-950 dark:hover:text-white"
               }`}
             >
               বাংলা
@@ -74,10 +74,10 @@ export function MobileMenu() {
           {/* Theme Switch */}
           <button
             onClick={() => setTheme(isDark ? "light" : "dark")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-semibold text-ink-200 hover:text-white transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink-50 dark:bg-white/10 border border-ink-200 dark:border-white/10 text-xs font-semibold text-ink-700 dark:text-ink-200 hover:text-brand-500 transition-all"
             aria-label={t.themeToggle}
           >
-            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-brand-300" />}
+            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-brand-500" />}
             <span>{isDark ? "Light" : "Dark"}</span>
           </button>
         </div>
@@ -92,19 +92,19 @@ export function MobileMenu() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-base font-bold font-display uppercase tracking-wider transition-colors ${
-                    isActive ? "text-brand-500" : "text-ink-200 hover:text-white"
+                    isActive ? "text-brand-500" : "text-ink-700 dark:text-ink-200 hover:text-brand-500 dark:hover:text-white"
                   }`}
                 >
                   {locale === "bn" && item.labelBn ? item.labelBn : item.label}
                 </Link>
                 {item.children && (
-                  <div className="pl-4 space-y-1 border-l border-ink-800">
+                  <div className="pl-4 space-y-1 border-l border-ink-100 dark:border-ink-800">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block text-xs text-ink-400 hover:text-brand-400 py-1"
+                        className="block text-xs text-ink-500 dark:text-ink-400 hover:text-brand-500 py-1"
                       >
                         {child.label}
                       </Link>
@@ -117,7 +117,7 @@ export function MobileMenu() {
         </nav>
 
         {/* Contact Snippet */}
-        <div className="pt-4 border-t border-ink-800 space-y-2.5 text-xs text-ink-300">
+        <div className="pt-4 border-t border-ink-100 dark:border-ink-800 space-y-2.5 text-xs text-ink-600 dark:text-ink-300">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4 text-brand-500" />
             <span>{SITE_INFO.contact.cateringPhone}</span>

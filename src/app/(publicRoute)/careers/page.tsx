@@ -52,18 +52,18 @@ export default function CareersPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-ink-950 text-white py-20 relative text-center">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative text-center border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Careers" }]} />
           </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
             ~ Grow with Bangladesh&apos;s Grandest Hospitality Brand ~
           </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
             CAREERS AT ICCB CATERING
           </h1>
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
             Be part of a world-class team executing banquets for heads of state, international summits, and unforgettable weddings.
           </p>
         </div>

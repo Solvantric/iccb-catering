@@ -14,17 +14,17 @@ export function Footer() {
   const t = translations[locale].footer;
 
   return (
-    <footer className="bg-ink-950 text-white border-t border-ink-900 pt-16 pb-20 md:pb-12">
+    <footer className="bg-white dark:bg-ink-950 text-ink-800 dark:text-white border-t border-ink-100 dark:border-ink-900 pt-16 pb-20 md:pb-12 transition-colors">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-ink-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-ink-100 dark:border-ink-900">
           {/* Col 1 & 2: Brand / Positioning */}
           <div className="lg:col-span-2 space-y-4">
             <Logo className="h-14" />
-            <p className="text-xs text-ink-300 leading-relaxed max-w-sm mt-3">
+            <p className="text-xs text-ink-600 dark:text-ink-300 leading-relaxed max-w-sm mt-3">
               {locale === "bn" ? SITE_INFO.positioningBn : SITE_INFO.positioning}
             </p>
             <div className="pt-2 flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 bg-brand-950/60 border border-brand-900 px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 border border-brand-100 dark:border-brand-900 px-3 py-1.5 rounded-full">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 {t.badge}
               </span>
@@ -45,10 +45,10 @@ export function Footer() {
             <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
               {t.servicesTitle}
             </h4>
-            <ul className="space-y-2 text-xs text-ink-300">
+            <ul className="space-y-2 text-xs text-ink-600 dark:text-ink-300">
               {FOOTER_LINKS.services.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="hover:text-brand-500 dark:hover:text-white transition-colors">
                     {locale === "bn" && item.labelBn ? item.labelBn : item.label}
                   </Link>
                 </li>
@@ -61,10 +61,10 @@ export function Footer() {
             <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
               {t.companyTitle}
             </h4>
-            <ul className="space-y-2 text-xs text-ink-300">
+            <ul className="space-y-2 text-xs text-ink-600 dark:text-ink-300">
               {FOOTER_LINKS.company.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="hover:text-brand-500 dark:hover:text-white transition-colors">
                     {locale === "bn" && item.labelBn ? item.labelBn : item.label}
                   </Link>
                 </li>
@@ -77,7 +77,7 @@ export function Footer() {
             <h4 className="text-xs font-bold font-display uppercase tracking-widest text-brand-500 mb-4">
               {locale === "bn" ? "যোগাযোগ" : "Verified Contacts"}
             </h4>
-            <div className="text-xs text-ink-300 space-y-3">
+            <div className="text-xs text-ink-600 dark:text-ink-300 space-y-3">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
@@ -88,13 +88,13 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-brand-500 shrink-0" />
-                <a href={`tel:${SITE_INFO.contact.cateringPhone}`} className="hover:text-white font-semibold">
+                <a href={`tel:${SITE_INFO.contact.cateringPhone}`} className="hover:text-brand-500 dark:hover:text-white font-semibold">
                   {SITE_INFO.contact.cateringPhone}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-brand-500 shrink-0" />
-                <a href={`mailto:${SITE_INFO.contact.cateringEmail}`} className="hover:text-white">
+                <a href={`mailto:${SITE_INFO.contact.cateringEmail}`} className="hover:text-brand-500 dark:hover:text-white">
                   {SITE_INFO.contact.cateringEmail}
                 </a>
               </div>
@@ -116,16 +116,16 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {SITE_INFO.fullName}. {t.copyright}
           </p>
           <div className="flex items-center space-x-6">
-            <Link href="/privacy-policy" className="hover:text-ink-300 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-brand-500 dark:hover:text-ink-200 transition-colors">
               {locale === "bn" ? "গোপনীয়তা নীতি" : "Privacy Policy"}
             </Link>
-            <Link href="/terms" className="hover:text-ink-300 transition-colors">
+            <Link href="/terms" className="hover:text-brand-500 dark:hover:text-ink-200 transition-colors">
               {locale === "bn" ? "শর্তাবলী" : "Terms of Service"}
             </Link>
-            <Link href="/cancellation-policy" className="hover:text-ink-300 transition-colors">
+            <Link href="/cancellation-policy" className="hover:text-brand-500 dark:hover:text-ink-200 transition-colors">
               {locale === "bn" ? "বাতিলকরণ নীতি" : "Cancellation Policy"}
             </Link>
-            <Link href="/sitemap.xml" className="hover:text-ink-300 transition-colors">
+            <Link href="/sitemap.xml" className="hover:text-brand-500 dark:hover:text-ink-200 transition-colors">
               {locale === "bn" ? "সাইটম্যাপ" : "Sitemap"}
             </Link>
           </div>

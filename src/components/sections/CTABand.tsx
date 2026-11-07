@@ -35,16 +35,14 @@ export function CTABand() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3.5">
             {/* Call */}
             <a
               href={`tel:${SITE_INFO.contact.cateringPhone}`}
               onClick={() => track("call_clicked", { channel: "cta_band" })}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-ink-950 font-bold text-sm hover:bg-brand-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-ink-950 font-bold text-sm hover:bg-brand-50 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 group"
             >
-              <span className="w-7 h-7 rounded-full bg-brand-500/10 text-brand-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                <Phone className="w-4 h-4" />
-              </span>
+              <Phone className="w-4 h-4 text-brand-500" strokeWidth={1.75} />
               <span>{SITE_INFO.contact.cateringPhone}</span>
             </a>
 
@@ -54,19 +52,21 @@ export function CTABand() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("whatsapp_clicked", { channel: "cta_band" })}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#128C7E] to-[#25D366] text-white font-bold text-sm hover:brightness-110 transition-all shadow-[0_6px_20px_rgba(37,211,102,0.35)] hover:-translate-y-0.5 group"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] text-white font-bold text-sm hover:bg-[#20ba5a] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 group"
             >
-              <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <MessageCircle className="w-4 h-4 text-white" />
-              </span>
+              <MessageCircle className="w-4 h-4 text-white" strokeWidth={1.75} />
               <span>{t.whatsapp}</span>
             </a>
 
-            {/* Quote Form */}
+            {/* Book Catering Online */}
             <Link href="/quote">
-              <Button variant="dark" size="md" withArrow className="px-6 py-3.5 shadow-lg">
-                {t.requestQuote}
-              </Button>
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-white text-white hover:bg-white hover:text-brand-500 font-bold text-sm transition-all shadow-sm group"
+              >
+                <span>{t.requestQuote}</span>
+                <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+              </button>
             </Link>
           </div>
         </div>

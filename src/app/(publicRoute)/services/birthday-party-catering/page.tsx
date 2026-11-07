@@ -20,17 +20,7 @@ export default function BirthdayCateringPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-ink-950 text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-25">
-          <Image
-            src={IMAGES.birthdayParty}
-            alt="Birthday Gathering"
-            fill
-            placeholder="blur"
-            blurDataURL={PLACEHOLDER_BLUR}
-            className="object-cover"
-          />
-        </div>
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative overflow-hidden border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs
@@ -40,13 +30,13 @@ export default function BirthdayCateringPage() {
               ]}
             />
           </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
             ~ Joyful Family Moments ~
           </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
             BIRTHDAY & PRIVATE PARTY CATERING
           </h1>
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
             Delight guests of all ages with kid-friendly finger foods, live skewer bars, mouthwatering Bengali spreads, and celebratory dessert layouts.
           </p>
         </div>

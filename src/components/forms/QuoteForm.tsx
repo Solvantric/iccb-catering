@@ -566,7 +566,7 @@ export function QuoteForm() {
                 </div>
                 <div>
                   <Input
-                    label={locale === "bn" ? "ট্রানজেকশন আইডি (TrxID) *" : "bKash Transaction ID (TrxID) *"}
+                    label={locale === "bn" ? "ট্রানজেকশন আইডি *" : "Transaction ID *"}
                     placeholder="e.g. BKG89123XZ"
                     error={errors.trxId?.message}
                     {...register("trxId")}

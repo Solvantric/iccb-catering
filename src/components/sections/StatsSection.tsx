@@ -51,7 +51,7 @@ export function StatsSection() {
   ];
 
   return (
-    <section className="py-20 bg-ink-950 text-white relative border-y border-ink-900">
+    <section className="py-20 bg-white dark:bg-ink-950 text-ink-950 dark:text-white relative border-y border-ink-100 dark:border-ink-900 transition-colors">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((st, idx) => (
@@ -61,19 +61,19 @@ export function StatsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-6 rounded-2xl bg-ink-900/60 border border-ink-800 text-center space-y-3 group hover:border-brand-500/50 transition-colors"
+              className="p-6 rounded-2xl bg-ink-50/70 dark:bg-ink-900/60 border border-ink-100 dark:border-ink-800 text-center space-y-3 group hover:border-brand-500/50 transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all">
+              <div className="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-500/20 text-brand-500 flex items-center justify-center mx-auto transition-transform group-hover:scale-105">
                 {st.icon}
               </div>
-              <div className="font-display font-black text-3xl sm:text-4xl text-white">
+              <div className="font-display font-black text-3xl sm:text-4xl text-ink-950 dark:text-white">
                 <CountUp end={st.value} prefix={st.prefix} suffix={st.suffix} />
               </div>
               <div className="space-y-0.5">
-                <p className="font-display font-bold text-xs uppercase tracking-wider text-brand-400">
+                <p className="font-display font-bold text-xs uppercase tracking-wider text-brand-600 dark:text-brand-400">
                   {st.label}
                 </p>
-                <p className="text-[11px] text-ink-400">{st.desc}</p>
+                <p className="text-[11px] text-ink-500 dark:text-ink-400">{st.desc}</p>
               </div>
             </motion.div>
           ))}

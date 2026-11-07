@@ -62,18 +62,18 @@ export default function MenuPage() {
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <section className="bg-ink-950 text-white py-20 relative overflow-hidden text-center">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative overflow-hidden text-center border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "Culinary Menu" }]} />
           </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
             ~ Curated by Master Chefs ~
           </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
             THE ICCB CULINARY CATALOG
           </h1>
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
             Every dish is prepared using fresh ingredients from our dedicated modern slaughterhouse and tested by our on-site quality assurance lab.
           </p>
         </div>
@@ -233,12 +233,12 @@ export default function MenuPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-ink-950 text-white py-14 border-t border-ink-900 text-center">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-14 border-t border-ink-100 dark:border-ink-900 text-center transition-colors">
         <div className="max-w-xl mx-auto px-4 space-y-4">
-          <h3 className="font-display font-black text-3xl uppercase">
+          <h3 className="font-display font-black text-3xl uppercase text-ink-950 dark:text-white">
             Planning a Wedding or Banquet?
           </h3>
-          <p className="text-xs sm:text-sm text-ink-300">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300">
             Combine your favorite dishes into a comprehensive package with special per-head rates and dedicated table service.
           </p>
           <div className="pt-2">

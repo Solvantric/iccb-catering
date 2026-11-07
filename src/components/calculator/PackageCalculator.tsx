@@ -195,48 +195,48 @@ export function PackageCalculator() {
         </div>
 
         {/* Breakdown Card */}
-        <div className="lg:col-span-5 bg-ink-950 text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
-          <div className="border-b border-ink-800 pb-4">
-            <span className="text-[10px] uppercase font-bold text-brand-400 tracking-wider">
+        <div className="lg:col-span-5 bg-white dark:bg-ink-950 text-ink-950 dark:text-white p-6 sm:p-8 rounded-3xl border border-ink-100 dark:border-white/10 shadow-soft space-y-6">
+          <div className="border-b border-ink-100 dark:border-ink-800 pb-4">
+            <span className="text-[10px] uppercase font-bold text-brand-600 dark:text-brand-400 tracking-wider">
               Estimate Summary
             </span>
-            <h4 className="font-display font-black text-xl uppercase tracking-wider text-white mt-1">
+            <h4 className="font-display font-black text-xl uppercase tracking-wider text-ink-950 dark:text-white mt-1">
               {selectedPkg.name}
             </h4>
-            <p className="text-xs text-ink-400 mt-1">
+            <p className="text-xs text-ink-600 dark:text-ink-400 mt-1">
               For {guests} guests ({formatCurrency(selectedPkg.pricePerHead)} / head base)
             </p>
           </div>
 
           {/* Itemized list */}
-          <div className="space-y-3 text-xs text-ink-300 border-b border-ink-800 pb-4">
+          <div className="space-y-3 text-xs text-ink-700 dark:text-ink-300 border-b border-ink-100 dark:border-ink-800 pb-4">
             <div className="flex justify-between">
               <span>Base Menu Package ({guests} &times; {formatCurrency(selectedPkg.pricePerHead)})</span>
-              <span className="font-semibold text-white">{formatCurrency(baseCost)}</span>
+              <span className="font-semibold text-ink-950 dark:text-white">{formatCurrency(baseCost)}</span>
             </div>
             {extrasCost > 0 && (
               <div className="flex justify-between">
                 <span>Selected Extras & Stations</span>
-                <span className="font-semibold text-white">{formatCurrency(extrasCost)}</span>
+                <span className="font-semibold text-ink-950 dark:text-white">{formatCurrency(extrasCost)}</span>
               </div>
             )}
             <div className="flex justify-between">
               <span>Estimated Govt. VAT (5%)</span>
-              <span className="font-semibold text-white">{formatCurrency(Math.round(vat))}</span>
+              <span className="font-semibold text-ink-950 dark:text-white">{formatCurrency(Math.round(vat))}</span>
             </div>
           </div>
 
           {/* Grand Total */}
           <div className="pt-1">
             <div className="flex items-baseline justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-ink-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
                 Estimated Total:
               </span>
               <div className="text-right">
-                <span className="font-display font-black text-3xl sm:text-4xl text-brand-400">
+                <span className="font-display font-black text-3xl sm:text-4xl text-brand-500">
                   {formatCurrency(Math.round(total))}
                 </span>
-                <p className="text-[10px] text-ink-400 mt-0.5">Approx. {formatCurrency(Math.round(total / guests))} per person net</p>
+                <p className="text-[10px] text-ink-500 dark:text-ink-400 mt-0.5">Approx. {formatCurrency(Math.round(total / guests))} per person net</p>
               </div>
             </div>
           </div>
@@ -248,7 +248,7 @@ export function PackageCalculator() {
             onClick={handleRequestQuote}
             className="w-full"
           >
-            Request This Quote &rarr;
+            Book This Package &rarr;
           </Button>
 
           <p className="text-[10px] text-ink-500 text-center leading-relaxed">

@@ -60,7 +60,7 @@ export default function BlogPostDetailPage({ params }: { params: { slug: string 
       />
 
       {/* Header */}
-      <section className="bg-ink-950 text-white py-16 relative">
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-14 sm:py-16 relative border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
           <div className="flex justify-center">
             <Breadcrumbs
@@ -70,14 +70,14 @@ export default function BlogPostDetailPage({ params }: { params: { slug: string 
               ]}
             />
           </div>
-          <span className="text-[10px] uppercase font-bold tracking-widest text-brand-400 bg-brand-950/80 border border-brand-800 px-3 py-1 rounded-full inline-block">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 border border-brand-100 dark:border-brand-800 px-3 py-1 rounded-full inline-block">
             {post.category}
           </span>
-          <h1 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
+          <h1 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-white leading-tight">
             {post.title}
           </h1>
 
-          <div className="flex items-center justify-center gap-6 text-xs text-ink-300 pt-2">
+          <div className="flex items-center justify-center gap-6 text-xs text-ink-600 dark:text-ink-300 pt-2">
             <div className="flex items-center gap-2">
               <div className="relative w-8 h-8 rounded-full overflow-hidden border border-brand-200">
                 <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />

@@ -20,28 +20,18 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* Page Hero */}
-      <section className="bg-ink-950 text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <Image
-            src={IMAGES.corporateEvent}
-            alt="ICCB Grand Hall"
-            fill
-            placeholder="blur"
-            blurDataURL={PLACEHOLDER_BLUR}
-            className="object-cover"
-          />
-        </div>
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative overflow-hidden border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: "About Us" }]} />
           </div>
-          <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
             ~ Heritage & Hospitality ~
           </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight">
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
             ABOUT ICCB CATERING
           </h1>
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
             Delivering South Asia&apos;s grandest event catering experience with unyielding culinary discipline, hygienic meat processing, and royal Mughal tradition.
           </p>
         </div>
@@ -92,16 +82,16 @@ export default function AboutPage() {
       </section>
 
       {/* The 4 Verified Pillars */}
-      <section className="py-20 bg-ink-950 text-white">
+      <section className="py-20 bg-brand-50/50 dark:bg-ink-950 text-ink-950 dark:text-white border-y border-ink-100 dark:border-ink-900 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+            <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
               ~ The ICCB Standard ~
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white">
+            <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-white">
               OUR 4 UNCOMPROMISING SPECIALTIES
             </h2>
-            <p className="text-xs sm:text-sm text-ink-300">
+            <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300">
               Where other caterers compromise either taste or hygiene, ICCB guarantees both through integrated infrastructure.
             </p>
           </div>
@@ -110,15 +100,15 @@ export default function AboutPage() {
             {SITE_INFO.specialties.map((item) => (
               <div
                 key={item.id}
-                className="p-6 rounded-2xl bg-ink-900 border border-ink-800 space-y-3 hover:border-brand-500/50 transition-colors"
+                className="p-6 rounded-2xl bg-white dark:bg-ink-900 border border-ink-100 dark:border-ink-800 space-y-3 hover:border-brand-500/50 transition-colors shadow-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-500/20 text-brand-500 flex items-center justify-center">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <h3 className="font-display font-bold text-base uppercase text-white">
+                <h3 className="font-display font-bold text-base uppercase text-ink-950 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-xs text-ink-400 leading-relaxed">{item.description}</p>
+                <p className="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>

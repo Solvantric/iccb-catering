@@ -59,9 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
         <span>{children}</span>
         {withArrow && !isLoading && (
-          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-current/15 group-hover:bg-current/25 transition-all duration-200 ml-1.5 group-hover:translate-x-1 shrink-0">
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+          <ArrowRight className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1 shrink-0" strokeWidth={1.75} />
         )}
       </button>
     );

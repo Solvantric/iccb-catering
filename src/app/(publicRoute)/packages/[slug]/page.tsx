@@ -32,26 +32,8 @@ export default function PackageDetailPage({ params }: { params: { slug: string }
 
   return (
     <div className="bg-ink-50/40 text-ink-950 min-h-screen">
-      {/* Hero with Package Photo Background */}
-      <section className="bg-ink-950 text-white py-24 relative overflow-hidden text-center">
-        {pkg.image && (
-          <div className="absolute inset-0 opacity-25">
-            <Image
-              src={pkg.image}
-              alt={pkg.name}
-              fill
-              priority
-              placeholder="blur"
-              blurDataURL={PLACEHOLDER_BLUR}
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/80 to-ink-950/60" />
-          </div>
-        )}
-
-        {/* Ambient Glow */}
-        <div className="absolute top-0 left-1/3 w-[600px] h-[350px] bg-brand-500/20 rounded-full blur-[140px] pointer-events-none" />
-
+      {/* Hero Header */}
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative overflow-hidden text-center border-b border-ink-100 dark:border-white/10 transition-colors">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs
@@ -62,27 +44,24 @@ export default function PackageDetailPage({ params }: { params: { slug: string }
             />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md">
-            <Sparkles className="w-4 h-4 text-brand-400" />
-            <span className="font-serif italic text-brand-300 text-sm font-semibold tracking-wide">
-              ~ {pkg.tag || "Signature Banquet Course"} ~
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-50 dark:bg-white/10 border border-brand-100 dark:border-white/15">
+            <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+            <span className="font-serif italic text-brand-600 dark:text-brand-300 text-xs font-semibold tracking-wide">
+              {pkg.tag || "Catering Tier"}
             </span>
           </div>
 
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-white max-w-3xl mx-auto">
+          <h1 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-white max-w-3xl mx-auto leading-tight">
             {pkg.name}
           </h1>
 
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif italic text-sm text-brand-600 dark:text-brand-400">
             {pkg.tagline}
           </p>
 
-          <div className="pt-2 flex items-center justify-center gap-2">
-            <span className="font-display font-black text-3xl sm:text-4xl text-brand-400">
-              {formatCurrency(pkg.pricePerHead)}{" "}
-              <span className="text-sm font-normal text-ink-300 font-sans">/ person</span>
-            </span>
-          </div>
+          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-xl mx-auto leading-relaxed">
+            {pkg.description}
+          </p>
         </div>
       </section>
 
@@ -178,28 +157,28 @@ export default function PackageDetailPage({ params }: { params: { slug: string }
           </div>
 
           {/* Sticky Booking Summary Card */}
-          <div className="lg:col-span-4 bg-ink-950 text-white p-8 rounded-3xl shadow-2xl space-y-6 text-left sticky top-28 border border-white/10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-400 block">
+          <div className="lg:col-span-4 bg-white dark:bg-ink-950 text-ink-950 dark:text-white p-7 sm:p-8 rounded-3xl shadow-soft border border-ink-100 dark:border-white/10 space-y-6 text-left sticky top-28">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 block">
               Direct Package Reservation
             </span>
-            <h3 className="font-display font-black text-2xl uppercase text-white">
+            <h3 className="font-display font-black text-2xl uppercase text-ink-950 dark:text-white">
               {pkg.name}
             </h3>
 
-            <div className="border-y border-white/10 py-5 space-y-3">
-              <div className="flex justify-between text-xs text-ink-300">
+            <div className="border-y border-ink-100 dark:border-white/10 py-5 space-y-3">
+              <div className="flex justify-between text-xs text-ink-600 dark:text-ink-300">
                 <span>Per Person Rate:</span>
-                <span className="font-bold text-white font-display text-base">
+                <span className="font-bold text-ink-950 dark:text-white font-display text-base">
                   {formatCurrency(pkg.pricePerHead)}
                 </span>
               </div>
-              <div className="flex justify-between text-xs text-ink-300">
+              <div className="flex justify-between text-xs text-ink-600 dark:text-ink-300">
                 <span>Minimum Attendance:</span>
-                <span className="font-bold text-white">{pkg.minGuests} Guests</span>
+                <span className="font-bold text-ink-950 dark:text-white">{pkg.minGuests} Guests</span>
               </div>
-              <div className="flex justify-between text-xs text-ink-300 pt-2 border-t border-white/5">
+              <div className="flex justify-between text-xs text-ink-600 dark:text-ink-300 pt-2 border-t border-ink-100 dark:border-white/5">
                 <span>Minimum Estimated Investment:</span>
-                <span className="font-bold text-brand-400 font-display text-lg">
+                <span className="font-bold text-brand-600 dark:text-brand-400 font-display text-lg">
                   {formatCurrency(pkg.pricePerHead * pkg.minGuests)}
                 </span>
               </div>

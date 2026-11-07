@@ -19,9 +19,9 @@ export function VideoStorySection() {
   const isReducedMotion = useReducedMotion();
 
   return (
-    <section className="py-24 bg-ink-950 text-white relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-white dark:bg-ink-950 text-ink-950 dark:text-white relative overflow-hidden transition-colors border-t border-ink-100 dark:border-white/10">
       {/* Decorative background aura */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-500/5 dark:bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -101,44 +101,44 @@ export function VideoStorySection() {
             className="lg:col-span-6 space-y-6 text-left"
           >
             {/* Tagline */}
-            <span className="font-serif italic text-brand-400 text-lg font-semibold block">
+            <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
               {t.tag}
             </span>
 
             {/* Headline */}
-            <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
+            <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-ink-950 dark:text-white leading-tight">
               {t.heading}
             </h2>
 
             {/* Paragraph */}
-            <p className="text-xs sm:text-sm text-ink-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 leading-relaxed">
               {t.subtitle}
             </p>
 
             {/* Two Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {/* Card 1: Four Events at Once */}
-              <div className="p-6 rounded-[16px] bg-white/[0.03] border border-white/10 space-y-3 hover:border-brand-500/40 transition-colors">
-                <div className="w-[44px] h-[44px] rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-300">
-                  <LayoutGrid size={22} strokeWidth={1.5} />
+              <div className="p-6 rounded-2xl bg-ink-50/70 dark:bg-white/[0.03] border border-ink-100 dark:border-white/10 space-y-2 hover:border-brand-500/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center text-brand-500">
+                  <LayoutGrid size={20} strokeWidth={1.75} />
                 </div>
-                <h4 className="font-display font-bold text-sm uppercase text-white tracking-wider">
+                <h4 className="font-display font-bold text-sm uppercase text-ink-950 dark:text-white tracking-wider">
                   {t.card1Title}
                 </h4>
-                <p className="text-xs text-ink-400 leading-relaxed">
+                <p className="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
                   {t.card1Desc}
                 </p>
               </div>
 
               {/* Card 2: Fully Equipped */}
-              <div className="p-6 rounded-[16px] bg-white/[0.03] border border-white/10 space-y-3 hover:border-brand-500/40 transition-colors">
-                <div className="w-[44px] h-[44px] rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-300">
-                  <ShieldCheck size={22} strokeWidth={1.5} />
+              <div className="p-6 rounded-2xl bg-ink-50/70 dark:bg-white/[0.03] border border-ink-100 dark:border-white/10 space-y-2 hover:border-brand-500/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center text-brand-500">
+                  <ShieldCheck size={20} strokeWidth={1.75} />
                 </div>
-                <h4 className="font-display font-bold text-sm uppercase text-white tracking-wider">
+                <h4 className="font-display font-bold text-sm uppercase text-ink-950 dark:text-white tracking-wider">
                   {t.card2Title}
                 </h4>
-                <p className="text-xs text-ink-400 leading-relaxed">
+                <p className="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
                   {t.card2Desc}
                 </p>
               </div>
