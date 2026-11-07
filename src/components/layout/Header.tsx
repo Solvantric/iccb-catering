@@ -45,7 +45,12 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 inset-x-0 w-full z-50 transition-all duration-300 bg-white/98 dark:bg-ink-950/98 backdrop-blur-md shadow-sm border-b border-ink-100 dark:border-white/10 text-ink-900 dark:text-white"
+      className={cn(
+        "fixed top-0 inset-x-0 w-full z-50 transition-all duration-300 text-ink-900 dark:text-white border-b",
+        scrolled
+          ? "bg-white dark:bg-ink-950 shadow-md border-ink-200 dark:border-white/10"
+          : "bg-white dark:bg-ink-950 shadow-sm border-ink-100 dark:border-white/10"
+      )}
       style={{ height: "var(--header-h)" }}
     >
       <div
