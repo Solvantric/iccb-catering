@@ -93,18 +93,18 @@ function PackageCardItem({
           {/* b) 1px hairline */}
           <div className="w-full h-[1px] bg-ink-200/70 dark:bg-white/10 my-4" />
 
-          {/* c) Small caps label "What's included" + 2-col dishes + joined services */}
-          <div className="space-y-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-ink-400 dark:text-ink-400 block">
+          {/* c) Small caps label "What's included" + compact 2-col dishes + joined services */}
+          <div className="space-y-2.5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400 block">
               {isBn ? "যা যা অন্তর্ভুক্ত রয়েছে" : "WHAT'S INCLUDED"}
             </span>
 
-            {/* Dishes in 2 columns: 16px Playfair, small brand dot bullets, all dishes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+            {/* Dishes in 2 columns: compact small font for clean presentation */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
               {allDishes.map((dish, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />
-                  <span className="font-sans text-[15px] sm:text-[16px] text-ink-800 dark:text-ink-200 leading-snug">
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-brand-500 mt-1.5 shrink-0" />
+                  <span className="font-sans text-[12px] sm:text-[13px] text-ink-700 dark:text-ink-300 leading-snug">
                     {dish}
                   </span>
                 </div>
@@ -113,7 +113,7 @@ function PackageCardItem({
 
             {/* Muted line of included services joined with ' · ' */}
             {cleanServices.length > 0 && (
-              <p className="text-xs text-ink-500 dark:text-ink-400 pt-2 leading-relaxed">
+              <p className="text-[11px] text-ink-500 dark:text-ink-400 pt-1 leading-normal italic font-sans">
                 {cleanServices.join(" · ")}
               </p>
             )}

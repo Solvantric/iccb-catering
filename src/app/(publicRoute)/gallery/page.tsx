@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GALLERY_ITEMS } from "@/data/gallery";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { Tabs } from "@/components/ui/Tabs";
@@ -47,14 +46,8 @@ export default function GalleryPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative text-center border-b border-ink-100 dark:border-white/10 transition-colors">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="flex justify-center">
-            <Breadcrumbs items={[{ label: "Gallery" }]} />
-          </div>
-          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
-            ~ Visual Moments ~
-          </span>
+      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-14 sm:py-16 relative text-center border-b border-ink-100 dark:border-white/10 transition-colors">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
           <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
             BANQUET & CATERING GALLERY
           </h1>
