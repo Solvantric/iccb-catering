@@ -99,7 +99,7 @@ export default function VenuesPage() {
                   </Link>
                   <Link href="/quote">
                     <Button size="md" variant="outline">
-                      Request Hall + Catering Quote
+                      Book Hall + Catering
                     </Button>
                   </Link>
                 </div>

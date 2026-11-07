@@ -90,7 +90,7 @@ export default function CorporateCateringPage() {
             <div className="pt-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request Corporate Quote
+                  Book Corporate Catering
                 </Button>
               </Link>
             </div>

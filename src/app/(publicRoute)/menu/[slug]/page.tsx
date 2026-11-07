@@ -137,7 +137,7 @@ export default function DishDetailPage({ params }: { params: { slug: string } })
             <div className="pt-4 flex flex-wrap gap-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request in Custom Quote
+                  Book Dish in Catering Menu
                 </Button>
               </Link>
               <Link href="/menu">

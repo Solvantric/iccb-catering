@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { PACKAGES } from "@/data/packages";
@@ -11,18 +11,18 @@ import { PackageCalculator } from "@/components/calculator/PackageCalculator";
 import { PLACEHOLDER_BLUR } from "@/data/images";
 import { useUIStore } from "@/store/uiStore";
 import {
-  CheckCircle2,
   Sparkles,
-  ArrowRight,
   Users,
   ShieldCheck,
   Utensils,
   Award,
-  ChevronRight,
+  ArrowRight,
+  Check,
 } from "lucide-react";
 
 export default function PackagesPage() {
   const { locale, setQuoteDraft } = useUIStore();
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
 
   const handleSelectPackage = (pkg: (typeof PACKAGES)[0]) => {
     setQuoteDraft({
@@ -32,217 +32,219 @@ export default function PackagesPage() {
     });
   };
 
-  return (
-    <div className="bg-ink-50/40 text-ink-950 min-h-screen">
-      {/* Hero Banner with Ambient Crimson Glow */}
-      <section className="bg-ink-950 text-white py-24 relative overflow-hidden text-center">
-        {/* Ambient Glows */}
-        <div className="absolute top-0 left-1/3 w-[600px] h-[400px] bg-brand-500/15 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[350px] bg-brand-600/10 rounded-full blur-[130px] pointer-events-none" />
+  // Helper to extract 4-5 signature highlight dishes from a package
+  const getSignatureDishes = (pkg: (typeof PACKAGES)[0]) => {
+    const allItems: string[] = [];
+    pkg.courses.forEach((c) => {
+      c.items.forEach((item) => allItems.push(item));
+    });
+    // Pick the most distinctive 4-5 items
+    return allItems.slice(0, 5);
+  };
 
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-5">
+  return (
+    <div className="bg-ink-50/30 text-ink-950 min-h-screen">
+      {/* Premium Minimal Hero Banner */}
+      <section className="bg-ink-950 text-white py-20 relative overflow-hidden text-center">
+        {/* Ambient Crimson Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand-500/15 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
           <div className="flex justify-center">
             <Breadcrumbs items={[{ label: locale === "bn" ? "প্যাকেজসমূহ" : "Banquet Packages" }]} />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-            <Sparkles className="w-4 h-4 text-brand-400" />
-            <span className="font-serif italic text-brand-300 text-sm font-semibold tracking-wide">
-              {locale === "bn" ? "~ পূর্ণাঙ্গ ক্যাটারিং প্যাকেজ ও মূল্যতালিকা ~" : "~ Complete Hospitality Banquet Tiers ~"}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-brand-400" />
+            <span className="font-serif italic text-brand-300 text-xs font-semibold tracking-wide">
+              {locale === "bn" ? "~ অল-ইনক্লুসিভ ক্যাটারিং মেনু ~" : "~ Curated Banquet Menus & Rates ~"}
             </span>
           </div>
 
-          <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-white max-w-4xl mx-auto leading-tight">
-            {locale === "bn" ? "ক্যাটারিং প্যাকেজ ও জনপ্রতি মূল্য" : "BANQUET PACKAGES & PER-HEAD PRICING"}
+          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-white max-w-3xl mx-auto leading-tight">
+            {locale === "bn" ? "ক্যাটারিং প্যাকেজ ও রেট" : "BANQUET PACKAGES"}
           </h1>
 
-          <p className="text-xs sm:text-sm text-ink-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink-300 max-w-xl mx-auto leading-relaxed">
             {locale === "bn"
-              ? "বিবাহ, করপোরেট সম্মেলন ও সামাজিক অনুষ্ঠানের জন্য স্বচ্ছ জনপ্রতি মূল্য। অন্তর্ভূক্ত রয়েছে শেফ পরিবেশন, চীনামাটির বাসনপত্র ও সঠিক তাপমাত্রার নিশ্চয়তা।"
-              : "Transparent all-inclusive per-person pricing for weddings, corporate galas, and social celebrations. All packages include chafing dish setup, porcelain dinnerware, and insulated hot transport."}
+              ? "বিবাহ, কর্পোরেট সামিট ও সামাজিক অনুষ্ঠানের জন্য স্বচ্ছ জনপ্রতি রেট। শেফ সার্ভিস, চিনামাটির ক্রোকারিজ ও গরম পরিবেশন অন্তর্ভুক্ত।"
+              : "All-inclusive per-person rates for weddings, corporate galas, and social celebrations with full buffet setup and chef service."}
           </p>
 
-          {/* Quick trust metrics */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs text-white/80">
-            <div className="flex items-center gap-2">
+          {/* Clean trust chips */}
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-white/80">
+            <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-brand-400" />
-              <span>{locale === "bn" ? "১০০% হালাল ও ল্যাব পরীক্ষিত" : "100% Halal Meat & Lab Tested"}</span>
+              <span>100% Halal Meats</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <Utensils className="w-4 h-4 text-brand-400" />
-              <span>{locale === "bn" ? "৬৫°সে+ গরম পরিবেশন নিশ্চয়তা" : "65°C+ Serving Guarantee"}</span>
+              <span>Served Hot 65°C+</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <Award className="w-4 h-4 text-brand-400" />
-              <span>{locale === "bn" ? "১০,০০০+ অতিথির ধারণক্ষমতা" : "10,000+ Guest Capacity"}</span>
+              <span>Crockery & Staff Included</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Packages Grid with High-Resolution Photography */}
-      <section className="py-20 max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-600 block">
-            {locale === "bn" ? "উপযুক্ত প্যাকেজ বাছাই করুন" : "Select Your Ideal Tier"}
-          </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-            {locale === "bn" ? "স্বাক্ষরিত ইভেন্ট প্যাকেজসমূহ" : "CURATED BANQUET MENUS"}
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-600">
-            {locale === "bn"
-              ? "প্রতিটি প্যাকেজের সাথে রয়েছে দক্ষ ক্যাটারিং টিম ও অভিজ্ঞ হল ক্যাপ্টেন।"
-              : "Customizable courses with tasting sessions available upon request."}
-          </p>
-        </div>
+      {/* Main Packages Grid: Focused, Clean & Ultra-Premium */}
+      <section className="py-16 max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          {PACKAGES.map((pkg) => {
+            const signatureDishes = getSignatureDishes(pkg);
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-          {PACKAGES.map((pkg) => (
-            <div
-              key={pkg.id}
-              className="bg-white rounded-[32px] overflow-hidden border border-ink-200/80 shadow-soft hover:shadow-2xl hover:border-brand-500/60 transition-all duration-500 flex flex-col justify-between group"
-            >
-              <div>
-                {/* Photo Header */}
-                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-ink-900">
-                  <Image
-                    src={pkg.image || "https://images.unsplash.com/photo-1555244162-803834f70033?w=1200&q=80"}
-                    alt={pkg.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    placeholder="blur"
-                    blurDataURL={PLACEHOLDER_BLUR}
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  {/* Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-black/20" />
+            return (
+              <div
+                key={pkg.id}
+                className="bg-white rounded-3xl overflow-hidden border border-ink-100/90 shadow-soft hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  {/* High-Resolution Photo Header */}
+                  <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-ink-900">
+                    <Image
+                      src={pkg.image || "https://images.unsplash.com/photo-1555244162-803834f70033?w=1200&q=80"}
+                      alt={pkg.name}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      placeholder="blur"
+                      blurDataURL={PLACEHOLDER_BLUR}
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-5 inset-x-5 flex items-center justify-between z-10">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-ink-950/80 backdrop-blur-md border border-white/20 text-xs font-bold uppercase tracking-wider text-white shadow-md">
-                      <Sparkles className="w-3.5 h-3.5 text-brand-400" />
-                      <span>{pkg.tag || "Catering Package"}</span>
-                    </span>
+                    {/* Top Badges */}
+                    <div className="absolute top-4 inset-x-4 flex items-center justify-between z-10">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ink-950/80 backdrop-blur-md border border-white/20 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
+                        <Sparkles className="w-3 h-3 text-brand-400" />
+                        <span>{pkg.tag || "Banquet Tier"}</span>
+                      </span>
 
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-xs font-semibold text-white shadow-md">
-                      <Users className="w-3.5 h-3.5" />
-                      <span>Min. {pkg.minGuests} Guests</span>
-                    </span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-white shadow-sm">
+                        <Users className="w-3 h-3 text-brand-400" />
+                        <span>Min. {pkg.minGuests} Guests</span>
+                      </span>
+                    </div>
+
+                    {/* Price Tag Pinned to Bottom Right */}
+                    <div className="absolute bottom-4 right-4 z-10 bg-brand-500 text-white px-4 py-2 rounded-xl shadow-lg flex items-baseline gap-1 border border-white/20">
+                      <span className="font-display font-black text-2xl sm:text-3xl leading-none">
+                        {formatCurrency(pkg.pricePerHead)}
+                      </span>
+                      <span className="text-[11px] font-medium text-white/90">/ guest</span>
+                    </div>
+
+                    {/* Cuisine Type Pinned Bottom Left */}
+                    <div className="absolute bottom-4 left-4 z-10">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/90 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+                        {pkg.cuisineType}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Price Tag pinned to bottom right of photo */}
-                  <div className="absolute bottom-5 right-5 z-10 bg-brand-500 text-white px-5 py-2.5 rounded-2xl shadow-xl flex items-baseline gap-1 border border-white/20">
-                    <span className="font-display font-black text-2xl sm:text-3xl leading-none">
-                      {formatCurrency(pkg.pricePerHead)}
-                    </span>
-                    <span className="text-xs font-medium text-white/90">/ person</span>
-                  </div>
+                  {/* Card Content: Concise & Editorial */}
+                  <div className="p-6 sm:p-7 space-y-5">
+                    <div>
+                      <h3 className="font-display font-black text-2xl uppercase tracking-tight text-ink-950 group-hover:text-brand-600 transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p className="font-serif italic text-xs text-brand-600 mt-0.5">
+                        {pkg.tagline}
+                      </p>
+                    </div>
 
-                  {/* Cuisine label pinned bottom left of photo */}
-                  <div className="absolute bottom-5 left-5 z-10">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-300 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
-                      {pkg.cuisineType}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-7 sm:p-8 space-y-6">
-                  <div>
-                    <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-ink-950 group-hover:text-brand-600 transition-colors">
-                      {pkg.name}
-                    </h3>
-                    <p className="font-serif italic text-sm text-brand-600 mt-1">
-                      {pkg.tagline}
-                    </p>
-                    <p className="text-xs text-ink-600 mt-3 leading-relaxed">
-                      {pkg.description}
-                    </p>
-                  </div>
-
-                  {/* Courses Breakdown */}
-                  <div className="space-y-3 pt-5 border-t border-ink-100">
-                    <span className="text-[11px] font-bold uppercase text-ink-400 tracking-wider block">
-                      {locale === "bn" ? "অন্তর্ভুক্ত কোর্সসমূহ:" : "Curated Course Items:"}
-                    </span>
-                    <div className="grid grid-cols-1 gap-3">
-                      {pkg.courses.map((course, idx) => (
-                        <div
-                          key={idx}
-                          className="p-3.5 rounded-xl bg-ink-50/70 border border-ink-100/80 text-xs space-y-1.5"
-                        >
-                          <span className="font-bold text-ink-950 uppercase tracking-wide block text-[11px] text-brand-600">
-                            {course.name}
+                    {/* 5 Signature Dishes */}
+                    <div className="space-y-2 pt-2 border-t border-ink-100">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-ink-400 block">
+                        {locale === "bn" ? "প্রধান সিগনেচার পদসমূহ:" : "Signature Menu Dishes:"}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {signatureDishes.map((dish, i) => (
+                          <span
+                            key={i}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-ink-50 border border-ink-200/70 text-ink-800 text-xs font-medium"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
+                            {dish}
                           </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {course.items.map((item, i) => (
-                              <span
-                                key={i}
-                                className="inline-flex items-center px-2 py-0.5 rounded-md bg-white border border-ink-200/60 text-ink-700 text-[11px]"
-                              >
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Amenities */}
-                  <div className="space-y-2 pt-4 border-t border-ink-100">
-                    <span className="text-[11px] font-bold uppercase text-ink-400 tracking-wider block">
-                      {locale === "bn" ? "অন্তর্ভুক্ত সুযোগ-সুবিধা:" : "Included Amenities & Services:"}
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {pkg.inclusions.map((inc, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs text-ink-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-500 shrink-0 mt-0.5" />
-                          <span className="leading-snug">{inc}</span>
+                    {/* Included Services Row */}
+                    <div className="pt-2 border-t border-ink-100">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-ink-400 block mb-1.5">
+                        {locale === "bn" ? "অন্তর্ভুক্ত সুযোগ-সুবিধা:" : "Included Services:"}
+                      </span>
+                      <div className="grid grid-cols-2 gap-2 text-xs text-ink-600">
+                        <div className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                          <span>Chafing Buffet Setup</span>
                         </div>
-                      ))}
+                        <div className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                          <span>Porcelain Dinnerware</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                          <span>Uniformed Waitstaff</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                          <span>Served Hot 65°C+</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Bottom Actions */}
-              <div className="p-7 sm:p-8 pt-0 flex flex-col sm:flex-row items-center gap-3.5">
-                <Link
-                  href="/quote"
-                  onClick={() => handleSelectPackage(pkg)}
-                  className="w-full sm:flex-1"
-                >
-                  <Button variant="primary" className="w-full text-xs font-bold uppercase tracking-wider py-3 shadow-md" withArrow>
-                    {locale === "bn" ? "এই প্যাকেজে কোটেশন চান" : "Request Quote for this Package"}
-                  </Button>
-                </Link>
+                {/* Bottom Actions: Clean & Direct */}
+                <div className="p-6 sm:p-7 pt-0 flex items-center gap-3">
+                  <Link
+                    href="/quote"
+                    onClick={() => handleSelectPackage(pkg)}
+                    className="flex-1"
+                  >
+                    <button
+                      type="button"
+                      className="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] inline-flex items-center justify-center gap-2 group/btn"
+                    >
+                      <span>{locale === "bn" ? "এই প্যাকেজটি বুক করুন" : "Book This Package"}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+                    </button>
+                  </Link>
 
-                <Link href={`/packages/${pkg.slug}`} className="w-full sm:w-auto">
-                  <Button variant="outline" className="w-full text-xs font-semibold uppercase tracking-wider py-3">
-                    {locale === "bn" ? "বিস্তারিত" : "Package Details"}
-                  </Button>
-                </Link>
+                  <Link href={`/packages/${pkg.slug}`}>
+                    <button
+                      type="button"
+                      className="px-4 py-3 rounded-xl border border-ink-200 hover:border-ink-400 text-ink-700 hover:text-ink-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+                    >
+                      {locale === "bn" ? "বিস্তারিত" : "Details"}
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
-      {/* Interactive Banquet Budget Calculator Section */}
-      <section className="py-20 bg-white border-t border-ink-100">
+      {/* Interactive Budget Calculator */}
+      <section className="py-16 bg-white border-t border-ink-100">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-600 block">
-              {locale === "bn" ? "তাৎক্ষণিক বাজেট হিসাব" : "Interactive Banquet Calculator"}
+          <div className="text-center max-w-xl mx-auto mb-10 space-y-1.5">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-brand-600 block">
+              {locale === "bn" ? "বাজেট হিসাব" : "Real-time Estimator"}
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-              {locale === "bn" ? "বাজেট ক্যালকুলেটর" : "ESTIMATE YOUR EVENT BUDGET"}
+            <h2 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-ink-950">
+              {locale === "bn" ? "ইভেন্ট বাজেট ক্যালকুলেটর" : "ESTIMATE EVENT BUDGET"}
             </h2>
-            <p className="text-xs sm:text-sm text-ink-600">
+            <p className="text-xs text-ink-600">
               {locale === "bn"
                 ? "অতিথির সংখ্যা ও পছন্দের প্যাকেজ সিলেক্ট করে তৎক্ষণাৎ মোট খরচের হিসাব দেখুন।"
-                : "Select guest attendance and optional culinary live stations for real-time BDT projections."}
+                : "Select guest attendance and optional culinary live stations for instant projections."}
             </p>
           </div>
 

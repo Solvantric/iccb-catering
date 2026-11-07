@@ -45,7 +45,7 @@ export const FOOTER_LINKS = {
     { label: "Careers", labelBn: "ক্যারিয়ার", href: "/careers" },
   ],
   useful: [
-    { label: "Request a Quote", labelBn: "কোটেশন অনুরোধ", href: "/quote" },
+    { label: "Book Catering Online", labelBn: "ক্যাটারিং বুকিং", href: "/quote" },
     { label: "Book an Event", labelBn: "ইভেন্ট বুকিং", href: "/booking" },
     { label: "General Inquiry", labelBn: "সাধারণ অনুসন্ধান", href: "/inquiry" },
     { label: "Frequently Asked Questions", labelBn: "সাধারণ জিজ্ঞাসা", href: "/faq" },

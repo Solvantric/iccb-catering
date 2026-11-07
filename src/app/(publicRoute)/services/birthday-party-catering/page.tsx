@@ -87,7 +87,7 @@ export default function BirthdayCateringPage() {
             <div className="pt-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request Birthday Party Quote
+                  Book Birthday Party Catering
                 </Button>
               </Link>
             </div>

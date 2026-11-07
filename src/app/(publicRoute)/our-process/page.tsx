@@ -127,7 +127,7 @@ export default function OurProcessPage() {
         <div className="pt-8 text-center">
           <Link href="/quote">
             <Button size="lg" withArrow variant="primary">
-              Start Step 1: Request a Quote
+              Step 1: Book Catering Online
             </Button>
           </Link>
         </div>

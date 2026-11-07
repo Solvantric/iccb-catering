@@ -77,7 +77,7 @@ export default function ServicesPage() {
                   </Link>
                   <Link href="/quote">
                     <Button variant="outline" size="md">
-                      Get a Quote
+                      Book Catering
                     </Button>
                   </Link>
                 </div>
@@ -113,7 +113,7 @@ export default function ServicesPage() {
           <div className="pt-2 flex justify-center gap-4">
             <Link href="/quote">
               <Button size="lg" withArrow>
-                Request a Custom Quote
+                Book Custom Catering
               </Button>
             </Link>
             <Link href="/tasting">

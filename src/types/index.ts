@@ -31,6 +31,9 @@ export interface Lead {
   cuisinePreference?: string;
   packagePreference?: string;
   message?: string;
+  bkashNumber?: string;
+  trxId?: string;
+  advanceAmount?: number;
   status: LeadStatus;
   type: LeadType;
   assignee?: string;

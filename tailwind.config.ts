@@ -38,7 +38,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-oswald)", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-playfair)", "serif"],
         bengali: ["var(--font-noto-bengali)", "sans-serif"],

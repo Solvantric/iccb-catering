@@ -112,7 +112,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <div className="pt-6 flex flex-wrap gap-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request a Quote for {service.title}
+                  Book Catering for {service.title}
                 </Button>
               </Link>
               <Link href="/tasting">

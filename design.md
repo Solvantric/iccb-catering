@@ -24,66 +24,64 @@ The primary brand color has been upgraded to `#DC0511`, an authoritative, rich c
 - **`ink-800` (`#27272A`)**: Borders, subtle dividers, and dark input backgrounds.
 - **`ink-600` (`#52525B`)**: High-contrast readable secondary typography on light surfaces.
 - **`ink-50` (`#F4F4F5`)**: Light gray background tint for section contrast.
-- **`gold-500` (`#D4AF37`) & `gold-400` (`#F3E5AB`)**: Subtle metallic gold highlights for prestige banquet seals and luxury badges.
-- **`whatsapp-green` (`#25D366`)**: Authentic WhatsApp green with gradient depth for floating contact triggers.
+- **`whatsapp-green` (`#25D366`)**: Authentic WhatsApp emerald green gradient for floating contact concierge.
+- **`bkash-pink` (`#E2136E`)**: Authentic bKash brand magenta for payment vouchers and transaction confirmation badges.
 
 ---
 
 ## 2. Typography Hierarchy
 
-- **Display & Section Headings**: `Oswald` / `Barlow Condensed` (`font-display`)
-  - All-caps, tight tracking (`tracking-tight` or `tracking-wider`), bold to black weight (700-900).
-  - Gives a bold, prestigious culinary magazine editorial aesthetic.
+- **Display & Headings**: `Plus Jakarta Sans` (`font-display`)
+  - Modern luxury geometric typography, balanced uppercase proportions, wide airy tracking (`tracking-tight` or `tracking-wider`), bold to black weight (700-800).
+  - Replaces cramped condensed fonts (like Oswald) with prestigious, world-class five-star hotel branding.
 - **Body & UI**: `Inter` (`font-sans`)
-  - Clean, legible, modern grotesk with high x-height for clear reading of menus and banquet specs.
+  - Clean, legible, modern grotesk with high x-height for clear reading of menus, dish notes, and booking forms.
 - **Accent & Taglines**: `Playfair Display` Italic (`font-serif`)
   - Reserved for *"Taste of Happiness"*, culinary flourishes, and chef quotes.
+- **Bangla Typography**: `Noto Sans Bengali` & `Noto Serif Bengali`
+  - Perfectly paired with English typography for natural Bengali bilingual reading.
 
 ---
 
-## 3. Premium Iconography System
+## 3. Bangladeshi Localization & UX Terminology
 
-Moving away from bare minimal monochrome line icons towards luxury, contextually enriched icons:
+Western catering terms like "Request a Quote" or "Get a Quote" are unnatural for Bangladeshi event hosts, wedding families, and corporate planners.
+- **Primary CTAs**:
+  - English: **"Book Catering"**, **"Check Pricing & Availability"**, **"Book This Package"**, **"Confirm Catering Booking"**
+  - Bengali: **"ক্যাটারিং বুকিং"**, **"মেনু ও রেট দেখুন"**, **"প্যাকেজটি বুক করুন"**, **"বুকিং নিশ্চিত করুন"**
+- **Date Locking & Token Deposit Flow**:
+  - Bangladeshi banquet clients lock event dates using a token advance deposit via bKash.
+  - Step 4 of the booking wizard is titled **"Review & Payment"** (`রিভিউ ও পেমেন্ট`) with official ICCB Merchant bKash details (`01991-197719`), customer account number, Transaction ID (TrxID), and advance amount.
+
+---
+
+## 4. Premium Iconography System
+
 1. **WhatsApp Trigger**:
-   - Iconic WhatsApp green gradient (`bg-gradient-to-tr from-[#128C7E] to-[#25D366]`), white authentic WhatsApp badge, subtle emerald ping ring, and tooltip with Bangladesh contact details.
+   - Authentic emerald green gradient (`bg-gradient-to-tr from-[#128C7E] to-[#25D366]`), white authentic WhatsApp badge, subtle emerald ping ring, and direct Bangladesh chat hotline.
 2. **Phone Concierge Trigger**:
-   - Rich brand crimson gradient (`bg-gradient-to-tr from-[#9E030B] to-[#DC0511]`), crisp telephone handset icon, radiating soundwave animation, and direct hotline display.
+   - Rich brand crimson gradient (`bg-gradient-to-tr from-[#7D0208] to-[#DC0511]`), crisp telephone handset icon, radiating soundwave animation, and direct hotline display.
 3. **Sculpted Directional Arrows**:
    - Circular glass/metallic backplates with directional arrow glide on hover (`group-hover:translate-x-1 group-hover:-translate-y-0.5`).
-   - Replaces flat inline arrows with elevated action badges.
-4. **Culinary & Specialty Seals**:
-   - Double-ringed circular icons with crimson/gold gradients for slaughterhouse purity, temperature assurance (65°C+), and executive chef certifications.
+4. **bKash Payment Badge**:
+   - Distinctive bKash magenta card (`#E2136E`) with merchant number badge and one-click clipboard copy.
 
 ---
 
-## 4. Section Upgrades & Refinements
+## 5. Section Upgrades & Refinements
 
-### 4.1 Occasion Grid Section (`OccasionGridSection.tsx`)
-- **Problem**: Previous version felt generic with basic white floating bottom boxes and flat cards.
-- **Redesign**:
-  - Transform into an ultra-luxury editorial showcase.
-  - High-resolution banquet imagery with deep ambient dark gradients and warm lighting.
-  - Glassmorphic bottom panel with micro-blur (`backdrop-blur-xl bg-ink-950/75 border border-white/10`), gold-accented guest capacity badges, sculpted circular arrow buttons with hover fill, and smooth zoom interaction.
-  - Category tags (e.g., *"Grand Banquets"*, *"Regal Celebrations"*, *"Corporate Summits"*).
+### 5.1 Occasion Grid Section (`OccasionGridSection.tsx`)
+- Editorial format with cinematic banquet photography, deep ambient dark gradients, dark frosted glassmorphism (`backdrop-blur-xl bg-ink-950/75`), verified capacity badges, and sculpted circular arrow buttons.
 
-### 4.2 Today's Menu Section (`TodaysMenuSection.tsx`)
-- **Problem**: Showing prices made it look like a casual street restaurant rather than a South Asia premier convention caterer.
-- **Redesign**:
-  - **Eliminate prices entirely** from Today's Menu to emphasize exclusivity, custom banquet tailoring, and high-end culinary craftsmanship.
-  - **Heroize Dish Imagery**: Magnified circular plate presentations with warm radiant underglow (`shadow-[0_0_25px_rgba(220,5,17,0.35)]`), golden rim borders, and zoom dynamics.
-  - Enhanced course descriptors: Chef secret spices, dum-pukht techniques, dietary tags (Halal, Slow-Cooked 12h, Royal Mughal), and an interactive *"Inquire About This Dish"* drawer/modal action.
+### 5.2 Today's Menu Section (`TodaysMenuSection.tsx`)
+- Removed price clutter to elevate luxury positioning.
+- Magnified circular plates with glowing ambient halo and chef signature details.
 
-### 4.3 Packages Page (`/packages`)
-- **Problem**: Packages looked like flat text lists without appetite appeal or visual luxury.
-- **Redesign**:
-  - Feature a captivating culinary hero image for every package (Wedding Kacchi Feast, Executive Corporate Buffet, High-Tea Gala, Social Milestones).
-  - Premium tier badging (e.g., *"Prestige Gold Tier"*, *"Executive Summit Choice"*, *"Royal Heirloom"*).
-  - Structured tabbed or pill navigation between course categories (Welcome Drinks, Main Entrees, Royal Desserts, Amenities).
-  - Prominent per-head price callout with transparent BDT currency formatting and a direct *"Request Quote for this Package"* one-click bridge into the multi-step quote wizard.
+### 5.3 Curated Packages Page (`/packages`)
+- Streamlined editorial cards focused on high-res photography, per-guest rates, 5 punchy signature dishes, included services, and direct booking button.
+- Eliminates multi-level nested boxes and walls of text.
 
----
-
-## 5. Micro-Interactions & Motion
-- Framer Motion scroll reveals (`whileInView`, `viewport: { once: true }`).
-- Subtle 3D lift on cards (`hover:-translate-y-1.5 hover:shadow-2xl`).
-- Dynamic hover border transitions using brand crimson `#DC0511`.
+### 5.4 Multi-Step Booking Wizard (`QuoteForm.tsx`)
+- 4 clear steps: Contact Details &rarr; Event Logistics &rarr; Menu & Cuisine &rarr; **Review & Payment**.
+- Intercepts Enter key and prevents premature submission after Step 3.
+- Full bKash merchant integration with TrxID validation and advance booking confirmation.

@@ -148,7 +148,7 @@ export function TodaysMenuSection() {
           </Link>
           <Link href="/quote">
             <Button size="lg" variant="secondary" className="px-8">
-              {locale === "bn" ? "কাস্টম মেনু কোটেশন চান" : "Request Custom Banquet Quote"}
+              {locale === "bn" ? "কাস্টম ক্যাটারিং বুকিং" : "Book Custom Catering"}
             </Button>
           </Link>
         </div>

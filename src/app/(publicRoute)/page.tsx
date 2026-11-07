@@ -31,7 +31,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* 15 Reference-matched sections */}
+      {/* Curated Editorial Homepage Flow */}
       <HeroSection />
       <FeatureStrip />
       <ChooseMenuSection />
@@ -42,9 +42,7 @@ export default function HomePage() {
       <StatsSection />
       <ClientVideosSection />
       <TestimonialsSection />
-      <TastingBanner />
       <CTABand />
-      <FAQSection />
     </>
   );
 }

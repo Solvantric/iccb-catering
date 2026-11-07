@@ -156,7 +156,7 @@ export default function EventLandingPage({ params }: { params: { type: string } 
             <div className="pt-6 flex flex-wrap gap-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request a Quote for {ev.title}
+                  Book Catering for {ev.title}
                 </Button>
               </Link>
               <Link href="/packages">

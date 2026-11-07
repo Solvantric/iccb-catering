@@ -91,7 +91,7 @@ export default function WeddingCateringPage() {
             <div className="pt-4 flex flex-wrap gap-4">
               <Link href="/quote">
                 <Button size="lg" withArrow variant="primary">
-                  Request Wedding Quote
+                  Book Wedding Catering
                 </Button>
               </Link>
               <Link href="/tasting">
