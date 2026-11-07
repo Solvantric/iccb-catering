@@ -51,9 +51,7 @@ export const SITE_INFO = {
     },
   ],
   contact: {
-    address: "Next to 300 ft. Purbachal Express Highway, Dhaka 1229, Bangladesh (Kuril Bishwa Road)",
-    cateringPhone: "+88-01991-197719",
-    cateringEmail: "iccbcatering@bga-bd.com",
+    address: "Next to 300 ft Purbachal Express Highway, Kuril Bishwa Road, Dhaka 1229",
     bookingPhones: [
       "+88-02-41091551",
       "+88-01991-197719",
@@ -62,9 +60,11 @@ export const SITE_INFO = {
       "+88-01704-160389",
       "+88-01938-878790",
     ],
+    bookingEmail: "iccb@bga-bd.com",
+    cateringPhone: "+88-01969-999866",
+    cateringEmail: "iccbcatering@bga-bd.com",
     generalEmail: "iccb@bga-bd.com",
-    whatsappNumber: "+8801991197719",
-    hours: "Open 7 Days a Week: 9:00 AM - 10:00 PM",
+    whatsappNumber: "+8801969999866",
   },
   halls: [
     {

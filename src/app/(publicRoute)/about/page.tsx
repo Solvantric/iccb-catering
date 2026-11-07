@@ -48,14 +48,14 @@ export default function AboutPage() {
               OPERATING SINCE 1 JANUARY 2015
             </h2>
             <p className="text-xs sm:text-sm text-ink-700 leading-relaxed">
-              International Convention City Bashundhara (ICCB) officially began operations on 1 January 2015 next to the 300 ft. Purbachal Express Highway in Kuril, Dhaka. Conceived as the largest premier event destination in South Asia, ICCB spans 4 gigantic convention halls capable of hosting more than 10,000 guests at any single time.
+              International Convention City Bashundhara (ICCB) officially began operations on 1 January 2015 next to the 300 ft. Purbachal Express Highway in Kuril, Dhaka. Conceived as the largest premier event destination in South Asia, ICCB spans 6 gigantic convention halls capable of hosting more than 10,000 guests at any single time.
             </p>
             <p className="text-xs sm:text-sm text-ink-700 leading-relaxed">
               To fulfill the dining needs of world leaders, corporate conglomerates, and lavish wedding families, ICCB established its full-scale in-house catering department. In June 2021, we expanded our culinary presence by inaugurating the acclaimed <strong className="text-ink-950">ICCB Heritage Restaurant</strong>, dedicated to preserving 400-year-old authentic Mughal royal dining.
             </p>
             <div className="grid grid-cols-2 gap-4 pt-2">
               <div className="p-4 bg-brand-50/70 border border-brand-100 rounded-2xl">
-                <span className="font-display font-black text-2xl text-brand-600">4 Halls</span>
+                <span className="font-display font-black text-2xl text-brand-600">6 Halls</span>
                 <p className="text-xs text-ink-600 mt-0.5">Over 100,000 sq ft banquet space</p>
               </div>
               <div className="p-4 bg-brand-50/70 border border-brand-100 rounded-2xl">

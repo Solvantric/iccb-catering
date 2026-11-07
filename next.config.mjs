@@ -25,6 +25,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.magnific.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'betterwork.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.istockphoto.com',
+      },
     ],
   },
 };

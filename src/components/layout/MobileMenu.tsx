@@ -38,11 +38,11 @@ export function MobileMenu() {
 
       {/* Drawer */}
       <div className="relative ml-auto w-4/5 max-w-sm h-full bg-white dark:bg-ink-950 text-ink-950 dark:text-white flex flex-col p-6 overflow-y-auto z-10 border-l border-ink-100 dark:border-ink-800 shadow-2xl transition-colors">
-        <div className="flex items-center justify-between pb-6 border-b border-ink-100 dark:border-ink-800">
-          <Logo className="h-12" />
+        <div className="flex items-stretch justify-between h-16 border-b border-ink-100 dark:border-ink-800 -mx-6 -mt-6 pr-4 mb-6">
+          <Logo className="h-full" />
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 text-ink-500 hover:text-ink-900 dark:text-ink-400 dark:hover:text-white rounded-lg hover:bg-ink-50 dark:hover:bg-ink-900 transition-colors"
+            className="self-center p-2 text-ink-500 hover:text-ink-900 dark:text-ink-400 dark:hover:text-white rounded-lg hover:bg-ink-50 dark:hover:bg-ink-900 transition-colors"
             aria-label="Close menu"
           >
             <X className="w-6 h-6" />
@@ -97,20 +97,27 @@ export function MobileMenu() {
                 >
                   {locale === "bn" && item.labelBn ? item.labelBn : item.label}
                 </Link>
-                {item.children && (
-                  <div className="pl-4 space-y-1 border-l border-ink-100 dark:border-ink-800">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block text-xs text-ink-500 dark:text-ink-400 hover:text-brand-500 py-1"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                    {item.children && (
+                      <div className="pl-4 space-y-1.5 border-l border-ink-100 dark:border-ink-800 my-1">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-between text-xs text-ink-600 dark:text-ink-400 hover:text-brand-500 py-1"
+                          >
+                            <span>
+                              {locale === "bn" && child.labelBn ? child.labelBn : child.label}
+                            </span>
+                            {child.subLabel && (
+                              <span className="text-[10px] text-ink-400 uppercase tracking-wider">
+                                {locale === "bn" && child.subLabelBn ? child.subLabelBn : child.subLabel}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
               </div>
             );
           })}

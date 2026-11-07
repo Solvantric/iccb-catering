@@ -18,9 +18,9 @@ export const FAQS: FAQ[] = [
     question: "Can I book ICCB Catering for an outside venue or my private residence?",
     questionBn: "আইসিসিবির বাইরের কোনো ভেন্যু বা বাসায় কি ক্যাটারিং সেবা নেওয়া যায়?",
     answer:
-      "Yes! While ICCB hosts events in our 4 world-class convention halls in Kuril, our outdoor catering division serves corporate offices, diplomatic zones, convention centers, and private residences anywhere across Greater Dhaka.",
+      "Yes! While ICCB hosts events in our 6 world-class convention halls in Kuril, our outdoor catering division serves corporate offices, diplomatic zones, convention centers, and private residences anywhere across Greater Dhaka.",
     answerBn:
-      "হ্যাঁ! আমাদের নিজস্ব ৪টি কনভেনশন হলের পাশাপাশি আমরা ঢাকা শহরের যেকোনো ভেন্যু, অফিস বা বাসায় আউটডোর ক্যাটারিং সেবা প্রদান করে থাকি।",
+      "হ্যাঁ! আমাদের নিজস্ব ৬টি কনভেনশন হলের পাশাপাশি আমরা ঢাকা শহরের যেকোনো ভেন্যু, অফিস বা বাসায় আউটডোর ক্যাটারিং সেবা প্রদান করে থাকি।",
     category: "Logistics",
     order: 2,
     isSample: true,

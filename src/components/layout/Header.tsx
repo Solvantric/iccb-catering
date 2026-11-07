@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Logo } from "@/components/ui/Logo";
@@ -14,12 +15,16 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { locale, setLocale, mobileMenuOpen, setMobileMenuOpen } = useUIStore();
   const { resolvedTheme, setTheme } = useTheme();
   const t = translations[locale].nav;
+
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [pathname]);
 
   useEffect(() => {
     setMounted(true);
@@ -40,7 +45,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full transition-all duration-300",
+        "fixed top-0 inset-x-0 w-full z-50 transition-all duration-300",
         isTransparent
           ? "bg-ink-950/40 backdrop-blur-md border-b border-white/10 text-white"
           : "bg-white/95 dark:bg-ink-950/95 backdrop-blur-md shadow-sm border-b border-ink-100 dark:border-white/10 text-ink-900 dark:text-white"
@@ -48,25 +53,28 @@ export function Header() {
       style={{ height: "var(--header-h)" }}
     >
       <div
-        className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+        className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-stretch justify-between"
         style={{ height: "var(--header-h)" }}
       >
-        {/* Logo block: responsive, prominent and vertically centered */}
-        <Logo className="h-12 sm:h-14 md:h-16 lg:h-[72px] my-auto" />
+        {/* Logo block: height 100% of bar */}
+        <Logo className="h-full" />
 
-        {/* Desktop Nav: vertically centered */}
-        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 my-auto">
+        {/* Desktop Nav: self-center */}
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 self-center">
           {PUBLIC_NAV.map((item) => {
             const isActive = pathname === item.href;
             const hasChildren = !!item.children;
 
             if (hasChildren) {
+              const isOpen = openDropdown === item.href;
+              const isVenues = item.href === "/venues";
+
               return (
                 <div
                   key={item.href}
                   className="relative group my-auto flex items-center"
-                  onMouseEnter={() => setServicesDropdown(true)}
-                  onMouseLeave={() => setServicesDropdown(false)}
+                  onMouseEnter={() => setOpenDropdown(item.href)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <Link
                     href={item.href}
@@ -78,19 +86,54 @@ export function Header() {
                     )}
                   >
                     <span>{locale === "bn" ? item.labelBn || item.label : item.label}</span>
-                    <ChevronDown className="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform" />
+                    <ChevronDown className={cn("w-3.5 h-3.5 opacity-70 transition-transform", isOpen && "rotate-180")} />
                   </Link>
 
-                  {/* Dropdown */}
-                  {servicesDropdown && (
-                    <div className="absolute top-full left-0 w-64 py-2 bg-white dark:bg-ink-900 rounded-xl shadow-xl border border-ink-100 dark:border-white/10 animate-in fade-in zoom-in-95">
+                  {/* Dropdown Panel */}
+                  {isOpen && (
+                    <div
+                      className={cn(
+                        "absolute top-full left-0 py-2 bg-white dark:bg-ink-900 rounded-xl shadow-xl border border-ink-100 dark:border-white/10 animate-in fade-in zoom-in-95 z-50",
+                        isVenues ? "w-[360px] max-h-[80vh] overflow-y-auto" : "w-64"
+                      )}
+                    >
                       {item.children?.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-2.5 text-xs font-semibold text-ink-700 dark:text-ink-200 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-white/5 transition-colors"
+                          onClick={() => setOpenDropdown(null)}
+                          className={cn(
+                            "flex items-center gap-3 px-4 py-2.5 transition-colors group/c",
+                            isVenues
+                              ? "hover:bg-brand-50/70 dark:hover:bg-white/5"
+                              : "text-xs font-semibold text-ink-700 dark:text-ink-200 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-white/5"
+                          )}
                         >
-                          {locale === "bn" ? child.labelBn || child.label : child.label}
+                          {/* 40px square thumbnail for venues */}
+                          {isVenues && child.image && (
+                            <div className="relative w-10 h-10 rounded-[2px] overflow-hidden bg-ink-100 dark:bg-ink-800 shrink-0 border border-ink-200/50 dark:border-white/10">
+                              <Image
+                                src={child.image}
+                                alt={child.label}
+                                fill
+                                sizes="40px"
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
+
+                          <div className="flex-1 min-w-0">
+                            <span className="block text-xs font-semibold text-ink-900 dark:text-ink-100 group-hover/c:text-brand-500 dark:group-hover/c:text-brand-400 truncate">
+                              {locale === "bn" ? child.labelBn || child.label : child.label}
+                            </span>
+                          </div>
+
+                          {/* Right-side small muted label */}
+                          {child.subLabel && (
+                            <span className="text-[10px] text-ink-400 dark:text-ink-500 uppercase tracking-wider shrink-0">
+                              {locale === "bn" ? child.subLabelBn || child.subLabel : child.subLabel}
+                            </span>
+                          )}
                         </Link>
                       ))}
                     </div>
@@ -116,8 +159,8 @@ export function Header() {
           })}
         </nav>
 
-        {/* Right CTA & Controls: vertically centered */}
-        <div className="hidden sm:flex items-center space-x-3 my-auto">
+        {/* Right CTA & Controls: self-center */}
+        <div className="hidden sm:flex items-center space-x-3 self-center">
           {/* Theme Toggle Button */}
           {mounted && (
             <button
@@ -179,7 +222,7 @@ export function Header() {
         </div>
 
         {/* Mobile Hamburger & Controls */}
-        <div className="flex sm:hidden items-center space-x-2 my-auto">
+        <div className="flex sm:hidden items-center space-x-2 self-center">
           {mounted && (
             <button
               type="button"

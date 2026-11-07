@@ -1,175 +1,357 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
+import { VENUES, Venue } from "@/data/venues";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { Button } from "@/components/ui/Button";
-import { SITE_INFO } from "@/data/site";
-import { IMAGES, PLACEHOLDER_BLUR } from "@/data/images";
-import { generatePageMetadata } from "@/lib/seo";
-import { Users, Maximize2, ShieldCheck, ArrowRight } from "lucide-react";
+import { useUIStore } from "@/store/uiStore";
+import { translations } from "@/lib/i18n";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = generatePageMetadata({
-  title: "ICCB Convention Halls & Outside Venues | South Asia's Largest Venue",
-  description:
-    "Explore ICCB's 4 grand pillarless convention halls in Kuril, Dhaka: Hall 1 (Gulnaksha), Hall 2 (Pushpaguchha), Hall 3 (Rajdarshan), and Hall 4 (Naboratna).",
-  path: "/venues",
-});
+function HallCard({ venue, idx, isBn }: { venue: Venue; idx: number; isBn: boolean }) {
+  const [imgError, setImgError] = useState(false);
 
-export default function VenuesPage() {
-  const hallsWithImages = [
-    {
-      ...SITE_INFO.halls[0],
-      image: IMAGES.hallGulnaksha,
-      badge: "Pillarless Grand Ballroom",
-    },
-    {
-      ...SITE_INFO.halls[1],
-      image: IMAGES.hallPushpaguchha,
-      badge: "Acoustic Conference Hall",
-    },
-    {
-      ...SITE_INFO.halls[2],
-      image: IMAGES.hallRajdarshan,
-      badge: "South Asia's Mega Hall",
-    },
-    {
-      ...SITE_INFO.halls[3],
-      image: IMAGES.hallNaboratna,
-      badge: "Versatile Banquet Hall",
-    },
-  ];
+  // Extract existing seat types: Banquet, Theater, Classroom, U-Shape
+  const seatParts: string[] = [];
+  if (venue.seats?.banquet) {
+    seatParts.push(`${isBn ? "ব্যাঙ্কোয়েট" : "Banquet"} ${venue.seats.banquet}`);
+  }
+  if (venue.seats?.theater) {
+    seatParts.push(`${isBn ? "থিয়েটার" : "Theater"} ${venue.seats.theater}`);
+  }
+  if (venue.seats?.classroom && seatParts.length < 2) {
+    seatParts.push(`${isBn ? "ক্লাসরুম" : "Classroom"} ${venue.seats.classroom}`);
+  }
+  const seatsLine = seatParts.join(" · ");
 
   return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white py-16 sm:py-20 relative text-center border-b border-ink-100 dark:border-white/10 transition-colors">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="flex justify-center">
-            <Breadcrumbs items={[{ label: "Venues & Halls" }]} />
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: idx * 0.08 }}
+      className="relative aspect-[3/4] rounded-[2px] overflow-hidden group bg-ink-900 border border-ink-900/10 dark:border-white/10"
+    >
+      <Link href={`/venues/${venue.slug}`} className="block w-full h-full relative">
+        {/* Cover Image or Fallback */}
+        {!imgError ? (
+          <Image
+            src={venue.image}
+            alt={venue.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-[700ms] group-hover:scale-[1.06]"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full bg-ink-900 flex flex-col items-center justify-center p-6 text-center select-none">
+            <span className="font-serif text-6xl text-white/10 font-bold">
+              {venue.no}
+            </span>
+            <span className="font-serif text-lg text-white/60 uppercase tracking-widest mt-2">
+              {venue.name}
+            </span>
           </div>
-          <span className="font-serif italic text-brand-600 dark:text-brand-400 text-lg font-semibold block">
-            ~ South Asia&apos;s Largest Event Venue ~
-          </span>
-          <h1 className="font-display font-black text-4xl sm:text-6xl uppercase tracking-tight text-ink-950 dark:text-white">
-            OUR 4 CONVENTION HALLS
+        )}
+
+        {/* Bottom gradient black/75 to transparent (lower 50%) */}
+        <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/85 via-black/45 to-transparent pointer-events-none" />
+
+        {/* Top-left: number in Playfair italic white */}
+        <span className="absolute top-4 left-4 font-serif italic text-white text-xl font-medium drop-shadow-sm select-none">
+          {venue.no}
+        </span>
+
+        {/* Top-right: small caps label in a 1px white/40 pill with backdrop-blur */}
+        <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-[11px] uppercase tracking-wider text-white font-medium">
+          {venue.label}
+        </div>
+
+        {/* Bottom details: Name + Seats + View hall row */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-left space-y-1.5 z-10">
+          <h3 className="font-serif text-[24px] sm:text-[28px] text-white font-normal leading-tight">
+            {venue.name}
+          </h3>
+
+          {seatsLine && (
+            <p className="text-[12px] uppercase tracking-[0.15em] text-white/80 line-clamp-1">
+              {seatsLine}
+            </p>
+          )}
+
+          {/* Hidden row "View hall →" that slides up on hover */}
+          <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <span>{isBn ? "হলটি দেখুন" : "View hall"}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </div>
+        </div>
+
+        {/* 2px brand-500 line grows along the bottom */}
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-brand-500 transition-all duration-300 group-hover:w-full" />
+      </Link>
+    </motion.div>
+  );
+}
+
+export default function VenuesPage() {
+  const { locale } = useUIStore();
+  const isBn = locale === "bn";
+
+  const halls = VENUES.filter((v) => v.type === "hall");
+  const moreSpaces = VENUES.filter((v) => v.type !== "hall");
+
+  // Banquet seating sorted high to low for 6 halls
+  const banquetHalls = halls
+    .filter((h) => h.seats?.banquet)
+    .map((h) => ({
+      name: h.name,
+      label: h.label,
+      seats: parseInt(h.seats!.banquet!.replace(/[^0-9]/g, ""), 10),
+      rawSeats: h.seats!.banquet!,
+    }))
+    .sort((a, b) => b.seats - a.seats);
+
+  const maxBanquet = Math.max(...banquetHalls.map((b) => b.seats), 1200);
+
+  return (
+    <div className="bg-white dark:bg-ink-950 text-ink-950 dark:text-white transition-colors">
+      {/* a) Hero (min-h-[56vh]) */}
+      <section className="relative min-h-[56vh] flex items-center justify-center overflow-hidden bg-ink-950 text-center px-4 py-20">
+        <Image
+          src="https://www.iccbbg.com/assets/upload/wallpaper/wallpaper_1720856910.jpg"
+          alt="ICCB Venues"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover transition-transform duration-[10000ms] scale-105 hover:scale-100 ease-out"
+        />
+        {/* Black/60 overlay and bottom fade */}
+        <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-ink-950 to-transparent pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto space-y-4">
+          <div className="flex justify-center text-white/80">
+            <Breadcrumbs items={[{ label: isBn ? "ভেন্যুসমূহ" : "Venues" }]} />
+          </div>
+
+          <h1 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-[0.12em] text-white">
+            <span className="italic text-brand-300 mr-3">
+              {isBn ? "আমাদের" : "Our"}
+            </span>
+            <span className="uppercase font-normal">
+              {isBn ? "ভেন্যুসমূহ" : "VENUES"}
+            </span>
           </h1>
-          <p className="text-xs sm:text-sm text-ink-600 dark:text-ink-300 max-w-2xl mx-auto leading-relaxed">
-            Operating since 1 January 2015 along the 300 ft. Purbachal Express Highway in Kuril, ICCB hosts 10,000+ guests simultaneously with full-service venue, decoration, and catering management.
+
+          <div className="w-12 h-[2px] bg-brand-500 mx-auto" />
+
+          <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto leading-relaxed">
+            {isBn
+              ? "মেলা ও প্রদর্শনী, সম্মেলন, ফ্যাশন শো, অ্যাওয়ার্ড নাইট, সমাবর্তন এবং রাজকীয় বিবাহের জন্য নির্মিত।"
+              : "Built for fairs and expos, conferences, fashion shows, award nights, convocations and weddings."}
           </p>
         </div>
       </section>
 
-      {/* Halls Grid */}
-      <section className="py-20 max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {hallsWithImages.map((hall, idx) => {
-          const isEven = idx % 2 === 1;
-          return (
-            <div
-              key={hall.name}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-            >
-              <div className={`lg:col-span-6 space-y-5 text-left ${isEven ? "lg:order-2" : ""}`}>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full">
-                  {hall.badge}
-                </span>
-                <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-ink-950">
-                  {hall.name}
-                </h2>
-                <p className="text-xs sm:text-sm text-ink-600 leading-relaxed">
-                  {hall.description}
-                </p>
+      {/* b) Intro strip: Playfair statement + 3 count-ups */}
+      <section className="py-14 sm:py-16 border-b border-ink-100 dark:border-white/10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-6 text-left">
+            <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white leading-snug">
+              {isBn
+                ? "কনভেনশন হল, এক্সপো ভিলেজ এবং প্রাইভেট ডাইনিং রুম। একই ঠিকানায়।"
+                : "Halls, an expo village and private dining rooms. One address."}
+            </h2>
+          </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div className="p-4 bg-ink-50 rounded-2xl border border-ink-200">
-                    <span className="text-[10px] text-ink-400 uppercase font-bold block">Capacity</span>
-                    <span className="font-display font-bold text-base text-ink-950">{hall.capacity}</span>
-                  </div>
-                  <div className="p-4 bg-ink-50 rounded-2xl border border-ink-200">
-                    <span className="text-[10px] text-ink-400 uppercase font-bold block">Floor Area</span>
-                    <span className="font-display font-bold text-base text-ink-950">{hall.area}</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 flex flex-wrap gap-4">
-                  <Link href="/booking">
-                    <Button size="md" withArrow variant="primary">
-                      Book {hall.name.split(" ")[0]}
-                    </Button>
-                  </Link>
-                  <Link href="/quote">
-                    <Button size="md" variant="outline">
-                      Book Hall + Catering
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              <div className={`lg:col-span-6 relative ${isEven ? "lg:order-1" : ""}`}>
-                <div className="relative h-80 sm:h-96 rounded-3xl overflow-hidden shadow-card border border-ink-100 group">
-                  <Image
-                    src={hall.image}
-                    alt={hall.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    placeholder="blur"
-                    blurDataURL={PLACEHOLDER_BLUR}
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </div>
+          <div className="lg:col-span-6 grid grid-cols-3 gap-4 text-center">
+            <div className="space-y-1">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+                2015
+              </span>
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                {isBn ? "যাত্রা শুরু" : "Operating since"}
+              </p>
             </div>
-          );
-        })}
+            <div className="space-y-1">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+                6
+              </span>
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                {isBn ? "টি হল" : "Halls"}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-600 dark:text-brand-400">
+                1
+              </span>
+              <p className="text-[11px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                {isBn ? "এক্সপো ভিলেজ" : "Expo Village"}
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* ICCB Heritage Restaurant & Outside Catering */}
-      <section className="bg-brand-50/60 py-20 border-t border-brand-100">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {/* Heritage Restaurant */}
-            <div className="bg-white rounded-3xl p-8 border border-ink-100 shadow-soft space-y-4">
-              <span className="text-[10px] uppercase font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">
-                Mughal Concept Restaurant &bull; Opened June 2021
-              </span>
-              <h3 className="font-display font-black text-2xl uppercase text-ink-950">
-                ICCB HERITAGE RESTAURANT
-              </h3>
-              <p className="text-xs text-ink-600 leading-relaxed">
-                Located right inside ICCB premises, our heritage restaurant offers year-round authentic Mughal dining and serves as the VIP food tasting suite for wedding couples and corporate event organizers.
-              </p>
-              <div className="pt-2">
-                <Link href="/tasting">
-                  <Button size="sm" variant="outline" withArrow>
-                    Book Tasting at Heritage Restaurant
-                  </Button>
-                </Link>
-              </div>
-            </div>
+      {/* c) Hall Grid: 6 halls, all visible, 3 cols lg, 2 cols sm, 1 col mobile */}
+      <section className="py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-left mb-8 space-y-1">
+          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+            {isBn ? "কনভেনশন হলসমূহ" : "Convention Halls"}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+            {isBn ? "আমাদের ৬টি বিশেষ হল" : "Our Six Signature Halls"}
+          </h2>
+        </div>
 
-            {/* Outside Catering */}
-            <div className="bg-white rounded-3xl p-8 border border-ink-100 shadow-soft space-y-4">
-              <span className="text-[10px] uppercase font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">
-                Mobile Off-Premises Logistics
-              </span>
-              <h3 className="font-display font-black text-2xl uppercase text-ink-950">
-                OUTSIDE & LAWN CATERING
-              </h3>
-              <p className="text-xs text-ink-600 leading-relaxed">
-                We also deliver the complete ICCB catering experience outside our halls to diplomatic residences, corporate headquarters, and private villas anywhere across Greater Dhaka with smart thermal insulated transport.
-              </p>
-              <div className="pt-2">
-                <Link href="/services/corporate-catering">
-                  <Button size="sm" variant="primary" withArrow>
-                    Inquire for Outside Catering
-                  </Button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {halls.map((hall, idx) => (
+            <HallCard key={hall.slug} venue={hall} idx={idx} isBn={isBn} />
+          ))}
+        </div>
+      </section>
+
+      {/* d) More Spaces: Expo Village + Heritage Dining (2 wide cards, aspect-[16/10]) */}
+      <section className="pb-16 lg:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-left mb-8 space-y-1">
+          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+            {isBn ? "অন্যান্য বিশেষ স্পেস" : "More Spaces"}
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+            {isBn ? "এক্সপো ভিলেজ ও প্রাইভেট ডাইনিং" : "Expo Village & Dining"}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {moreSpaces.map((space, idx) => {
+            const shortFact =
+              space.slug === "expo-village"
+                ? "12,500 sq m · 13 m height"
+                : space.note || "Seating from 20 to 40 people";
+
+            return (
+              <motion.div
+                key={space.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="relative aspect-[16/10] rounded-[2px] overflow-hidden group bg-ink-900 border border-ink-900/10 dark:border-white/10"
+              >
+                <Link
+                  href={`/venues/${space.slug}`}
+                  className="block w-full h-full relative"
+                >
+                  <Image
+                    src={space.image}
+                    alt={space.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-[700ms] group-hover:scale-[1.06]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+                  {/* Top-right pill */}
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-[11px] uppercase tracking-wider text-white font-medium">
+                    {space.label}
+                  </div>
+
+                  {/* Bottom details */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-left space-y-1.5 z-10">
+                    <h3 className="font-serif text-[22px] sm:text-[26px] text-white font-normal leading-tight">
+                      {space.name}
+                    </h3>
+                    <p className="text-[12px] uppercase tracking-[0.15em] text-white/80">
+                      {shortFact}
+                    </p>
+                    <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-brand-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <span>{isBn ? "বিস্তারিত দেখুন" : "View details"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-brand-500 transition-all duration-300 group-hover:w-full" />
                 </Link>
-              </div>
-            </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* e) Banquet seating at a glance: horizontal animated bars from VENUES */}
+      <section className="py-16 bg-[#F7F3EE] dark:bg-ink-900 border-t border-ink-100 dark:border-white/10 transition-colors">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-8">
+          <div className="space-y-1">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+              {isBn ? "ধারণক্ষমতা এক নজরে" : "Capacity Overview"}
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl text-ink-950 dark:text-white">
+              {isBn ? "ব্যাঙ্কোয়েট টেবিল আসন সংখ্যা" : "Banquet Seating at a Glance"}
+            </h2>
+            <p className="text-xs text-ink-500 dark:text-ink-400">
+              {isBn
+                ? "ব্যাঙ্কোয়েট টেবিল সেটআপের সর্বোচ্চ ধারণক্ষমতা।"
+                : "Seats with banquet tables."}
+            </p>
+          </div>
+
+          <div className="space-y-5">
+            {banquetHalls.map((hall) => {
+              const pct = (hall.seats / maxBanquet) * 100;
+              return (
+                <div key={hall.name} className="space-y-1.5">
+                  <div className="flex justify-between text-xs sm:text-sm font-medium">
+                    <span className="text-ink-900 dark:text-white font-serif">
+                      {hall.name} ({hall.label})
+                    </span>
+                    <span className="font-serif font-bold text-ink-900 dark:text-white">
+                      {hall.rawSeats}
+                    </span>
+                  </div>
+
+                  {/* 1px track with 4px brand-500 bar that grows from 0 in 900ms */}
+                  <div className="relative h-1 w-full bg-ink-200/70 dark:bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: `${pct}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.9, ease: "easeOut" }}
+                      className="h-full bg-brand-500 rounded-full"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* f) Closing Dark Band: Plan your event at ICCB + Enquire button to /inquiry */}
+      <section className="py-16 bg-ink-950 text-white border-t border-white/10 text-center px-4">
+        <div className="max-w-2xl mx-auto space-y-4">
+          <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-wide">
+            {isBn ? "আইসিসিবিতে আপনার ইভেন্ট পরিকল্পনা করুন" : "Plan your event at ICCB"}
+          </h2>
+          <p className="text-xs sm:text-sm text-white/70 max-w-lg mx-auto">
+            {isBn
+              ? "আমাদের অভিজ্ঞ ব্যাঙ্কোয়েট টিম আপনার আয়োজন নিখুঁত করতে প্রস্তুত।"
+              : "Our experienced banquet specialists are ready to tailor our venues to your exact specifications."}
+          </p>
+          <div className="pt-2">
+            <Link href="/inquiry">
+              <button
+                type="button"
+                className="bg-brand-500 hover:bg-brand-600 text-white uppercase tracking-[0.2em] text-[12px] px-8 py-3.5 rounded-none font-medium transition-colors inline-block"
+              >
+                {isBn ? "অনুসন্ধান করুন" : "Enquire"}
+              </button>
+            </Link>
           </div>
         </div>
       </section>
     </div>
   );
 }
-

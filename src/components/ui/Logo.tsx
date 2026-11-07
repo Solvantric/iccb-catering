@@ -13,12 +13,12 @@ export function Logo({ className = "", light = false }: LogoProps) {
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-xl shrink-0 transition-all duration-200 hover:opacity-95",
+        "h-full inline-flex items-center justify-center shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
         className
       )}
       aria-label="ICCB Catering home"
     >
-      <div className="h-full w-auto max-h-full bg-white rounded-xl p-1 sm:p-1.5 md:p-2 flex items-center justify-center shadow-xs border border-ink-100/70">
+      <div className="h-full w-auto bg-[#FFFFFF] p-[6px] border-r border-ink-100 dark:border-white/10 flex items-center justify-center">
         <Image
           src="/logo/iccb-logo.png"
           alt="International Convention City Bashundhara"

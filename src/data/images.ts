@@ -86,5 +86,14 @@ export const IMAGES = {
   qaManager: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
 };
 
+export const WEDDING_IMG =
+  "https://img.magnific.com/free-photo/photorealistic-wedding-venue-with-intricate-decor-ornaments_23-2151481469.jpg?semt=ais_hybrid&w=740&q=80";
+export const CORPORATE_IMG =
+  "https://betterwork.org/wp-content/uploads/BWB-bsuiness-forum-22-1-scaled-1.jpeg";
+export const SOCIAL_IMG =
+  "https://www.iccbbg.com/assets/upload/wallpaper/wallpaper_1570336154.jpg";
+export const BIRTHDAY_IMG =
+  "https://media.istockphoto.com/id/1516488332/photo/banquet-decoration-in-hall-restaurant-festive-tables-with-flower-composition-on-black.jpg?s=612x612&w=0&k=20&c=al8ttF6djB95HfH2lxAzYLGvx8jKDgtaqHQa2NTbSb0=";
+
 export const PLACEHOLDER_BLUR =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMWExYTFhIi8+PC9zdmc+";

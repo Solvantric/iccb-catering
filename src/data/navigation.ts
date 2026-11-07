@@ -1,9 +1,50 @@
+import { VENUES } from "./venues";
+
+export interface NavChild {
+  label: string;
+  labelBn?: string;
+  href: string;
+  subLabel?: string;
+  subLabelBn?: string;
+  image?: string;
+}
+
 export interface NavItem {
   label: string;
   labelBn?: string;
   href: string;
-  children?: { label: string; labelBn?: string; href: string }[];
+  children?: NavChild[];
 }
+
+const venueNameBnMap: Record<string, { nameBn: string; subLabelBn: string }> = {
+  gulnaksha: { nameBn: "গুলনকশা", subLabelBn: "হল ০১" },
+  pushpoguchcho: { nameBn: "পুষ্পগুচ্ছ", subLabelBn: "হল ০২" },
+  rajdarshan: { nameBn: "রাজদর্শন", subLabelBn: "হল ০৩" },
+  noboratri: { nameBn: "নবরাত্রি", subLabelBn: "হল ০৪" },
+  pushpanjali: { nameBn: "পুষ্পাঞ্জলি", subLabelBn: "হল ০৫" },
+  "seminar-hall": { nameBn: "সেমিনার হল", subLabelBn: "হল ০৬" },
+  "expo-village": { nameBn: "এক্সপো ভিলেজ", subLabelBn: "এক্সপো ভিলেজ" },
+  "heritage-restaurant-venues": {
+    nameBn: "হেরিটেজ রেস্তোরাঁ ভেন্যু",
+    subLabelBn: "প্রাইভেট ডাইনিং",
+  },
+};
+
+const venuesNavChildren: NavChild[] = [
+  ...VENUES.map((v) => ({
+    label: v.name,
+    labelBn: venueNameBnMap[v.slug]?.nameBn || v.name,
+    href: `/venues/${v.slug}`,
+    subLabel: v.label,
+    subLabelBn: venueNameBnMap[v.slug]?.subLabelBn || v.label,
+    image: v.image,
+  })),
+  {
+    label: "View all venues",
+    labelBn: "সবগুলো ভেন্যু দেখুন",
+    href: "/venues",
+  },
+];
 
 export const PUBLIC_NAV: NavItem[] = [
   { label: "About", labelBn: "আমাদের সম্পর্কে", href: "/about" },
@@ -21,9 +62,21 @@ export const PUBLIC_NAV: NavItem[] = [
   },
   { label: "Menu", labelBn: "মেন্যু", href: "/menu" },
   { label: "Packages", labelBn: "প্যাকেজ", href: "/packages" },
-  { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
-  { label: "Venues", labelBn: "ভেন্যু", href: "/venues" },
-  { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
+  {
+    label: "Venues",
+    labelBn: "ভেন্যু",
+    href: "/venues",
+    children: venuesNavChildren,
+  },
+  {
+    label: "Insights",
+    labelBn: "ইনসাইটস",
+    href: "/blog",
+    children: [
+      { label: "Blog", labelBn: "ব্লগ", href: "/blog" },
+      { label: "Gallery", labelBn: "গ্যালারি", href: "/gallery" },
+    ],
+  },
   { label: "Contact", labelBn: "যোগাযোগ", href: "/contact" },
 ];
 
@@ -38,7 +91,7 @@ export const FOOTER_LINKS = {
   ],
   company: [
     { label: "About ICCB", labelBn: "আইসিসিবি সম্পর্কে", href: "/about" },
-    { label: "Our 4 Convention Halls", labelBn: "আমাদের ৪টি কনভেনশন হল", href: "/venues" },
+    { label: "Our Venues", labelBn: "আমাদের ভেন্যুসমূহ", href: "/venues" },
     { label: "Our 5-Step Process", labelBn: "আমাদের ৫-ধাপের প্রক্রিয়া", href: "/our-process" },
     { label: "Client Testimonials", labelBn: "গ্রাহকদের মতামত", href: "/testimonials" },
     { label: "Seasonal Offers", labelBn: "বিশেষ অফার", href: "/offers" },

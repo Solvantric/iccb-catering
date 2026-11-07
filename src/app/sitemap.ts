@@ -3,6 +3,7 @@ import { MENU_ITEMS } from "@/data/menu";
 import { PACKAGES } from "@/data/packages";
 import { SERVICES } from "@/data/services";
 import { BLOG_POSTS } from "@/data/blog";
+import { VENUES } from "@/data/venues";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://iccbcatering.com";
 
@@ -74,6 +75,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...routes, ...menuRoutes, ...packageRoutes, ...serviceRoutes, ...blogRoutes];
+  const venueRoutes = VENUES.map((venue) => ({
+    url: `${siteUrl}/venues/${venue.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [
+    ...routes,
+    ...menuRoutes,
+    ...packageRoutes,
+    ...serviceRoutes,
+    ...blogRoutes,
+    ...venueRoutes,
+  ];
 }
 

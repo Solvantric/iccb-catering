@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { FOOTER_LINKS } from "@/data/navigation";
 import { SITE_INFO } from "@/data/site";
-import { MapPin, Phone, Mail, Clock, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
 import { useUIStore } from "@/store/uiStore";
 import { translations } from "@/lib/i18n";
 
@@ -98,14 +98,7 @@ export function Footer() {
                   {SITE_INFO.contact.cateringEmail}
                 </a>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>
-                  {locale === "bn"
-                    ? "সপ্তাহে ৭ দিন খোলা: সকাল ৯:০০ - রাত ১০:০০"
-                    : SITE_INFO.contact.hours}
-                </span>
-              </div>
+
             </div>
           </div>
         </div>

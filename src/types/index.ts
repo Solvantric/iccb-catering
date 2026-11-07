@@ -192,7 +192,8 @@ export interface Testimonial {
   content: string;
   contentBn?: string;
   rating: number;
-  avatarUrl: string;
+  avatarUrl?: string;
+  avatar?: string;
   date: string;
   approved: boolean;
   isSample?: boolean;
